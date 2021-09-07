@@ -1,0 +1,58 @@
+Dependencies for Project 'uartprint', Target 'Target 1': (DO NOT MODIFY !)
+F (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM\startup_W7500x.s)(0x5C3DBD93)(--cpu Cortex-M0 --li -g --apcs=interwork -I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 525" --pd "ARMCM0 SETA 1"--list .\listings\startup_w7500x.lst --xref -o .\objects\startup_w7500x.o --depend .\objects\startup_w7500x.d)
+F (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Source\system_W7500x.c)(0x5C3DBD93)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I ..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I ..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I ..\..\workspace\Libraries\CMSIS\Include -I .\librerias-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\system_w7500x.o --omf_browse .\objects\system_w7500x.crf --depend .\objects\system_w7500x.d)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h)(0x5CD9EDA1)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cm0.h)(0x5C3DBD93)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x5C3DBD93)
+F (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\src\W7500x_gpio.c)(0x5C3DBD93)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I ..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I ..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I ..\..\workspace\Libraries\CMSIS\Include -I .\librerias-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\w7500x_gpio.o --omf_browse .\objects\w7500x_gpio.crf --depend .\objects\w7500x_gpio.d)
+I (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h)(0x5CD9EDA1)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cm0.h)(0x5C3DBD93)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x5C3DBD93)
+F (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c)(0x61315F07)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I ..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I ..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I ..\..\workspace\Libraries\CMSIS\Include -I .\librerias-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\w7500x_uart.o --omf_browse .\objects\w7500x_uart.crf --depend .\objects\w7500x_uart.d)
+I (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_uart.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h)(0x5CD9EDA1)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cm0.h)(0x5C3DBD93)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x5C3DBD93)
+F (.\main.c)(0x613168F0)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I ..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I ..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I ..\..\workspace\Libraries\CMSIS\Include -I .\librerias-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
+I (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_uart.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h)(0x5CD9EDA1)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cm0.h)(0x5C3DBD93)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h)(0x5C3DBD93)
+F (.\retarget.c)(0x5C3DBD93)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I ..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I ..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I ..\..\workspace\Libraries\CMSIS\Include -I .\librerias-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\retarget.o --omf_browse .\objects\retarget.crf --depend .\objects\retarget.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_uart.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h)(0x5CD9EDA1)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cm0.h)(0x5C3DBD93)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x5C3DBD93)
+I (C:\Keil_v5\ARM\ARMCC\include\time.h)(0x599F920E)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599F920E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599F920C)
+F (.\W7500x_it.c)(0x60D50C20)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I ..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I ..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I ..\..\workspace\Libraries\CMSIS\Include -I .\librerias-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\w7500x_it.o --omf_browse .\objects\w7500x_it.crf --depend .\objects\w7500x_it.d)
+I (W7500x_it.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h)(0x5CD9EDA1)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cm0.h)(0x5C3DBD93)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x5C3DBD93)
+I (..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_uart.h)(0x5C3DBD93)
+F (.\W7500x_it.h)(0x5C3DBD93)()

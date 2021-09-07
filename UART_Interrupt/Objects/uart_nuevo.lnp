@@ -1,0 +1,14 @@
+--cpu Cortex-M0
+".\objects\startup_w7500x.o"
+".\objects\system_w7500x.o"
+".\objects\w7500x_crg.o"
+".\objects\w7500x_uart.o"
+".\objects\w7500x_gpio.o"
+".\objects\w7500x_misc.o"
+".\objects\main.o"
+".\objects\retarget.o"
+".\objects\w7500x_it.o"
+--strict --scatter ".\Objects\uart_nuevo.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\uart_nuevo.map" -o .\Objects\uart_nuevo.axf
