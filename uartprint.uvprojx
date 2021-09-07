@@ -10,13 +10,13 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
+      <pCCUsed>5050169::V5.05 update 2 (build 169)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.7.0</PackID>
+          <PackID>ARM.CMSIS.5.5.1</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>CORTEX_M0 USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\..\workspace\Libraries\W7500x_stdPeriph_Driver\inc;..\..\workspace\Libraries\CMSIS\Include;.\librerias</IncludePath>
+              <IncludePath>..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include;..\workspace\Libraries\W7500x_stdPeriph_Driver\inc;..\workspace\Libraries\CMSIS\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,7 +384,7 @@
             <File>
               <FileName>startup_W7500x.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM\startup_W7500x.s</FilePath>
+              <FilePath>..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Source\ARM\startup_W7500x.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -394,7 +394,7 @@
             <File>
               <FileName>system_W7500x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Source\system_W7500x.c</FilePath>
+              <FilePath>..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Source\system_W7500x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -404,12 +404,12 @@
             <File>
               <FileName>W7500x_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\workspace\Libraries\W7500x_stdPeriph_Driver\src\W7500x_gpio.c</FilePath>
+              <FilePath>..\workspace\Libraries\W7500x_stdPeriph_Driver\src\W7500x_gpio.c</FilePath>
             </File>
             <File>
               <FileName>W7500x_uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\workspace\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c</FilePath>
+              <FilePath>..\workspace\Libraries\W7500x_stdPeriph_Driver\src\W7500x_uart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -435,6 +435,11 @@
               <FileName>W7500x_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\W7500x_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\eeprom.c</FilePath>
             </File>
           </Files>
         </Group>
