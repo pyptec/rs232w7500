@@ -37,6 +37,7 @@
 #include <string.h>
 #include "W7500x_uart.h"
 #include "W7500x_gpio.h"
+#include "eeprom.h"
 //#include "i2c.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -58,12 +59,11 @@ extern uint32_t uart2_rx_cnt;
 /* Private function prototypes -----------------------------------------------*/
 void delay_ms(__IO uint32_t nCount);
 void led_on(void);
-void Config_i2c();
+//void Config_i2c();
 //void Config_io(void);
 //uint32_t I2C_Init(I2C_ConfigStruct* conf);
 /* Private functions ---------------------------------------------------------*/
-#define scl_pin	GPIO_Pin_9
-#define sda_pin GPIO_Pin_10
+
 /**
   * @brief   Main program
   * @param  None
@@ -125,6 +125,7 @@ int main()
     /* Retarget functions for GNU Tools for ARM Embedded Processors*/
 		GPIO_SetBits(GPIOC, GPIO_Pin_8); // LED(R) Off
     GPIO_SetBits(GPIOC, GPIO_Pin_9); // LED(G) Off
+		I2C_Init(&GPIO_InitDef);
 		//S_UartPuts("hola Colombia\r\n");
 		while(1)
 		{
@@ -171,20 +172,20 @@ void led_on()
 	  GPIO_SetBits(GPIOC, GPIO_Pin_8);
     GPIO_SetBits(GPIOC, GPIO_Pin_9);
 }
-void Config_i2c()
-{
+//void Config_i2c()
+//{
 	/*configuramos los scl como salida*/
 	
-    GPIO_InitDef.GPIO_Pin = ( scl_pin) ; 
-    GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; // Set to Mode Output
-    GPIO_Init(GPIOC, &GPIO_InitDef);
-    PAD_AFConfig(PAD_PC,(scl_pin), PAD_AF1); // PAD Config - LED used 2nd 
+   // GPIO_InitDef.GPIO_Pin = ( scl_pin) ; 
+   // GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; // Set to Mode Output
+   // GPIO_Init(GPIOC, &GPIO_InitDef);
+   // PAD_AFConfig(PAD_PC,(scl_pin), PAD_AF1); // PAD Config - LED used 2nd 
 		/*configura sda como salida*/
-		GPIO_InitDef.GPIO_Pin = ( sda_pin) ; 
-    GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; // Set to Mode Output
-    GPIO_Init(GPIOC, &GPIO_InitDef);
-    PAD_AFConfig(PAD_PC,(sda_pin), PAD_AF1); // PAD Config - LED used 2nd 
-}
+		//GPIO_InitDef.GPIO_Pin = ( sda_pin) ; 
+    //GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; // Set to Mode Output
+    //GPIO_Init(GPIOC, &GPIO_InitDef);
+   // PAD_AFConfig(PAD_PC,(sda_pin), PAD_AF1); // PAD Config - LED used 2nd 
+//}
 /*void Config_io()
 {
 	//uint32_t data;

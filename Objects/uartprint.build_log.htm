@@ -22,29 +22,27 @@ Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
 C:\desarrollo\Acceso jp\rs232w7500\uartprint.uvprojx
-Project File Date:  09/07/2021
+Project File Date:  09/08/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 assembling startup_W7500x.s...
-compiling eeprom.c...
-eeprom.c(10): warning:  #1-D: last line of file ends without a newline
-  }
-eeprom.c: 1 warning, 0 errors
-compiling retarget.c...
-compiling W7500x_it.c...
-compiling system_W7500x.c...
 compiling main.c...
-main.c(61): warning:  #1295-D: Deprecated declaration Config_i2c - give arg types
-  void Config_i2c();
-main.c: 1 warning, 0 errors
 compiling W7500x_gpio.c...
+compiling W7500x_it.c...
+compiling retarget.c...
+compiling eeprom.c...
+eeprom.c(22): warning:  #167-D: argument of type "GPIO_InitTypeDef **" is incompatible with parameter of type "GPIO_InitTypeDef *"
+      GPIO_Init(
+PIOA, &conf);
+eeprom.c: 1 warning, 0 errors
+compiling system_W7500x.c...
 compiling W7500x_uart.c...
 linking...
-Program Size: Code=4528 RO-data=264 RW-data=44 ZI-data=2252  
+Program Size: Code=4572 RO-data=264 RW-data=44 ZI-data=2252  
 After Build - User command #1: fromelf --bin -o "C:\desarrollo\Acceso jp\rs232w7500\Objects\uartprint.bin" "C:\desarrollo\Acceso jp\rs232w7500\Objects\uartprint.axf"
-".\Objects\uartprint.axf" - 0 Error(s), 2 Warning(s).
+".\Objects\uartprint.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +56,7 @@ Package Vendor: ARM
   C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.5.1\Device\ARM\ARMCM0\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:01:07
 </pre>
 </body>
 </html>

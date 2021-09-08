@@ -10,3 +10,4 @@
 .\objects\main.o: ..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
 .\objects\main.o: ..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
 .\objects\main.o: ..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
+.\objects\main.o: eeprom.h

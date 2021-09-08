@@ -441,6 +441,16 @@
               <FileType>1</FileType>
               <FilePath>.\eeprom.c</FilePath>
             </File>
+            <File>
+              <FileName>eeprom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\eeprom.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\main.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
