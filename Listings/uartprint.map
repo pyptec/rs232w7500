@@ -85,10 +85,12 @@ Section Cross References
     main.o(i.main) refers to main.o(i.NVIC_EnableIRQ) for NVIC_EnableIRQ
     main.o(i.main) refers to w7500x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
     main.o(i.main) refers to eeprom.o(i.I2C_Init) for I2C_Init
+    main.o(i.main) refers to eeprom.o(i.I2C_Write) for I2C_Write
+    main.o(i.main) refers to eeprom.o(i.I2C_Read) for I2C_Read
     main.o(i.main) refers to w7500x_uart.o(i.UartPuts) for UartPuts
     main.o(i.main) refers to w7500x_uart.o(i.S_UartPuts) for S_UartPuts
     main.o(i.main) refers to main.o(.data) for GPIO_InitDef
-    main.o(i.main) refers to main.o(.bss) for UART_InitStructure
+    main.o(i.main) refers to main.o(.bss) for conf
     main.o(i.main) refers to w7500x_it.o(.data) for uart0_rx_cnt
     retarget.o(.rev16_text) refers (Special) to use_no_semi.o(.text) for __use_no_semihosting_swi
     retarget.o(.revsh_text) refers (Special) to use_no_semi.o(.text) for __use_no_semihosting_swi
@@ -121,6 +123,58 @@ Section Cross References
     w7500x_it.o(i.UART2_Handler) refers to main.o(.data) for buffer_ready2
     eeprom.o(i.I2C_Init) refers to w7500x_gpio.o(i.GPIO_Init) for GPIO_Init
     eeprom.o(i.I2C_Init) refers to w7500x_gpio.o(i.PAD_AFConfig) for PAD_AFConfig
+    eeprom.o(i.I2C_Init) refers to w7500x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    eeprom.o(i.I2C_Init) refers to w7500x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    eeprom.o(i.I2C_Init) refers to eeprom.o(.data) for scl_pin_index
+    eeprom.o(i.I2C_Init) refers to main.o(.data) for GPIO_InitDef
+    eeprom.o(i.I2C_Read) refers to eeprom.o(i.I2C_Start) for I2C_Start
+    eeprom.o(i.I2C_Read) refers to eeprom.o(i.I2C_WriteByte) for I2C_WriteByte
+    eeprom.o(i.I2C_Read) refers to noretval__2printf.o(.text) for __2printf
+    eeprom.o(i.I2C_Read) refers to eeprom.o(i.I2C_ReadByte) for I2C_ReadByte
+    eeprom.o(i.I2C_Read) refers to eeprom.o(i.I2C_Stop) for I2C_Stop
+    eeprom.o(i.I2C_ReadBitSDA) refers to eeprom.o(.data) for sda_pin_index
+    eeprom.o(i.I2C_ReadByte) refers to eeprom.o(i.I2C_SDA_MODE) for I2C_SDA_MODE
+    eeprom.o(i.I2C_ReadByte) refers to eeprom.o(i.I2C_WriteBitSCL) for I2C_WriteBitSCL
+    eeprom.o(i.I2C_ReadByte) refers to eeprom.o(i.I2C_ReadBitSDA) for I2C_ReadBitSDA
+    eeprom.o(i.I2C_ReadByte) refers to eeprom.o(i.I2C_SendNACK) for I2C_SendNACK
+    eeprom.o(i.I2C_ReadByte) refers to eeprom.o(i.I2C_SendACK) for I2C_SendACK
+    eeprom.o(i.I2C_ReadRepeated) refers to eeprom.o(i.I2C_Start) for I2C_Start
+    eeprom.o(i.I2C_ReadRepeated) refers to eeprom.o(i.I2C_WriteByte) for I2C_WriteByte
+    eeprom.o(i.I2C_ReadRepeated) refers to noretval__2printf.o(.text) for __2printf
+    eeprom.o(i.I2C_ReadRepeated) refers to eeprom.o(i.I2C_ReadByte) for I2C_ReadByte
+    eeprom.o(i.I2C_ReadRepeated) refers to eeprom.o(i.I2C_SendACK) for I2C_SendACK
+    eeprom.o(i.I2C_SDA_MODE) refers to eeprom.o(.data) for sda_pin_index
+    eeprom.o(i.I2C_SendACK) refers to eeprom.o(i.I2C_WriteBitSDA) for I2C_WriteBitSDA
+    eeprom.o(i.I2C_SendACK) refers to eeprom.o(i.I2C_WriteBitSCL) for I2C_WriteBitSCL
+    eeprom.o(i.I2C_SendNACK) refers to eeprom.o(i.I2C_WriteBitSDA) for I2C_WriteBitSDA
+    eeprom.o(i.I2C_SendNACK) refers to eeprom.o(i.I2C_WriteBitSCL) for I2C_WriteBitSCL
+    eeprom.o(i.I2C_Start) refers to eeprom.o(i.I2C_SDA_MODE) for I2C_SDA_MODE
+    eeprom.o(i.I2C_Start) refers to eeprom.o(i.I2C_WriteBitSCL) for I2C_WriteBitSCL
+    eeprom.o(i.I2C_Start) refers to eeprom.o(i.I2C_WriteBitSDA) for I2C_WriteBitSDA
+    eeprom.o(i.I2C_Stop) refers to eeprom.o(i.I2C_SDA_MODE) for I2C_SDA_MODE
+    eeprom.o(i.I2C_Stop) refers to eeprom.o(i.I2C_WriteBitSCL) for I2C_WriteBitSCL
+    eeprom.o(i.I2C_Stop) refers to eeprom.o(i.I2C_WriteBitSDA) for I2C_WriteBitSDA
+    eeprom.o(i.I2C_Write) refers to eeprom.o(i.I2C_Start) for I2C_Start
+    eeprom.o(i.I2C_Write) refers to eeprom.o(i.I2C_WriteByte) for I2C_WriteByte
+    eeprom.o(i.I2C_Write) refers to noretval__2printf.o(.text) for __2printf
+    eeprom.o(i.I2C_Write) refers to eeprom.o(i.I2C_Stop) for I2C_Stop
+    eeprom.o(i.I2C_WriteBitSCL) refers to w7500x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    eeprom.o(i.I2C_WriteBitSCL) refers to w7500x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    eeprom.o(i.I2C_WriteBitSCL) refers to eeprom.o(.data) for scl_pin_index
+    eeprom.o(i.I2C_WriteBitSDA) refers to w7500x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    eeprom.o(i.I2C_WriteBitSDA) refers to w7500x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    eeprom.o(i.I2C_WriteBitSDA) refers to eeprom.o(.data) for sda_pin_index
+    eeprom.o(i.I2C_WriteByte) refers to eeprom.o(i.I2C_SDA_MODE) for I2C_SDA_MODE
+    eeprom.o(i.I2C_WriteByte) refers to eeprom.o(i.I2C_WriteBitSDA) for I2C_WriteBitSDA
+    eeprom.o(i.I2C_WriteByte) refers to eeprom.o(i.I2C_WriteBitSCL) for I2C_WriteBitSCL
+    eeprom.o(i.I2C_WriteByte) refers to eeprom.o(i.I2C_ReadBitSDA) for I2C_ReadBitSDA
+    eeprom.o(i.I2C_WriteRepeated) refers to eeprom.o(i.I2C_Start) for I2C_Start
+    eeprom.o(i.I2C_WriteRepeated) refers to eeprom.o(i.I2C_WriteByte) for I2C_WriteByte
+    eeprom.o(i.I2C_WriteRepeated) refers to noretval__2printf.o(.text) for __2printf
+    __2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
+    __2printf.o(.text) refers to retarget.o(.data) for __stdout
+    noretval__2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
+    noretval__2printf.o(.text) refers to retarget.o(.data) for __stdout
     __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
     daddsub.o(.text) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     dfixui.o(.text) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
@@ -145,6 +199,9 @@ Section Cross References
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
     aeabi_idiv0_sigfpe.o(.text) refers to rt_div0.o(.text) for __rt_div0
+    _printf_char_file.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    _printf_char_file.o(.text) refers to retarget.o(i.ferror) for ferror
+    _printf_char_file.o(.text) refers to retarget.o(i.fputc) for fputc
     __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
     __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
     __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
@@ -158,6 +215,7 @@ Section Cross References
     __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
     __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
     rt_div0.o(.text) refers to defsig_fpe_outer.o(.text) for __rt_SIGFPE
+    _printf_char_common.o(.text) refers to __printf_nopercent.o(.text) for __printf
     sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
     sys_stackheap_outer.o(.text) refers to startup_w7500x.o(.text) for __user_initial_stackheap
     sys_stackheap_outer.o(__vectab_stack_and_reset_area) refers to tempstk.o(.text) for __temporary_stack_top
@@ -262,7 +320,6 @@ Removing Unused input sections from the image.
     Removing w7500x_gpio.o(i.GPIO_ReadOutputData), (8 bytes).
     Removing w7500x_gpio.o(i.GPIO_ReadOutputDataBit), (20 bytes).
     Removing w7500x_gpio.o(i.GPIO_Read_INTstatus), (20 bytes).
-    Removing w7500x_gpio.o(i.GPIO_ResetBits), (32 bytes).
     Removing w7500x_gpio.o(i.GPIO_StructInit), (20 bytes).
     Removing w7500x_gpio.o(i.GPIO_ToggleBits), (8 bytes).
     Removing w7500x_gpio.o(i.GPIO_Write), (4 bytes).
@@ -295,18 +352,15 @@ Removing Unused input sections from the image.
     Removing retarget.o(.rev16_text), (4 bytes).
     Removing retarget.o(.revsh_text), (4 bytes).
     Removing retarget.o(i._ttywrch), (20 bytes).
-    Removing retarget.o(i.ferror), (8 bytes).
     Removing retarget.o(i.fgetc), (28 bytes).
-    Removing retarget.o(i.fputc), (20 bytes).
-    Removing retarget.o(.data), (8 bytes).
     Removing w7500x_it.o(.rev16_text), (4 bytes).
     Removing w7500x_it.o(.revsh_text), (4 bytes).
     Removing eeprom.o(.rev16_text), (4 bytes).
     Removing eeprom.o(.revsh_text), (4 bytes).
-    Removing eeprom.o(i.ackd), (2 bytes).
-    Removing eeprom.o(i.start), (2 bytes).
+    Removing eeprom.o(i.I2C_ReadRepeated), (112 bytes).
+    Removing eeprom.o(i.I2C_WriteRepeated), (100 bytes).
 
-62 unused section(s) (total 1454 bytes) removed from the image.
+58 unused section(s) (total 1594 bytes) removed from the image.
 
 ==============================================================================
 
@@ -317,63 +371,68 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      168  startup_w7500x.o(RESET)
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  aeabi_idiv0.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_div0.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  aeabi_idiv0_sigfpe.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  aeabi_idiv0.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_div0.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatterp.s                 0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  tempstk.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
-    ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv_div0.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
     ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv.o ABSOLUTE
+    ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv_div0.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __printf_nopercent.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  __2printf.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  _printf_char_common.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  noretval__2printf.o ABSOLUTE
+    ../clib/printf.c                         0x00000000   Number         0  _printf_char_file.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../fplib/cfplib/daddsub.c                0x00000000   Number         0  daddsub.o ABSOLUTE
     ../fplib/cfplib/f2d.c                    0x00000000   Number         0  f2d.o ABSOLUTE
     ../fplib/cfplib/fdiv.c                   0x00000000   Number         0  fdiv.o ABSOLUTE
-    ../fplib/cfplib/ffix.c                   0x00000000   Number         0  dfixui.o ABSOLUTE
     ../fplib/cfplib/ffix.c                   0x00000000   Number         0  ffixui.o ABSOLUTE
+    ../fplib/cfplib/ffix.c                   0x00000000   Number         0  dfixui.o ABSOLUTE
     ../fplib/cfplib/fflt.c                   0x00000000   Number         0  fflti.o ABSOLUTE
     ../fplib/cfplib/fpinit.c                 0x00000000   Number         0  fpinit.o ABSOLUTE
     ../fplib/faddsub6m.s                     0x00000000   Number         0  faddsub.o ABSOLUTE
@@ -441,91 +500,113 @@ Image Symbol Table
     .ARM.Collect$$rtexit$$00000004           0x00000144   Section        6  rtexit2.o(.ARM.Collect$$rtexit$$00000004)
     .text                                    0x0000014c   Section       56  startup_w7500x.o(.text)
     .text                                    0x00000184   Section        2  use_no_semi.o(.text)
-    .text                                    0x00000186   Section      346  aeabi_sdiv.o(.text)
-    .text                                    0x000002e0   Section        0  heapauxi.o(.text)
-    .text                                    0x000002e8   Section        0  daddsub.o(.text)
-    _dadd1                                   0x000002e9   Thumb Code   290  daddsub.o(.text)
-    _dsub1                                   0x0000040b   Thumb Code   470  daddsub.o(.text)
-    .text                                    0x00000640   Section        0  dfixui.o(.text)
-    .text                                    0x00000688   Section        0  f2d.o(.text)
-    .text                                    0x000006dc   Section        0  fdiv.o(.text)
-    .text                                    0x0000083c   Section        0  ffixui.o(.text)
-    .text                                    0x0000086c   Section        0  fflti.o(.text)
-    .text                                    0x000008ca   Section       62  sys_stackheap_outer.o(.text)
-    .text                                    0x00000908   Section        0  exit.o(.text)
-    .text                                    0x00000914   Section        8  libspace.o(.text)
-    i.ADC_Handler                            0x0000091c   Section        0  w7500x_it.o(i.ADC_Handler)
-    i.DMA_Handler                            0x0000091e   Section        0  w7500x_it.o(i.DMA_Handler)
-    i.DUALTIMER0_Handler                     0x00000920   Section        0  w7500x_it.o(i.DUALTIMER0_Handler)
-    i.DUALTIMER1_Handler                     0x00000922   Section        0  w7500x_it.o(i.DUALTIMER1_Handler)
-    i.EXTI_Handler                           0x00000924   Section        0  w7500x_it.o(i.EXTI_Handler)
-    i.GPIO_Init                              0x00000928   Section        0  w7500x_gpio.o(i.GPIO_Init)
-    i.GPIO_SetBits                           0x00000a3c   Section        0  w7500x_gpio.o(i.GPIO_SetBits)
-    i.HardFault_Handler                      0x00000a56   Section        0  w7500x_it.o(i.HardFault_Handler)
-    i.I2C_Init                               0x00000a58   Section        0  eeprom.o(i.I2C_Init)
-    i.NMI_Handler                            0x00000a80   Section        0  w7500x_it.o(i.NMI_Handler)
-    i.NVIC_ClearPendingIRQ                   0x00000a84   Section        0  main.o(i.NVIC_ClearPendingIRQ)
-    NVIC_ClearPendingIRQ                     0x00000a85   Thumb Code    14  main.o(i.NVIC_ClearPendingIRQ)
-    i.NVIC_EnableIRQ                         0x00000a98   Section        0  main.o(i.NVIC_EnableIRQ)
-    NVIC_EnableIRQ                           0x00000a99   Thumb Code    14  main.o(i.NVIC_EnableIRQ)
-    i.PAD_AFConfig                           0x00000aac   Section        0  w7500x_gpio.o(i.PAD_AFConfig)
-    i.PORT0_Handler                          0x00000b78   Section        0  w7500x_it.o(i.PORT0_Handler)
-    i.PORT1_Handler                          0x00000b7a   Section        0  w7500x_it.o(i.PORT1_Handler)
-    i.PORT2_Handler                          0x00000b7c   Section        0  w7500x_it.o(i.PORT2_Handler)
-    i.PORT3_Handler                          0x00000b7e   Section        0  w7500x_it.o(i.PORT3_Handler)
-    i.PWM0_Handler                           0x00000b80   Section        0  w7500x_it.o(i.PWM0_Handler)
-    i.PWM1_Handler                           0x00000b82   Section        0  w7500x_it.o(i.PWM1_Handler)
-    i.PWM2_Handler                           0x00000b84   Section        0  w7500x_it.o(i.PWM2_Handler)
-    i.PWM3_Handler                           0x00000b86   Section        0  w7500x_it.o(i.PWM3_Handler)
-    i.PWM4_Handler                           0x00000b88   Section        0  w7500x_it.o(i.PWM4_Handler)
-    i.PWM5_Handler                           0x00000b8a   Section        0  w7500x_it.o(i.PWM5_Handler)
-    i.PWM6_Handler                           0x00000b8c   Section        0  w7500x_it.o(i.PWM6_Handler)
-    i.PWM7_Handler                           0x00000b8e   Section        0  w7500x_it.o(i.PWM7_Handler)
-    i.PendSV_Handler                         0x00000b90   Section        0  w7500x_it.o(i.PendSV_Handler)
-    i.SSP0_Handler                           0x00000b92   Section        0  w7500x_it.o(i.SSP0_Handler)
-    i.SSP1_Handler                           0x00000b94   Section        0  w7500x_it.o(i.SSP1_Handler)
-    i.SVC_Handler                            0x00000b96   Section        0  w7500x_it.o(i.SVC_Handler)
-    i.S_UART_ClearITPendingBit               0x00000b98   Section        0  w7500x_uart.o(i.S_UART_ClearITPendingBit)
-    i.S_UART_ReceiveData                     0x00000ba8   Section        0  w7500x_uart.o(i.S_UART_ReceiveData)
-    i.S_UART_SendData                        0x00000bb4   Section        0  w7500x_uart.o(i.S_UART_SendData)
-    i.S_UartGetc                             0x00000bcc   Section        0  w7500x_uart.o(i.S_UartGetc)
-    i.S_UartPuts                             0x00000be8   Section        0  w7500x_uart.o(i.S_UartPuts)
-    i.SysTick_Handler                        0x00000c02   Section        0  w7500x_it.o(i.SysTick_Handler)
-    i.SystemInit                             0x00000c04   Section        0  system_w7500x.o(i.SystemInit)
-    i.UART0_Handler                          0x00000c78   Section        0  w7500x_it.o(i.UART0_Handler)
-    i.UART1_Handler                          0x00000d00   Section        0  w7500x_it.o(i.UART1_Handler)
-    i.UART2_Handler                          0x00000d88   Section        0  w7500x_it.o(i.UART2_Handler)
-    i.UART_ClearITPendingBit                 0x00000dd8   Section        0  w7500x_uart.o(i.UART_ClearITPendingBit)
-    i.UART_GetITStatus                       0x00000de0   Section        0  w7500x_uart.o(i.UART_GetITStatus)
-    i.UART_ITConfig                          0x00000df4   Section        0  w7500x_uart.o(i.UART_ITConfig)
-    i.UART_Init                              0x00000e08   Section        0  w7500x_uart.o(i.UART_Init)
-    i.UART_ReceiveData                       0x00000ee0   Section        0  w7500x_uart.o(i.UART_ReceiveData)
-    i.UART_SendData                          0x00000ee8   Section        0  w7500x_uart.o(i.UART_SendData)
-    i.UART_StructInit                        0x00000eec   Section        0  w7500x_uart.o(i.UART_StructInit)
-    i.UartPutc                               0x00000f08   Section        0  w7500x_uart.o(i.UartPutc)
-    i.UartPuts                               0x00000f26   Section        0  w7500x_uart.o(i.UartPuts)
-    i.WZTOE_Handler                          0x00000f44   Section        0  w7500x_it.o(i.WZTOE_Handler)
-    i._sys_exit                              0x00000f46   Section        0  retarget.o(i._sys_exit)
-    i.main                                   0x00000f4c   Section        0  main.o(i.main)
-    x$fpl$fadd                               0x00001060   Section      140  faddsub.o(x$fpl$fadd)
-    _fadd1                                   0x0000106d   Thumb Code     0  faddsub.o(x$fpl$fadd)
-    x$fpl$fmul                               0x000010ec   Section      176  fmul.o(x$fpl$fmul)
-    x$fpl$frsb                               0x0000119c   Section       24  faddsub.o(x$fpl$frsb)
-    x$fpl$fsub                               0x000011b4   Section      208  faddsub.o(x$fpl$fsub)
-    _fsub1                                   0x000011c1   Thumb Code     0  faddsub.o(x$fpl$fsub)
-    .constdata                               0x00001284   Section       64  fdiv.o(.constdata)
-    x$fpl$usenofp                            0x00001284   Section        0  usenofp.o(x$fpl$usenofp)
-    fdiv_tab                                 0x00001284   Data          64  fdiv.o(.constdata)
+    .text                                    0x00000188   Section        0  noretval__2printf.o(.text)
+    .text                                    0x000001a4   Section      346  aeabi_sdiv.o(.text)
+    .text                                    0x000002fe   Section        0  heapauxi.o(.text)
+    .text                                    0x00000304   Section        0  daddsub.o(.text)
+    _dadd1                                   0x00000305   Thumb Code   290  daddsub.o(.text)
+    _dsub1                                   0x00000427   Thumb Code   470  daddsub.o(.text)
+    .text                                    0x0000065c   Section        0  dfixui.o(.text)
+    .text                                    0x000006a4   Section        0  f2d.o(.text)
+    .text                                    0x000006f8   Section        0  fdiv.o(.text)
+    .text                                    0x00000858   Section        0  ffixui.o(.text)
+    .text                                    0x00000888   Section        0  fflti.o(.text)
+    .text                                    0x000008e8   Section        0  _printf_char_file.o(.text)
+    .text                                    0x00000910   Section        0  _printf_char_common.o(.text)
+    _printf_input_char                       0x00000911   Thumb Code    10  _printf_char_common.o(.text)
+    .text                                    0x00000940   Section       62  sys_stackheap_outer.o(.text)
+    .text                                    0x0000097e   Section        0  __printf_nopercent.o(.text)
+    .text                                    0x000009a2   Section        0  exit.o(.text)
+    .text                                    0x000009b0   Section        8  libspace.o(.text)
+    i.ADC_Handler                            0x000009b8   Section        0  w7500x_it.o(i.ADC_Handler)
+    i.DMA_Handler                            0x000009ba   Section        0  w7500x_it.o(i.DMA_Handler)
+    i.DUALTIMER0_Handler                     0x000009bc   Section        0  w7500x_it.o(i.DUALTIMER0_Handler)
+    i.DUALTIMER1_Handler                     0x000009be   Section        0  w7500x_it.o(i.DUALTIMER1_Handler)
+    i.EXTI_Handler                           0x000009c0   Section        0  w7500x_it.o(i.EXTI_Handler)
+    i.GPIO_Init                              0x000009c4   Section        0  w7500x_gpio.o(i.GPIO_Init)
+    i.GPIO_ResetBits                         0x00000ad8   Section        0  w7500x_gpio.o(i.GPIO_ResetBits)
+    i.GPIO_SetBits                           0x00000af8   Section        0  w7500x_gpio.o(i.GPIO_SetBits)
+    i.HardFault_Handler                      0x00000b12   Section        0  w7500x_it.o(i.HardFault_Handler)
+    i.I2C_Init                               0x00000b14   Section        0  eeprom.o(i.I2C_Init)
+    i.I2C_Read                               0x00000b94   Section        0  eeprom.o(i.I2C_Read)
+    i.I2C_ReadBitSDA                         0x00000c04   Section        0  eeprom.o(i.I2C_ReadBitSDA)
+    i.I2C_ReadByte                           0x00000c20   Section        0  eeprom.o(i.I2C_ReadByte)
+    i.I2C_SDA_MODE                           0x00000c6c   Section        0  eeprom.o(i.I2C_SDA_MODE)
+    i.I2C_SendACK                            0x00000c8c   Section        0  eeprom.o(i.I2C_SendACK)
+    i.I2C_SendNACK                           0x00000ca2   Section        0  eeprom.o(i.I2C_SendNACK)
+    i.I2C_Start                              0x00000cb8   Section        0  eeprom.o(i.I2C_Start)
+    i.I2C_Stop                               0x00000cda   Section        0  eeprom.o(i.I2C_Stop)
+    i.I2C_Write                              0x00000d04   Section        0  eeprom.o(i.I2C_Write)
+    i.I2C_WriteBitSCL                        0x00000d6c   Section        0  eeprom.o(i.I2C_WriteBitSCL)
+    i.I2C_WriteBitSDA                        0x00000d98   Section        0  eeprom.o(i.I2C_WriteBitSDA)
+    i.I2C_WriteByte                          0x00000dc4   Section        0  eeprom.o(i.I2C_WriteByte)
+    i.NMI_Handler                            0x00000e1c   Section        0  w7500x_it.o(i.NMI_Handler)
+    i.NVIC_ClearPendingIRQ                   0x00000e20   Section        0  main.o(i.NVIC_ClearPendingIRQ)
+    NVIC_ClearPendingIRQ                     0x00000e21   Thumb Code    14  main.o(i.NVIC_ClearPendingIRQ)
+    i.NVIC_EnableIRQ                         0x00000e34   Section        0  main.o(i.NVIC_EnableIRQ)
+    NVIC_EnableIRQ                           0x00000e35   Thumb Code    14  main.o(i.NVIC_EnableIRQ)
+    i.PAD_AFConfig                           0x00000e48   Section        0  w7500x_gpio.o(i.PAD_AFConfig)
+    i.PORT0_Handler                          0x00000f14   Section        0  w7500x_it.o(i.PORT0_Handler)
+    i.PORT1_Handler                          0x00000f16   Section        0  w7500x_it.o(i.PORT1_Handler)
+    i.PORT2_Handler                          0x00000f18   Section        0  w7500x_it.o(i.PORT2_Handler)
+    i.PORT3_Handler                          0x00000f1a   Section        0  w7500x_it.o(i.PORT3_Handler)
+    i.PWM0_Handler                           0x00000f1c   Section        0  w7500x_it.o(i.PWM0_Handler)
+    i.PWM1_Handler                           0x00000f1e   Section        0  w7500x_it.o(i.PWM1_Handler)
+    i.PWM2_Handler                           0x00000f20   Section        0  w7500x_it.o(i.PWM2_Handler)
+    i.PWM3_Handler                           0x00000f22   Section        0  w7500x_it.o(i.PWM3_Handler)
+    i.PWM4_Handler                           0x00000f24   Section        0  w7500x_it.o(i.PWM4_Handler)
+    i.PWM5_Handler                           0x00000f26   Section        0  w7500x_it.o(i.PWM5_Handler)
+    i.PWM6_Handler                           0x00000f28   Section        0  w7500x_it.o(i.PWM6_Handler)
+    i.PWM7_Handler                           0x00000f2a   Section        0  w7500x_it.o(i.PWM7_Handler)
+    i.PendSV_Handler                         0x00000f2c   Section        0  w7500x_it.o(i.PendSV_Handler)
+    i.SSP0_Handler                           0x00000f2e   Section        0  w7500x_it.o(i.SSP0_Handler)
+    i.SSP1_Handler                           0x00000f30   Section        0  w7500x_it.o(i.SSP1_Handler)
+    i.SVC_Handler                            0x00000f32   Section        0  w7500x_it.o(i.SVC_Handler)
+    i.S_UART_ClearITPendingBit               0x00000f34   Section        0  w7500x_uart.o(i.S_UART_ClearITPendingBit)
+    i.S_UART_ReceiveData                     0x00000f44   Section        0  w7500x_uart.o(i.S_UART_ReceiveData)
+    i.S_UART_SendData                        0x00000f50   Section        0  w7500x_uart.o(i.S_UART_SendData)
+    i.S_UartGetc                             0x00000f68   Section        0  w7500x_uart.o(i.S_UartGetc)
+    i.S_UartPuts                             0x00000f84   Section        0  w7500x_uart.o(i.S_UartPuts)
+    i.SysTick_Handler                        0x00000f9e   Section        0  w7500x_it.o(i.SysTick_Handler)
+    i.SystemInit                             0x00000fa0   Section        0  system_w7500x.o(i.SystemInit)
+    i.UART0_Handler                          0x00001014   Section        0  w7500x_it.o(i.UART0_Handler)
+    i.UART1_Handler                          0x0000109c   Section        0  w7500x_it.o(i.UART1_Handler)
+    i.UART2_Handler                          0x00001124   Section        0  w7500x_it.o(i.UART2_Handler)
+    i.UART_ClearITPendingBit                 0x00001174   Section        0  w7500x_uart.o(i.UART_ClearITPendingBit)
+    i.UART_GetITStatus                       0x0000117c   Section        0  w7500x_uart.o(i.UART_GetITStatus)
+    i.UART_ITConfig                          0x00001190   Section        0  w7500x_uart.o(i.UART_ITConfig)
+    i.UART_Init                              0x000011a4   Section        0  w7500x_uart.o(i.UART_Init)
+    i.UART_ReceiveData                       0x0000127c   Section        0  w7500x_uart.o(i.UART_ReceiveData)
+    i.UART_SendData                          0x00001284   Section        0  w7500x_uart.o(i.UART_SendData)
+    i.UART_StructInit                        0x00001288   Section        0  w7500x_uart.o(i.UART_StructInit)
+    i.UartPutc                               0x000012a4   Section        0  w7500x_uart.o(i.UartPutc)
+    i.UartPuts                               0x000012c2   Section        0  w7500x_uart.o(i.UartPuts)
+    i.WZTOE_Handler                          0x000012e0   Section        0  w7500x_it.o(i.WZTOE_Handler)
+    i._sys_exit                              0x000012e2   Section        0  retarget.o(i._sys_exit)
+    i.ferror                                 0x000012e6   Section        0  retarget.o(i.ferror)
+    i.fputc                                  0x000012f0   Section        0  retarget.o(i.fputc)
+    i.main                                   0x00001304   Section        0  main.o(i.main)
+    x$fpl$fadd                               0x0000144c   Section      140  faddsub.o(x$fpl$fadd)
+    _fadd1                                   0x00001459   Thumb Code     0  faddsub.o(x$fpl$fadd)
+    x$fpl$fmul                               0x000014d8   Section      176  fmul.o(x$fpl$fmul)
+    x$fpl$frsb                               0x00001588   Section       24  faddsub.o(x$fpl$frsb)
+    x$fpl$fsub                               0x000015a0   Section      208  faddsub.o(x$fpl$fsub)
+    _fsub1                                   0x000015ad   Thumb Code     0  faddsub.o(x$fpl$fsub)
+    .constdata                               0x00001670   Section       64  fdiv.o(.constdata)
+    x$fpl$usenofp                            0x00001670   Section        0  usenofp.o(x$fpl$usenofp)
+    fdiv_tab                                 0x00001670   Data          64  fdiv.o(.constdata)
     .data                                    0x20000000   Section        8  system_w7500x.o(.data)
     .data                                    0x20000008   Section       11  main.o(.data)
-    .data                                    0x20000014   Section       24  w7500x_it.o(.data)
-    .bss                                     0x2000002c   Section      106  main.o(.bss)
-    .bss                                     0x20000098   Section       96  libspace.o(.bss)
-    HEAP                                     0x200000f8   Section     1024  startup_w7500x.o(HEAP)
-    Heap_Mem                                 0x200000f8   Data        1024  startup_w7500x.o(HEAP)
-    STACK                                    0x200004f8   Section     1024  startup_w7500x.o(STACK)
-    Stack_Mem                                0x200004f8   Data        1024  startup_w7500x.o(STACK)
-    __initial_sp                             0x200008f8   Data           0  startup_w7500x.o(STACK)
+    .data                                    0x20000014   Section        8  retarget.o(.data)
+    .data                                    0x2000001c   Section       24  w7500x_it.o(.data)
+    .data                                    0x20000034   Section       16  eeprom.o(.data)
+    .bss                                     0x20000044   Section      122  main.o(.bss)
+    .bss                                     0x200000c0   Section       96  libspace.o(.bss)
+    HEAP                                     0x20000120   Section     1024  startup_w7500x.o(HEAP)
+    Heap_Mem                                 0x20000120   Data        1024  startup_w7500x.o(HEAP)
+    STACK                                    0x20000520   Section     1024  startup_w7500x.o(STACK)
+    Stack_Mem                                0x20000520   Data        1024  startup_w7500x.o(STACK)
+    __initial_sp                             0x20000920   Data           0  startup_w7500x.o(STACK)
 
     Global Symbols
 
@@ -618,116 +699,142 @@ Image Symbol Table
     __user_initial_stackheap                 0x00000161   Thumb Code    10  startup_w7500x.o(.text)
     __I$use$semihosting                      0x00000185   Thumb Code     0  use_no_semi.o(.text)
     __use_no_semihosting_swi                 0x00000185   Thumb Code     2  use_no_semi.o(.text)
-    __aeabi_uidiv                            0x00000187   Thumb Code     0  aeabi_sdiv.o(.text)
-    __aeabi_uidivmod                         0x00000187   Thumb Code    20  aeabi_sdiv.o(.text)
-    __aeabi_idiv                             0x0000019b   Thumb Code     0  aeabi_sdiv.o(.text)
-    __aeabi_idivmod                          0x0000019b   Thumb Code   326  aeabi_sdiv.o(.text)
-    __use_two_region_memory                  0x000002e1   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_escrow$2region                 0x000002e3   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_expand$2region                 0x000002e5   Thumb Code     2  heapauxi.o(.text)
-    __aeabi_dadd                             0x000005e1   Thumb Code     0  daddsub.o(.text)
-    _dadd                                    0x000005e1   Thumb Code    26  daddsub.o(.text)
-    __aeabi_dsub                             0x000005fb   Thumb Code     0  daddsub.o(.text)
-    _dsub                                    0x000005fb   Thumb Code    22  daddsub.o(.text)
-    __aeabi_drsub                            0x00000611   Thumb Code     0  daddsub.o(.text)
-    _drsb                                    0x00000611   Thumb Code    28  daddsub.o(.text)
-    __aeabi_d2uiz                            0x00000641   Thumb Code     0  dfixui.o(.text)
-    _dfixu                                   0x00000641   Thumb Code    68  dfixui.o(.text)
-    __aeabi_f2d                              0x00000689   Thumb Code     0  f2d.o(.text)
-    _f2d                                     0x00000689   Thumb Code    80  f2d.o(.text)
-    __aeabi_fdiv                             0x000006dd   Thumb Code     0  fdiv.o(.text)
-    _fdiv                                    0x000006dd   Thumb Code   334  fdiv.o(.text)
-    _frdiv                                   0x0000082b   Thumb Code     8  fdiv.o(.text)
-    __aeabi_f2uiz                            0x0000083d   Thumb Code     0  ffixui.o(.text)
-    _ffixu                                   0x0000083d   Thumb Code    48  ffixui.o(.text)
-    __aeabi_i2f_normalise                    0x0000086d   Thumb Code    72  fflti.o(.text)
-    __aeabi_i2f                              0x000008b5   Thumb Code    16  fflti.o(.text)
-    _fflt                                    0x000008b5   Thumb Code     0  fflti.o(.text)
-    __aeabi_ui2f                             0x000008c5   Thumb Code     6  fflti.o(.text)
-    _ffltu                                   0x000008c5   Thumb Code     0  fflti.o(.text)
-    __user_setup_stackheap                   0x000008cb   Thumb Code    62  sys_stackheap_outer.o(.text)
-    exit                                     0x00000909   Thumb Code    12  exit.o(.text)
-    __user_libspace                          0x00000915   Thumb Code     8  libspace.o(.text)
-    __user_perproc_libspace                  0x00000915   Thumb Code     0  libspace.o(.text)
-    __user_perthread_libspace                0x00000915   Thumb Code     0  libspace.o(.text)
-    ADC_Handler                              0x0000091d   Thumb Code     2  w7500x_it.o(i.ADC_Handler)
-    DMA_Handler                              0x0000091f   Thumb Code     2  w7500x_it.o(i.DMA_Handler)
-    DUALTIMER0_Handler                       0x00000921   Thumb Code     2  w7500x_it.o(i.DUALTIMER0_Handler)
-    DUALTIMER1_Handler                       0x00000923   Thumb Code     2  w7500x_it.o(i.DUALTIMER1_Handler)
-    EXTI_Handler                             0x00000925   Thumb Code     2  w7500x_it.o(i.EXTI_Handler)
-    GPIO_Init                                0x00000929   Thumb Code   272  w7500x_gpio.o(i.GPIO_Init)
-    GPIO_SetBits                             0x00000a3d   Thumb Code    26  w7500x_gpio.o(i.GPIO_SetBits)
-    HardFault_Handler                        0x00000a57   Thumb Code     2  w7500x_it.o(i.HardFault_Handler)
-    I2C_Init                                 0x00000a59   Thumb Code    40  eeprom.o(i.I2C_Init)
-    NMI_Handler                              0x00000a81   Thumb Code     2  w7500x_it.o(i.NMI_Handler)
-    PAD_AFConfig                             0x00000aad   Thumb Code   198  w7500x_gpio.o(i.PAD_AFConfig)
-    PORT0_Handler                            0x00000b79   Thumb Code     2  w7500x_it.o(i.PORT0_Handler)
-    PORT1_Handler                            0x00000b7b   Thumb Code     2  w7500x_it.o(i.PORT1_Handler)
-    PORT2_Handler                            0x00000b7d   Thumb Code     2  w7500x_it.o(i.PORT2_Handler)
-    PORT3_Handler                            0x00000b7f   Thumb Code     2  w7500x_it.o(i.PORT3_Handler)
-    PWM0_Handler                             0x00000b81   Thumb Code     2  w7500x_it.o(i.PWM0_Handler)
-    PWM1_Handler                             0x00000b83   Thumb Code     2  w7500x_it.o(i.PWM1_Handler)
-    PWM2_Handler                             0x00000b85   Thumb Code     2  w7500x_it.o(i.PWM2_Handler)
-    PWM3_Handler                             0x00000b87   Thumb Code     2  w7500x_it.o(i.PWM3_Handler)
-    PWM4_Handler                             0x00000b89   Thumb Code     2  w7500x_it.o(i.PWM4_Handler)
-    PWM5_Handler                             0x00000b8b   Thumb Code     2  w7500x_it.o(i.PWM5_Handler)
-    PWM6_Handler                             0x00000b8d   Thumb Code     2  w7500x_it.o(i.PWM6_Handler)
-    PWM7_Handler                             0x00000b8f   Thumb Code     2  w7500x_it.o(i.PWM7_Handler)
-    PendSV_Handler                           0x00000b91   Thumb Code     2  w7500x_it.o(i.PendSV_Handler)
-    SSP0_Handler                             0x00000b93   Thumb Code     2  w7500x_it.o(i.SSP0_Handler)
-    SSP1_Handler                             0x00000b95   Thumb Code     2  w7500x_it.o(i.SSP1_Handler)
-    SVC_Handler                              0x00000b97   Thumb Code     2  w7500x_it.o(i.SVC_Handler)
-    S_UART_ClearITPendingBit                 0x00000b99   Thumb Code    12  w7500x_uart.o(i.S_UART_ClearITPendingBit)
-    S_UART_ReceiveData                       0x00000ba9   Thumb Code     8  w7500x_uart.o(i.S_UART_ReceiveData)
-    S_UART_SendData                          0x00000bb5   Thumb Code    20  w7500x_uart.o(i.S_UART_SendData)
-    S_UartGetc                               0x00000bcd   Thumb Code    24  w7500x_uart.o(i.S_UartGetc)
-    S_UartPuts                               0x00000be9   Thumb Code    26  w7500x_uart.o(i.S_UartPuts)
-    SysTick_Handler                          0x00000c03   Thumb Code     2  w7500x_it.o(i.SysTick_Handler)
-    SystemInit                               0x00000c05   Thumb Code    94  system_w7500x.o(i.SystemInit)
-    UART0_Handler                            0x00000c79   Thumb Code   116  w7500x_it.o(i.UART0_Handler)
-    UART1_Handler                            0x00000d01   Thumb Code   116  w7500x_it.o(i.UART1_Handler)
-    UART2_Handler                            0x00000d89   Thumb Code    68  w7500x_it.o(i.UART2_Handler)
-    UART_ClearITPendingBit                   0x00000dd9   Thumb Code     8  w7500x_uart.o(i.UART_ClearITPendingBit)
-    UART_GetITStatus                         0x00000de1   Thumb Code    20  w7500x_uart.o(i.UART_GetITStatus)
-    UART_ITConfig                            0x00000df5   Thumb Code    20  w7500x_uart.o(i.UART_ITConfig)
-    UART_Init                                0x00000e09   Thumb Code   198  w7500x_uart.o(i.UART_Init)
-    UART_ReceiveData                         0x00000ee1   Thumb Code     8  w7500x_uart.o(i.UART_ReceiveData)
-    UART_SendData                            0x00000ee9   Thumb Code     4  w7500x_uart.o(i.UART_SendData)
-    UART_StructInit                          0x00000eed   Thumb Code    28  w7500x_uart.o(i.UART_StructInit)
-    UartPutc                                 0x00000f09   Thumb Code    30  w7500x_uart.o(i.UartPutc)
-    UartPuts                                 0x00000f27   Thumb Code    30  w7500x_uart.o(i.UartPuts)
-    WZTOE_Handler                            0x00000f45   Thumb Code     2  w7500x_it.o(i.WZTOE_Handler)
-    _sys_exit                                0x00000f47   Thumb Code     4  retarget.o(i._sys_exit)
-    main                                     0x00000f4d   Thumb Code   224  main.o(i.main)
-    __aeabi_fadd                             0x00001061   Thumb Code     0  faddsub.o(x$fpl$fadd)
-    _fadd                                    0x00001061   Thumb Code   134  faddsub.o(x$fpl$fadd)
-    __aeabi_fmul                             0x000010ed   Thumb Code     0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x000010ed   Thumb Code   172  fmul.o(x$fpl$fmul)
-    __aeabi_frsub                            0x0000119d   Thumb Code     0  faddsub.o(x$fpl$frsb)
-    _frsb                                    0x0000119d   Thumb Code    24  faddsub.o(x$fpl$frsb)
-    __aeabi_fsub                             0x000011b5   Thumb Code     0  faddsub.o(x$fpl$fsub)
-    _fsub                                    0x000011b5   Thumb Code   204  faddsub.o(x$fpl$fsub)
-    __I$use$fp                               0x00001284   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x000012c4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000012e4   Number         0  anon$$obj.o(Region$$Table)
+    __2printf                                0x00000189   Thumb Code    22  noretval__2printf.o(.text)
+    __aeabi_uidiv                            0x000001a5   Thumb Code     0  aeabi_sdiv.o(.text)
+    __aeabi_uidivmod                         0x000001a5   Thumb Code    20  aeabi_sdiv.o(.text)
+    __aeabi_idiv                             0x000001b9   Thumb Code     0  aeabi_sdiv.o(.text)
+    __aeabi_idivmod                          0x000001b9   Thumb Code   326  aeabi_sdiv.o(.text)
+    __use_two_region_memory                  0x000002ff   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x00000301   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x00000303   Thumb Code     2  heapauxi.o(.text)
+    __aeabi_dadd                             0x000005fd   Thumb Code     0  daddsub.o(.text)
+    _dadd                                    0x000005fd   Thumb Code    26  daddsub.o(.text)
+    __aeabi_dsub                             0x00000617   Thumb Code     0  daddsub.o(.text)
+    _dsub                                    0x00000617   Thumb Code    22  daddsub.o(.text)
+    __aeabi_drsub                            0x0000062d   Thumb Code     0  daddsub.o(.text)
+    _drsb                                    0x0000062d   Thumb Code    28  daddsub.o(.text)
+    __aeabi_d2uiz                            0x0000065d   Thumb Code     0  dfixui.o(.text)
+    _dfixu                                   0x0000065d   Thumb Code    68  dfixui.o(.text)
+    __aeabi_f2d                              0x000006a5   Thumb Code     0  f2d.o(.text)
+    _f2d                                     0x000006a5   Thumb Code    80  f2d.o(.text)
+    __aeabi_fdiv                             0x000006f9   Thumb Code     0  fdiv.o(.text)
+    _fdiv                                    0x000006f9   Thumb Code   334  fdiv.o(.text)
+    _frdiv                                   0x00000847   Thumb Code     8  fdiv.o(.text)
+    __aeabi_f2uiz                            0x00000859   Thumb Code     0  ffixui.o(.text)
+    _ffixu                                   0x00000859   Thumb Code    48  ffixui.o(.text)
+    __aeabi_i2f_normalise                    0x00000889   Thumb Code    72  fflti.o(.text)
+    __aeabi_i2f                              0x000008d1   Thumb Code    16  fflti.o(.text)
+    _fflt                                    0x000008d1   Thumb Code     0  fflti.o(.text)
+    __aeabi_ui2f                             0x000008e1   Thumb Code     6  fflti.o(.text)
+    _ffltu                                   0x000008e1   Thumb Code     0  fflti.o(.text)
+    _printf_char_file                        0x000008e9   Thumb Code    34  _printf_char_file.o(.text)
+    _printf_char_common                      0x0000091b   Thumb Code    32  _printf_char_common.o(.text)
+    __user_setup_stackheap                   0x00000941   Thumb Code    62  sys_stackheap_outer.o(.text)
+    __printf                                 0x0000097f   Thumb Code    36  __printf_nopercent.o(.text)
+    exit                                     0x000009a3   Thumb Code    12  exit.o(.text)
+    __user_libspace                          0x000009b1   Thumb Code     8  libspace.o(.text)
+    __user_perproc_libspace                  0x000009b1   Thumb Code     0  libspace.o(.text)
+    __user_perthread_libspace                0x000009b1   Thumb Code     0  libspace.o(.text)
+    ADC_Handler                              0x000009b9   Thumb Code     2  w7500x_it.o(i.ADC_Handler)
+    DMA_Handler                              0x000009bb   Thumb Code     2  w7500x_it.o(i.DMA_Handler)
+    DUALTIMER0_Handler                       0x000009bd   Thumb Code     2  w7500x_it.o(i.DUALTIMER0_Handler)
+    DUALTIMER1_Handler                       0x000009bf   Thumb Code     2  w7500x_it.o(i.DUALTIMER1_Handler)
+    EXTI_Handler                             0x000009c1   Thumb Code     2  w7500x_it.o(i.EXTI_Handler)
+    GPIO_Init                                0x000009c5   Thumb Code   272  w7500x_gpio.o(i.GPIO_Init)
+    GPIO_ResetBits                           0x00000ad9   Thumb Code    32  w7500x_gpio.o(i.GPIO_ResetBits)
+    GPIO_SetBits                             0x00000af9   Thumb Code    26  w7500x_gpio.o(i.GPIO_SetBits)
+    HardFault_Handler                        0x00000b13   Thumb Code     2  w7500x_it.o(i.HardFault_Handler)
+    I2C_Init                                 0x00000b15   Thumb Code   116  eeprom.o(i.I2C_Init)
+    I2C_Read                                 0x00000b95   Thumb Code    76  eeprom.o(i.I2C_Read)
+    I2C_ReadBitSDA                           0x00000c05   Thumb Code    24  eeprom.o(i.I2C_ReadBitSDA)
+    I2C_ReadByte                             0x00000c21   Thumb Code    74  eeprom.o(i.I2C_ReadByte)
+    I2C_SDA_MODE                             0x00000c6d   Thumb Code    28  eeprom.o(i.I2C_SDA_MODE)
+    I2C_SendACK                              0x00000c8d   Thumb Code    22  eeprom.o(i.I2C_SendACK)
+    I2C_SendNACK                             0x00000ca3   Thumb Code    22  eeprom.o(i.I2C_SendNACK)
+    I2C_Start                                0x00000cb9   Thumb Code    34  eeprom.o(i.I2C_Start)
+    I2C_Stop                                 0x00000cdb   Thumb Code    40  eeprom.o(i.I2C_Stop)
+    I2C_Write                                0x00000d05   Thumb Code    68  eeprom.o(i.I2C_Write)
+    I2C_WriteBitSCL                          0x00000d6d   Thumb Code    40  eeprom.o(i.I2C_WriteBitSCL)
+    I2C_WriteBitSDA                          0x00000d99   Thumb Code    40  eeprom.o(i.I2C_WriteBitSDA)
+    I2C_WriteByte                            0x00000dc5   Thumb Code    88  eeprom.o(i.I2C_WriteByte)
+    NMI_Handler                              0x00000e1d   Thumb Code     2  w7500x_it.o(i.NMI_Handler)
+    PAD_AFConfig                             0x00000e49   Thumb Code   198  w7500x_gpio.o(i.PAD_AFConfig)
+    PORT0_Handler                            0x00000f15   Thumb Code     2  w7500x_it.o(i.PORT0_Handler)
+    PORT1_Handler                            0x00000f17   Thumb Code     2  w7500x_it.o(i.PORT1_Handler)
+    PORT2_Handler                            0x00000f19   Thumb Code     2  w7500x_it.o(i.PORT2_Handler)
+    PORT3_Handler                            0x00000f1b   Thumb Code     2  w7500x_it.o(i.PORT3_Handler)
+    PWM0_Handler                             0x00000f1d   Thumb Code     2  w7500x_it.o(i.PWM0_Handler)
+    PWM1_Handler                             0x00000f1f   Thumb Code     2  w7500x_it.o(i.PWM1_Handler)
+    PWM2_Handler                             0x00000f21   Thumb Code     2  w7500x_it.o(i.PWM2_Handler)
+    PWM3_Handler                             0x00000f23   Thumb Code     2  w7500x_it.o(i.PWM3_Handler)
+    PWM4_Handler                             0x00000f25   Thumb Code     2  w7500x_it.o(i.PWM4_Handler)
+    PWM5_Handler                             0x00000f27   Thumb Code     2  w7500x_it.o(i.PWM5_Handler)
+    PWM6_Handler                             0x00000f29   Thumb Code     2  w7500x_it.o(i.PWM6_Handler)
+    PWM7_Handler                             0x00000f2b   Thumb Code     2  w7500x_it.o(i.PWM7_Handler)
+    PendSV_Handler                           0x00000f2d   Thumb Code     2  w7500x_it.o(i.PendSV_Handler)
+    SSP0_Handler                             0x00000f2f   Thumb Code     2  w7500x_it.o(i.SSP0_Handler)
+    SSP1_Handler                             0x00000f31   Thumb Code     2  w7500x_it.o(i.SSP1_Handler)
+    SVC_Handler                              0x00000f33   Thumb Code     2  w7500x_it.o(i.SVC_Handler)
+    S_UART_ClearITPendingBit                 0x00000f35   Thumb Code    12  w7500x_uart.o(i.S_UART_ClearITPendingBit)
+    S_UART_ReceiveData                       0x00000f45   Thumb Code     8  w7500x_uart.o(i.S_UART_ReceiveData)
+    S_UART_SendData                          0x00000f51   Thumb Code    20  w7500x_uart.o(i.S_UART_SendData)
+    S_UartGetc                               0x00000f69   Thumb Code    24  w7500x_uart.o(i.S_UartGetc)
+    S_UartPuts                               0x00000f85   Thumb Code    26  w7500x_uart.o(i.S_UartPuts)
+    SysTick_Handler                          0x00000f9f   Thumb Code     2  w7500x_it.o(i.SysTick_Handler)
+    SystemInit                               0x00000fa1   Thumb Code    94  system_w7500x.o(i.SystemInit)
+    UART0_Handler                            0x00001015   Thumb Code   116  w7500x_it.o(i.UART0_Handler)
+    UART1_Handler                            0x0000109d   Thumb Code   116  w7500x_it.o(i.UART1_Handler)
+    UART2_Handler                            0x00001125   Thumb Code    68  w7500x_it.o(i.UART2_Handler)
+    UART_ClearITPendingBit                   0x00001175   Thumb Code     8  w7500x_uart.o(i.UART_ClearITPendingBit)
+    UART_GetITStatus                         0x0000117d   Thumb Code    20  w7500x_uart.o(i.UART_GetITStatus)
+    UART_ITConfig                            0x00001191   Thumb Code    20  w7500x_uart.o(i.UART_ITConfig)
+    UART_Init                                0x000011a5   Thumb Code   198  w7500x_uart.o(i.UART_Init)
+    UART_ReceiveData                         0x0000127d   Thumb Code     8  w7500x_uart.o(i.UART_ReceiveData)
+    UART_SendData                            0x00001285   Thumb Code     4  w7500x_uart.o(i.UART_SendData)
+    UART_StructInit                          0x00001289   Thumb Code    28  w7500x_uart.o(i.UART_StructInit)
+    UartPutc                                 0x000012a5   Thumb Code    30  w7500x_uart.o(i.UartPutc)
+    UartPuts                                 0x000012c3   Thumb Code    30  w7500x_uart.o(i.UartPuts)
+    WZTOE_Handler                            0x000012e1   Thumb Code     2  w7500x_it.o(i.WZTOE_Handler)
+    _sys_exit                                0x000012e3   Thumb Code     4  retarget.o(i._sys_exit)
+    ferror                                   0x000012e7   Thumb Code     8  retarget.o(i.ferror)
+    fputc                                    0x000012f1   Thumb Code    16  retarget.o(i.fputc)
+    main                                     0x00001305   Thumb Code   268  main.o(i.main)
+    __aeabi_fadd                             0x0000144d   Thumb Code     0  faddsub.o(x$fpl$fadd)
+    _fadd                                    0x0000144d   Thumb Code   134  faddsub.o(x$fpl$fadd)
+    __aeabi_fmul                             0x000014d9   Thumb Code     0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x000014d9   Thumb Code   172  fmul.o(x$fpl$fmul)
+    __aeabi_frsub                            0x00001589   Thumb Code     0  faddsub.o(x$fpl$frsb)
+    _frsb                                    0x00001589   Thumb Code    24  faddsub.o(x$fpl$frsb)
+    __aeabi_fsub                             0x000015a1   Thumb Code     0  faddsub.o(x$fpl$fsub)
+    _fsub                                    0x000015a1   Thumb Code   204  faddsub.o(x$fpl$fsub)
+    __I$use$fp                               0x00001670   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x000016b0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000016d0   Number         0  anon$$obj.o(Region$$Table)
     SystemFrequency                          0x20000000   Data           4  system_w7500x.o(.data)
     SystemCoreClock                          0x20000004   Data           4  system_w7500x.o(.data)
     GPIO_InitDef                             0x20000008   Data           8  main.o(.data)
     buffer_ready                             0x20000010   Data           1  main.o(.data)
     buffer_ready1                            0x20000011   Data           1  main.o(.data)
     buffer_ready2                            0x20000012   Data           1  main.o(.data)
-    uart0_tx_cnt                             0x20000014   Data           4  w7500x_it.o(.data)
-    uart0_rx_cnt                             0x20000018   Data           4  w7500x_it.o(.data)
-    uart1_tx_cnt                             0x2000001c   Data           4  w7500x_it.o(.data)
-    uart1_rx_cnt                             0x20000020   Data           4  w7500x_it.o(.data)
-    uart2_tx_cnt                             0x20000024   Data           4  w7500x_it.o(.data)
-    uart2_rx_cnt                             0x20000028   Data           4  w7500x_it.o(.data)
-    UART_InitStructure                       0x2000002c   Data          16  main.o(.bss)
-    RxBuffer                                 0x2000003c   Data          30  main.o(.bss)
-    RxBuffer1                                0x2000005a   Data          30  main.o(.bss)
-    RxBuffer2                                0x20000078   Data          30  main.o(.bss)
-    __libspace_start                         0x20000098   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x200000f8   Data           0  libspace.o(.bss)
+    __stdout                                 0x20000014   Data           4  retarget.o(.data)
+    __stdin                                  0x20000018   Data           4  retarget.o(.data)
+    uart0_tx_cnt                             0x2000001c   Data           4  w7500x_it.o(.data)
+    uart0_rx_cnt                             0x20000020   Data           4  w7500x_it.o(.data)
+    uart1_tx_cnt                             0x20000024   Data           4  w7500x_it.o(.data)
+    uart1_rx_cnt                             0x20000028   Data           4  w7500x_it.o(.data)
+    uart2_tx_cnt                             0x2000002c   Data           4  w7500x_it.o(.data)
+    uart2_rx_cnt                             0x20000030   Data           4  w7500x_it.o(.data)
+    scl_port_num                             0x20000034   Data           4  eeprom.o(.data)
+    scl_pin_index                            0x20000038   Data           4  eeprom.o(.data)
+    sda_port_num                             0x2000003c   Data           4  eeprom.o(.data)
+    sda_pin_index                            0x20000040   Data           4  eeprom.o(.data)
+    UART_InitStructure                       0x20000044   Data          16  main.o(.bss)
+    conf                                     0x20000054   Data          16  main.o(.bss)
+    RxBuffer                                 0x20000064   Data          30  main.o(.bss)
+    RxBuffer1                                0x20000082   Data          30  main.o(.bss)
+    RxBuffer2                                0x200000a0   Data          30  main.o(.bss)
+    __libspace_start                         0x200000c0   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20000120   Data           0  libspace.o(.bss)
 
 
 
@@ -737,149 +844,174 @@ Memory Map of the image
 
   Image Entry point : 0x000000a9
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00001310, Max: 0x00020000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00001714, Max: 0x00020000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000012e4, Max: 0x00020000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000016d0, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000000   0x000000a8   Data   RO            3    RESET               startup_w7500x.o
-    0x000000a8   0x000000a8   0x00000008   Code   RO          783  * !!!main             c_p.l(__main.o)
-    0x000000b0   0x000000b0   0x0000003c   Code   RO          967    !!!scatter          c_p.l(__scatter.o)
-    0x000000ec   0x000000ec   0x0000001a   Code   RO          969    !!handler_copy      c_p.l(__scatter_copy.o)
+    0x000000a8   0x000000a8   0x00000008   Code   RO          863  * !!!main             c_p.l(__main.o)
+    0x000000b0   0x000000b0   0x0000003c   Code   RO         1053    !!!scatter          c_p.l(__scatter.o)
+    0x000000ec   0x000000ec   0x0000001a   Code   RO         1055    !!handler_copy      c_p.l(__scatter_copy.o)
     0x00000106   0x00000106   0x00000002   PAD
-    0x00000108   0x00000108   0x0000001c   Code   RO          971    !!handler_zi        c_p.l(__scatter_zi.o)
-    0x00000124   0x00000124   0x00000002   Code   RO          843    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          857    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          859    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          862    .ARM.Collect$$libinit$$0000000A  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          864    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          866    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          869    .ARM.Collect$$libinit$$00000011  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          871    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          873    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          875    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          877    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          879    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          881    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          883    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          885    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          887    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          889    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          893    .ARM.Collect$$libinit$$0000002C  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          895    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          897    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000000   Code   RO          899    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
-    0x00000126   0x00000126   0x00000002   Code   RO          900    .ARM.Collect$$libinit$$00000033  c_p.l(libinit2.o)
-    0x00000128   0x00000128   0x00000002   Code   RO          924    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
-    0x0000012a   0x0000012a   0x00000000   Code   RO          951    .ARM.Collect$$libshutdown$$00000003  c_p.l(libshutdown2.o)
-    0x0000012a   0x0000012a   0x00000000   Code   RO          954    .ARM.Collect$$libshutdown$$00000006  c_p.l(libshutdown2.o)
-    0x0000012a   0x0000012a   0x00000000   Code   RO          957    .ARM.Collect$$libshutdown$$00000009  c_p.l(libshutdown2.o)
-    0x0000012a   0x0000012a   0x00000000   Code   RO          959    .ARM.Collect$$libshutdown$$0000000B  c_p.l(libshutdown2.o)
-    0x0000012a   0x0000012a   0x00000000   Code   RO          962    .ARM.Collect$$libshutdown$$0000000E  c_p.l(libshutdown2.o)
-    0x0000012a   0x0000012a   0x00000002   Code   RO          963    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
-    0x0000012c   0x0000012c   0x00000000   Code   RO          806    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
-    0x0000012c   0x0000012c   0x00000000   Code   RO          813    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
-    0x0000012c   0x0000012c   0x00000006   Code   RO          825    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          815    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
-    0x00000132   0x00000132   0x00000004   Code   RO          816    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
-    0x00000136   0x00000136   0x00000000   Code   RO          818    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
-    0x00000136   0x00000136   0x00000008   Code   RO          819    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
-    0x0000013e   0x0000013e   0x00000002   Code   RO          848    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
-    0x00000140   0x00000140   0x00000000   Code   RO          902    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
-    0x00000140   0x00000140   0x00000004   Code   RO          903    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
-    0x00000144   0x00000144   0x00000006   Code   RO          904    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
+    0x00000108   0x00000108   0x0000001c   Code   RO         1057    !!handler_zi        c_p.l(__scatter_zi.o)
+    0x00000124   0x00000124   0x00000002   Code   RO          929    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          943    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          945    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          948    .ARM.Collect$$libinit$$0000000A  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          950    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          952    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          955    .ARM.Collect$$libinit$$00000011  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          957    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          959    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          961    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          963    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          965    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          967    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          969    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          971    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          973    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          975    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          979    .ARM.Collect$$libinit$$0000002C  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          981    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          983    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000000   Code   RO          985    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
+    0x00000126   0x00000126   0x00000002   Code   RO          986    .ARM.Collect$$libinit$$00000033  c_p.l(libinit2.o)
+    0x00000128   0x00000128   0x00000002   Code   RO         1010    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
+    0x0000012a   0x0000012a   0x00000000   Code   RO         1037    .ARM.Collect$$libshutdown$$00000003  c_p.l(libshutdown2.o)
+    0x0000012a   0x0000012a   0x00000000   Code   RO         1040    .ARM.Collect$$libshutdown$$00000006  c_p.l(libshutdown2.o)
+    0x0000012a   0x0000012a   0x00000000   Code   RO         1043    .ARM.Collect$$libshutdown$$00000009  c_p.l(libshutdown2.o)
+    0x0000012a   0x0000012a   0x00000000   Code   RO         1045    .ARM.Collect$$libshutdown$$0000000B  c_p.l(libshutdown2.o)
+    0x0000012a   0x0000012a   0x00000000   Code   RO         1048    .ARM.Collect$$libshutdown$$0000000E  c_p.l(libshutdown2.o)
+    0x0000012a   0x0000012a   0x00000002   Code   RO         1049    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
+    0x0000012c   0x0000012c   0x00000000   Code   RO          886    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
+    0x0000012c   0x0000012c   0x00000000   Code   RO          895    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
+    0x0000012c   0x0000012c   0x00000006   Code   RO          907    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          897    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
+    0x00000132   0x00000132   0x00000004   Code   RO          898    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
+    0x00000136   0x00000136   0x00000000   Code   RO          900    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
+    0x00000136   0x00000136   0x00000008   Code   RO          901    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
+    0x0000013e   0x0000013e   0x00000002   Code   RO          934    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
+    0x00000140   0x00000140   0x00000000   Code   RO          988    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
+    0x00000140   0x00000140   0x00000004   Code   RO          989    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
+    0x00000144   0x00000144   0x00000006   Code   RO          990    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
     0x0000014a   0x0000014a   0x00000002   PAD
     0x0000014c   0x0000014c   0x00000038   Code   RO            4    .text               startup_w7500x.o
-    0x00000184   0x00000184   0x00000002   Code   RO          775    .text               c_p.l(use_no_semi.o)
-    0x00000186   0x00000186   0x0000015a   Code   RO          777    .text               c_p.l(aeabi_sdiv.o)
-    0x000002e0   0x000002e0   0x00000006   Code   RO          781    .text               c_p.l(heapauxi.o)
-    0x000002e6   0x000002e6   0x00000002   PAD
-    0x000002e8   0x000002e8   0x00000358   Code   RO          785    .text               fz_ps.l(daddsub.o)
-    0x00000640   0x00000640   0x00000048   Code   RO          787    .text               fz_ps.l(dfixui.o)
-    0x00000688   0x00000688   0x00000054   Code   RO          789    .text               fz_ps.l(f2d.o)
-    0x000006dc   0x000006dc   0x00000160   Code   RO          797    .text               fz_ps.l(fdiv.o)
-    0x0000083c   0x0000083c   0x00000030   Code   RO          800    .text               fz_ps.l(ffixui.o)
-    0x0000086c   0x0000086c   0x0000005e   Code   RO          802    .text               fz_ps.l(fflti.o)
-    0x000008ca   0x000008ca   0x0000003e   Code   RO          829    .text               c_p.l(sys_stackheap_outer.o)
-    0x00000908   0x00000908   0x0000000c   Code   RO          832    .text               c_p.l(exit.o)
-    0x00000914   0x00000914   0x00000008   Code   RO          844    .text               c_p.l(libspace.o)
-    0x0000091c   0x0000091c   0x00000002   Code   RO          550    i.ADC_Handler       w7500x_it.o
-    0x0000091e   0x0000091e   0x00000002   Code   RO          551    i.DMA_Handler       w7500x_it.o
-    0x00000920   0x00000920   0x00000002   Code   RO          552    i.DUALTIMER0_Handler  w7500x_it.o
-    0x00000922   0x00000922   0x00000002   Code   RO          553    i.DUALTIMER1_Handler  w7500x_it.o
-    0x00000924   0x00000924   0x00000002   Code   RO          554    i.EXTI_Handler      w7500x_it.o
-    0x00000926   0x00000926   0x00000002   PAD
-    0x00000928   0x00000928   0x00000114   Code   RO           74    i.GPIO_Init         w7500x_gpio.o
-    0x00000a3c   0x00000a3c   0x0000001a   Code   RO           81    i.GPIO_SetBits      w7500x_gpio.o
-    0x00000a56   0x00000a56   0x00000002   Code   RO          555    i.HardFault_Handler  w7500x_it.o
-    0x00000a58   0x00000a58   0x00000028   Code   RO          739    i.I2C_Init          eeprom.o
-    0x00000a80   0x00000a80   0x00000002   Code   RO          556    i.NMI_Handler       w7500x_it.o
-    0x00000a82   0x00000a82   0x00000002   PAD
-    0x00000a84   0x00000a84   0x00000014   Code   RO          430    i.NVIC_ClearPendingIRQ  main.o
-    0x00000a98   0x00000a98   0x00000014   Code   RO          431    i.NVIC_EnableIRQ    main.o
-    0x00000aac   0x00000aac   0x000000cc   Code   RO           87    i.PAD_AFConfig      w7500x_gpio.o
-    0x00000b78   0x00000b78   0x00000002   Code   RO          557    i.PORT0_Handler     w7500x_it.o
-    0x00000b7a   0x00000b7a   0x00000002   Code   RO          558    i.PORT1_Handler     w7500x_it.o
-    0x00000b7c   0x00000b7c   0x00000002   Code   RO          559    i.PORT2_Handler     w7500x_it.o
-    0x00000b7e   0x00000b7e   0x00000002   Code   RO          560    i.PORT3_Handler     w7500x_it.o
-    0x00000b80   0x00000b80   0x00000002   Code   RO          561    i.PWM0_Handler      w7500x_it.o
-    0x00000b82   0x00000b82   0x00000002   Code   RO          562    i.PWM1_Handler      w7500x_it.o
-    0x00000b84   0x00000b84   0x00000002   Code   RO          563    i.PWM2_Handler      w7500x_it.o
-    0x00000b86   0x00000b86   0x00000002   Code   RO          564    i.PWM3_Handler      w7500x_it.o
-    0x00000b88   0x00000b88   0x00000002   Code   RO          565    i.PWM4_Handler      w7500x_it.o
-    0x00000b8a   0x00000b8a   0x00000002   Code   RO          566    i.PWM5_Handler      w7500x_it.o
-    0x00000b8c   0x00000b8c   0x00000002   Code   RO          567    i.PWM6_Handler      w7500x_it.o
-    0x00000b8e   0x00000b8e   0x00000002   Code   RO          568    i.PWM7_Handler      w7500x_it.o
-    0x00000b90   0x00000b90   0x00000002   Code   RO          569    i.PendSV_Handler    w7500x_it.o
-    0x00000b92   0x00000b92   0x00000002   Code   RO          570    i.SSP0_Handler      w7500x_it.o
-    0x00000b94   0x00000b94   0x00000002   Code   RO          571    i.SSP1_Handler      w7500x_it.o
-    0x00000b96   0x00000b96   0x00000002   Code   RO          572    i.SVC_Handler       w7500x_it.o
-    0x00000b98   0x00000b98   0x00000010   Code   RO          221    i.S_UART_ClearITPendingBit  w7500x_uart.o
-    0x00000ba8   0x00000ba8   0x0000000c   Code   RO          227    i.S_UART_ReceiveData  w7500x_uart.o
-    0x00000bb4   0x00000bb4   0x00000018   Code   RO          228    i.S_UART_SendData   w7500x_uart.o
-    0x00000bcc   0x00000bcc   0x0000001c   Code   RO          231    i.S_UartGetc        w7500x_uart.o
-    0x00000be8   0x00000be8   0x0000001a   Code   RO          233    i.S_UartPuts        w7500x_uart.o
-    0x00000c02   0x00000c02   0x00000002   Code   RO          573    i.SysTick_Handler   w7500x_it.o
-    0x00000c04   0x00000c04   0x00000074   Code   RO           14    i.SystemInit        system_w7500x.o
-    0x00000c78   0x00000c78   0x00000088   Code   RO          574    i.UART0_Handler     w7500x_it.o
-    0x00000d00   0x00000d00   0x00000088   Code   RO          575    i.UART1_Handler     w7500x_it.o
-    0x00000d88   0x00000d88   0x00000050   Code   RO          576    i.UART2_Handler     w7500x_it.o
-    0x00000dd8   0x00000dd8   0x00000008   Code   RO          235    i.UART_ClearITPendingBit  w7500x_uart.o
-    0x00000de0   0x00000de0   0x00000014   Code   RO          242    i.UART_GetITStatus  w7500x_uart.o
-    0x00000df4   0x00000df4   0x00000014   Code   RO          244    i.UART_ITConfig     w7500x_uart.o
-    0x00000e08   0x00000e08   0x000000d8   Code   RO          245    i.UART_Init         w7500x_uart.o
-    0x00000ee0   0x00000ee0   0x00000008   Code   RO          246    i.UART_ReceiveData  w7500x_uart.o
-    0x00000ee8   0x00000ee8   0x00000004   Code   RO          248    i.UART_SendData     w7500x_uart.o
-    0x00000eec   0x00000eec   0x0000001c   Code   RO          249    i.UART_StructInit   w7500x_uart.o
-    0x00000f08   0x00000f08   0x0000001e   Code   RO          251    i.UartPutc          w7500x_uart.o
-    0x00000f26   0x00000f26   0x0000001e   Code   RO          252    i.UartPuts          w7500x_uart.o
-    0x00000f44   0x00000f44   0x00000002   Code   RO          577    i.WZTOE_Handler     w7500x_it.o
-    0x00000f46   0x00000f46   0x00000004   Code   RO          490    i._sys_exit         retarget.o
-    0x00000f4a   0x00000f4a   0x00000002   PAD
-    0x00000f4c   0x00000f4c   0x00000114   Code   RO          434    i.main              main.o
-    0x00001060   0x00001060   0x0000008c   Code   RO          791    x$fpl$fadd          fz_ps.l(faddsub.o)
-    0x000010ec   0x000010ec   0x000000b0   Code   RO          804    x$fpl$fmul          fz_ps.l(fmul.o)
-    0x0000119c   0x0000119c   0x00000018   Code   RO          792    x$fpl$frsb          fz_ps.l(faddsub.o)
-    0x000011b4   0x000011b4   0x000000d0   Code   RO          793    x$fpl$fsub          fz_ps.l(faddsub.o)
-    0x00001284   0x00001284   0x00000000   Code   RO          811    x$fpl$usenofp       fz_ps.l(usenofp.o)
-    0x00001284   0x00001284   0x00000040   Data   RO          798    .constdata          fz_ps.l(fdiv.o)
-    0x000012c4   0x000012c4   0x00000020   Data   RO          965    Region$$Table       anon$$obj.o
+    0x00000184   0x00000184   0x00000002   Code   RO          851    .text               c_p.l(use_no_semi.o)
+    0x00000186   0x00000186   0x00000002   PAD
+    0x00000188   0x00000188   0x0000001c   Code   RO          855    .text               c_p.l(noretval__2printf.o)
+    0x000001a4   0x000001a4   0x0000015a   Code   RO          857    .text               c_p.l(aeabi_sdiv.o)
+    0x000002fe   0x000002fe   0x00000006   Code   RO          861    .text               c_p.l(heapauxi.o)
+    0x00000304   0x00000304   0x00000358   Code   RO          865    .text               fz_ps.l(daddsub.o)
+    0x0000065c   0x0000065c   0x00000048   Code   RO          867    .text               fz_ps.l(dfixui.o)
+    0x000006a4   0x000006a4   0x00000054   Code   RO          869    .text               fz_ps.l(f2d.o)
+    0x000006f8   0x000006f8   0x00000160   Code   RO          877    .text               fz_ps.l(fdiv.o)
+    0x00000858   0x00000858   0x00000030   Code   RO          880    .text               fz_ps.l(ffixui.o)
+    0x00000888   0x00000888   0x0000005e   Code   RO          882    .text               fz_ps.l(fflti.o)
+    0x000008e6   0x000008e6   0x00000002   PAD
+    0x000008e8   0x000008e8   0x00000028   Code   RO          891    .text               c_p.l(_printf_char_file.o)
+    0x00000910   0x00000910   0x00000030   Code   RO          911    .text               c_p.l(_printf_char_common.o)
+    0x00000940   0x00000940   0x0000003e   Code   RO          913    .text               c_p.l(sys_stackheap_outer.o)
+    0x0000097e   0x0000097e   0x00000024   Code   RO          916    .text               c_p.l(__printf_nopercent.o)
+    0x000009a2   0x000009a2   0x0000000c   Code   RO          918    .text               c_p.l(exit.o)
+    0x000009ae   0x000009ae   0x00000002   PAD
+    0x000009b0   0x000009b0   0x00000008   Code   RO          930    .text               c_p.l(libspace.o)
+    0x000009b8   0x000009b8   0x00000002   Code   RO          550    i.ADC_Handler       w7500x_it.o
+    0x000009ba   0x000009ba   0x00000002   Code   RO          551    i.DMA_Handler       w7500x_it.o
+    0x000009bc   0x000009bc   0x00000002   Code   RO          552    i.DUALTIMER0_Handler  w7500x_it.o
+    0x000009be   0x000009be   0x00000002   Code   RO          553    i.DUALTIMER1_Handler  w7500x_it.o
+    0x000009c0   0x000009c0   0x00000002   Code   RO          554    i.EXTI_Handler      w7500x_it.o
+    0x000009c2   0x000009c2   0x00000002   PAD
+    0x000009c4   0x000009c4   0x00000114   Code   RO           74    i.GPIO_Init         w7500x_gpio.o
+    0x00000ad8   0x00000ad8   0x00000020   Code   RO           80    i.GPIO_ResetBits    w7500x_gpio.o
+    0x00000af8   0x00000af8   0x0000001a   Code   RO           81    i.GPIO_SetBits      w7500x_gpio.o
+    0x00000b12   0x00000b12   0x00000002   Code   RO          555    i.HardFault_Handler  w7500x_it.o
+    0x00000b14   0x00000b14   0x00000080   Code   RO          739    i.I2C_Init          eeprom.o
+    0x00000b94   0x00000b94   0x00000070   Code   RO          740    i.I2C_Read          eeprom.o
+    0x00000c04   0x00000c04   0x0000001c   Code   RO          741    i.I2C_ReadBitSDA    eeprom.o
+    0x00000c20   0x00000c20   0x0000004a   Code   RO          742    i.I2C_ReadByte      eeprom.o
+    0x00000c6a   0x00000c6a   0x00000002   PAD
+    0x00000c6c   0x00000c6c   0x00000020   Code   RO          744    i.I2C_SDA_MODE      eeprom.o
+    0x00000c8c   0x00000c8c   0x00000016   Code   RO          745    i.I2C_SendACK       eeprom.o
+    0x00000ca2   0x00000ca2   0x00000016   Code   RO          746    i.I2C_SendNACK      eeprom.o
+    0x00000cb8   0x00000cb8   0x00000022   Code   RO          747    i.I2C_Start         eeprom.o
+    0x00000cda   0x00000cda   0x00000028   Code   RO          748    i.I2C_Stop          eeprom.o
+    0x00000d02   0x00000d02   0x00000002   PAD
+    0x00000d04   0x00000d04   0x00000068   Code   RO          749    i.I2C_Write         eeprom.o
+    0x00000d6c   0x00000d6c   0x0000002c   Code   RO          750    i.I2C_WriteBitSCL   eeprom.o
+    0x00000d98   0x00000d98   0x0000002c   Code   RO          751    i.I2C_WriteBitSDA   eeprom.o
+    0x00000dc4   0x00000dc4   0x00000058   Code   RO          752    i.I2C_WriteByte     eeprom.o
+    0x00000e1c   0x00000e1c   0x00000002   Code   RO          556    i.NMI_Handler       w7500x_it.o
+    0x00000e1e   0x00000e1e   0x00000002   PAD
+    0x00000e20   0x00000e20   0x00000014   Code   RO          430    i.NVIC_ClearPendingIRQ  main.o
+    0x00000e34   0x00000e34   0x00000014   Code   RO          431    i.NVIC_EnableIRQ    main.o
+    0x00000e48   0x00000e48   0x000000cc   Code   RO           87    i.PAD_AFConfig      w7500x_gpio.o
+    0x00000f14   0x00000f14   0x00000002   Code   RO          557    i.PORT0_Handler     w7500x_it.o
+    0x00000f16   0x00000f16   0x00000002   Code   RO          558    i.PORT1_Handler     w7500x_it.o
+    0x00000f18   0x00000f18   0x00000002   Code   RO          559    i.PORT2_Handler     w7500x_it.o
+    0x00000f1a   0x00000f1a   0x00000002   Code   RO          560    i.PORT3_Handler     w7500x_it.o
+    0x00000f1c   0x00000f1c   0x00000002   Code   RO          561    i.PWM0_Handler      w7500x_it.o
+    0x00000f1e   0x00000f1e   0x00000002   Code   RO          562    i.PWM1_Handler      w7500x_it.o
+    0x00000f20   0x00000f20   0x00000002   Code   RO          563    i.PWM2_Handler      w7500x_it.o
+    0x00000f22   0x00000f22   0x00000002   Code   RO          564    i.PWM3_Handler      w7500x_it.o
+    0x00000f24   0x00000f24   0x00000002   Code   RO          565    i.PWM4_Handler      w7500x_it.o
+    0x00000f26   0x00000f26   0x00000002   Code   RO          566    i.PWM5_Handler      w7500x_it.o
+    0x00000f28   0x00000f28   0x00000002   Code   RO          567    i.PWM6_Handler      w7500x_it.o
+    0x00000f2a   0x00000f2a   0x00000002   Code   RO          568    i.PWM7_Handler      w7500x_it.o
+    0x00000f2c   0x00000f2c   0x00000002   Code   RO          569    i.PendSV_Handler    w7500x_it.o
+    0x00000f2e   0x00000f2e   0x00000002   Code   RO          570    i.SSP0_Handler      w7500x_it.o
+    0x00000f30   0x00000f30   0x00000002   Code   RO          571    i.SSP1_Handler      w7500x_it.o
+    0x00000f32   0x00000f32   0x00000002   Code   RO          572    i.SVC_Handler       w7500x_it.o
+    0x00000f34   0x00000f34   0x00000010   Code   RO          221    i.S_UART_ClearITPendingBit  w7500x_uart.o
+    0x00000f44   0x00000f44   0x0000000c   Code   RO          227    i.S_UART_ReceiveData  w7500x_uart.o
+    0x00000f50   0x00000f50   0x00000018   Code   RO          228    i.S_UART_SendData   w7500x_uart.o
+    0x00000f68   0x00000f68   0x0000001c   Code   RO          231    i.S_UartGetc        w7500x_uart.o
+    0x00000f84   0x00000f84   0x0000001a   Code   RO          233    i.S_UartPuts        w7500x_uart.o
+    0x00000f9e   0x00000f9e   0x00000002   Code   RO          573    i.SysTick_Handler   w7500x_it.o
+    0x00000fa0   0x00000fa0   0x00000074   Code   RO           14    i.SystemInit        system_w7500x.o
+    0x00001014   0x00001014   0x00000088   Code   RO          574    i.UART0_Handler     w7500x_it.o
+    0x0000109c   0x0000109c   0x00000088   Code   RO          575    i.UART1_Handler     w7500x_it.o
+    0x00001124   0x00001124   0x00000050   Code   RO          576    i.UART2_Handler     w7500x_it.o
+    0x00001174   0x00001174   0x00000008   Code   RO          235    i.UART_ClearITPendingBit  w7500x_uart.o
+    0x0000117c   0x0000117c   0x00000014   Code   RO          242    i.UART_GetITStatus  w7500x_uart.o
+    0x00001190   0x00001190   0x00000014   Code   RO          244    i.UART_ITConfig     w7500x_uart.o
+    0x000011a4   0x000011a4   0x000000d8   Code   RO          245    i.UART_Init         w7500x_uart.o
+    0x0000127c   0x0000127c   0x00000008   Code   RO          246    i.UART_ReceiveData  w7500x_uart.o
+    0x00001284   0x00001284   0x00000004   Code   RO          248    i.UART_SendData     w7500x_uart.o
+    0x00001288   0x00001288   0x0000001c   Code   RO          249    i.UART_StructInit   w7500x_uart.o
+    0x000012a4   0x000012a4   0x0000001e   Code   RO          251    i.UartPutc          w7500x_uart.o
+    0x000012c2   0x000012c2   0x0000001e   Code   RO          252    i.UartPuts          w7500x_uart.o
+    0x000012e0   0x000012e0   0x00000002   Code   RO          577    i.WZTOE_Handler     w7500x_it.o
+    0x000012e2   0x000012e2   0x00000004   Code   RO          490    i._sys_exit         retarget.o
+    0x000012e6   0x000012e6   0x00000008   Code   RO          492    i.ferror            retarget.o
+    0x000012ee   0x000012ee   0x00000002   PAD
+    0x000012f0   0x000012f0   0x00000014   Code   RO          494    i.fputc             retarget.o
+    0x00001304   0x00001304   0x00000148   Code   RO          434    i.main              main.o
+    0x0000144c   0x0000144c   0x0000008c   Code   RO          871    x$fpl$fadd          fz_ps.l(faddsub.o)
+    0x000014d8   0x000014d8   0x000000b0   Code   RO          884    x$fpl$fmul          fz_ps.l(fmul.o)
+    0x00001588   0x00001588   0x00000018   Code   RO          872    x$fpl$frsb          fz_ps.l(faddsub.o)
+    0x000015a0   0x000015a0   0x000000d0   Code   RO          873    x$fpl$fsub          fz_ps.l(faddsub.o)
+    0x00001670   0x00001670   0x00000000   Code   RO          893    x$fpl$usenofp       fz_ps.l(usenofp.o)
+    0x00001670   0x00001670   0x00000040   Data   RO          878    .constdata          fz_ps.l(fdiv.o)
+    0x000016b0   0x000016b0   0x00000020   Data   RO         1051    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x000012e4, Size: 0x000008f8, Max: 0x00004000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x000016d0, Size: 0x00000920, Max: 0x00004000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x000012e4   0x00000008   Data   RW           15    .data               system_w7500x.o
-    0x20000008   0x000012ec   0x0000000b   Data   RW          436    .data               main.o
-    0x20000013   0x000012f7   0x00000001   PAD
-    0x20000014   0x000012f8   0x00000018   Data   RW          578    .data               w7500x_it.o
-    0x2000002c        -       0x0000006a   Zero   RW          435    .bss                main.o
-    0x20000096   0x00001310   0x00000002   PAD
-    0x20000098        -       0x00000060   Zero   RW          845    .bss                c_p.l(libspace.o)
-    0x200000f8        -       0x00000400   Zero   RW            2    HEAP                startup_w7500x.o
-    0x200004f8        -       0x00000400   Zero   RW            1    STACK               startup_w7500x.o
+    0x20000000   0x000016d0   0x00000008   Data   RW           15    .data               system_w7500x.o
+    0x20000008   0x000016d8   0x0000000b   Data   RW          436    .data               main.o
+    0x20000013   0x000016e3   0x00000001   PAD
+    0x20000014   0x000016e4   0x00000008   Data   RW          495    .data               retarget.o
+    0x2000001c   0x000016ec   0x00000018   Data   RW          578    .data               w7500x_it.o
+    0x20000034   0x00001704   0x00000010   Data   RW          754    .data               eeprom.o
+    0x20000044        -       0x0000007a   Zero   RW          435    .bss                main.o
+    0x200000be   0x00001714   0x00000002   PAD
+    0x200000c0        -       0x00000060   Zero   RW          931    .bss                c_p.l(libspace.o)
+    0x20000120        -       0x00000400   Zero   RW            2    HEAP                startup_w7500x.o
+    0x20000520        -       0x00000400   Zero   RW            1    STACK               startup_w7500x.o
 
 
 ==============================================================================
@@ -889,31 +1021,34 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        40          0          0          0          0        803   eeprom.o
-       316         64          0         11        106       8120   main.o
-         4          0          0          0          0        380   retarget.o
+       772        100          0         16          0       6876   eeprom.o
+       368         72          0         11        122       8825   main.o
+        32          4          0          8          0       3243   retarget.o
         56         26        168          0       2048        772   startup_w7500x.o
        116         22          0          8          0      23019   system_w7500x.o
-       506         10          0          0          0       5178   w7500x_gpio.o
+       538         10          0          0          0       5759   w7500x_gpio.o
        402         52          0         24          0      10758   w7500x_it.o
        470         34          0          0          0      15255   w7500x_uart.o
 
     ----------------------------------------------------------------------
-      1916        208        200         44       2156      64285   Object Totals
+      2764        320        200         68       2172      74507   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         6          0          0          1          2          0   (incl. Padding)
+        10          0          0          1          2          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
 
          8          0          0          0          0         68   __main.o
+        36          0          0          0          0         76   __printf_nopercent.o
          0          0          0          0          0          0   __rtentry.o
         12          0          0          0          0          0   __rtentry2.o
          6          0          0          0          0          0   __rtentry4.o
         60          8          0          0          0          0   __scatter.o
         26          0          0          0          0          0   __scatter_copy.o
         28          0          0          0          0          0   __scatter_zi.o
+        48          6          0          0          0         88   _printf_char_common.o
+        40          6          0          0          0         72   _printf_char_file.o
        346          0          0          0          0         92   aeabi_sdiv.o
         12          0          0          0          0         64   exit.o
          6          0          0          0          0        136   heapauxi.o
@@ -922,6 +1057,7 @@ Image component sizes
          2          0          0          0          0          0   libshutdown.o
          2          0          0          0          0          0   libshutdown2.o
          8          4          0          0         96         68   libspace.o
+        28          6          0          0          0         84   noretval__2printf.o
          2          0          0          0          0          0   rtexit.o
         10          0          0          0          0          0   rtexit2.o
         62          0          0          0          0         80   sys_stackheap_outer.o
@@ -937,18 +1073,18 @@ Image component sizes
          0          0          0          0          0          0   usenofp.o
 
     ----------------------------------------------------------------------
-      2656         62         64          0         96       1476   Library Totals
-         6          0          0          0          0          0   (incl. Padding)
+      2812         80         64          0         96       1796   Library Totals
+        10          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-       596         12          0          0         96        576   c_p.l
+       748         30          0          0         96        896   c_p.l
       2054         50         64          0          0        900   fz_ps.l
 
     ----------------------------------------------------------------------
-      2656         62         64          0         96       1476   Library Totals
+      2812         80         64          0         96       1796   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -957,15 +1093,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4572        270        264         44       2252      63121   Grand Totals
-      4572        270        264         44       2252      63121   ELF Image Totals
-      4572        270        264         44          0          0   ROM Totals
+      5576        400        264         68       2268      72827   Grand Totals
+      5576        400        264         68       2268      72827   ELF Image Totals
+      5576        400        264         68          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4836 (   4.72kB)
-    Total RW  Size (RW Data + ZI Data)              2296 (   2.24kB)
-    Total ROM Size (Code + RO Data + RW Data)       4880 (   4.77kB)
+    Total RO  Size (Code + RO Data)                 5840 (   5.70kB)
+    Total RW  Size (RW Data + ZI Data)              2336 (   2.28kB)
+    Total ROM Size (Code + RO Data + RW Data)       5908 (   5.77kB)
 
 ==============================================================================
 

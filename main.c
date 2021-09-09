@@ -1,34 +1,24 @@
 /*******************************************************************************************************************************************************
- * Copyright ¨Ï 2016 <WIZnet Co.,Ltd.> 
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ¡°Software¡±), 
- * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
- * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * Diseñado 2021 por Ing. Jaime Pedraza> 
+ * Por la presente a cualquier persona que obtenga una copia de este software y los archivos de documentación asociados a el debe tener autorizacion de uso del Ing. Jaime Pedraza
+ * o aportar regalias por, los derechos de uso, copia, modificación, fusión, publicación, distribución, sublicencia,
+ * y / o vender copias del Software, y permitir que las personas a quienes se les proporcione el Software lo hagan, sujeto a clausulas
  *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- * THE SOFTWARE IS PROVIDED ¡°AS IS¡±, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
   * @file    Uart/Printf/main.c 
-  * @author  IOP Team
+  * @author  Jaime Pedraza
   * @version V1.0.0
-  * @date    01-May-2015
-  * @brief   Main program body
+  * @date    01-Junio-2021
+  * @brief   Cuerpo del programa
   ******************************************************************************
   * @attention
   *
-  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
-  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
-  * TIME. AS A RESULT, WIZnet SHALL NOT BE HELD LIABLE FOR ANY
-  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
-  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
-  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  * 
   *
-  * <h2><center>&copy; COPYRIGHT 2015 WIZnet Co.,Ltd.</center></h2>
+  *
   ******************************************************************************
   */ 
 
@@ -41,12 +31,14 @@
 //#include "i2c.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-//#define SLAVE_ADDRESS	0x78
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
+#define SLAVE_ADDRESS	0xA0
+/* Private macro struct -------------------------------------------------------------*/
+
 UART_InitTypeDef UART_InitStructure;
 GPIO_InitTypeDef GPIO_InitDef;
-//I2C_ConfigStruct conf;
+I2C_ConfigStruct conf;
+
+/* Private variables ---------------------------------------------------------*/
 uint8_t RxBuffer[30];
 uint8_t RxBuffer1[30];
 uint8_t RxBuffer2[30];
@@ -59,9 +51,7 @@ extern uint32_t uart2_rx_cnt;
 /* Private function prototypes -----------------------------------------------*/
 void delay_ms(__IO uint32_t nCount);
 void led_on(void);
-//void Config_i2c();
-//void Config_io(void);
-//uint32_t I2C_Init(I2C_ConfigStruct* conf);
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -73,6 +63,8 @@ void led_on(void);
 
 int main()
 {
+	uint8_t data[1] = {0xAA};
+  uint8_t r_data[1] ={0,};
 	
     /*System clock configuration*/
 	SystemInit();    
@@ -84,10 +76,13 @@ int main()
     GPIO_Init(GPIOC, &GPIO_InitDef);
     PAD_AFConfig(PAD_PC,(GPIO_Pin_8|GPIO_Pin_9), PAD_AF1); // PAD Config - LED used 2nd 
 	
-		
+/*------------------------------------------------------------------------------------------*/  
+/*configuro I2C pines */
+/*------------------------------------------------------------------------------------------*/  
+		conf.scl_pin = GPIO_Pin_9;
+   	conf.sda_pin = GPIO_Pin_10;
     
-    /* CLK OUT Set */
-//    PAD_AFConfig(PAD_PA,GPIO_Pin_2, PAD_AF2); // PAD Config - CLKOUT used 3nd Function    
+ 
 /*------------------------------------------------------------------------------------------*/  
   /* UART0  configuration*/
 /*------------------------------------------------------------------------------------------*/  
@@ -125,7 +120,9 @@ int main()
     /* Retarget functions for GNU Tools for ARM Embedded Processors*/
 		GPIO_SetBits(GPIOC, GPIO_Pin_8); // LED(R) Off
     GPIO_SetBits(GPIOC, GPIO_Pin_9); // LED(G) Off
-		I2C_Init(&GPIO_InitDef);
+		I2C_Init(&conf);
+		I2C_Write(SLAVE_ADDRESS,data,1);
+		I2C_Read(SLAVE_ADDRESS,r_data ,1);
 		//S_UartPuts("hola Colombia\r\n");
 		while(1)
 		{
@@ -172,31 +169,4 @@ void led_on()
 	  GPIO_SetBits(GPIOC, GPIO_Pin_8);
     GPIO_SetBits(GPIOC, GPIO_Pin_9);
 }
-//void Config_i2c()
-//{
-	/*configuramos los scl como salida*/
-	
-   // GPIO_InitDef.GPIO_Pin = ( scl_pin) ; 
-   // GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; // Set to Mode Output
-   // GPIO_Init(GPIOC, &GPIO_InitDef);
-   // PAD_AFConfig(PAD_PC,(scl_pin), PAD_AF1); // PAD Config - LED used 2nd 
-		/*configura sda como salida*/
-		//GPIO_InitDef.GPIO_Pin = ( sda_pin) ; 
-    //GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; // Set to Mode Output
-    //GPIO_Init(GPIOC, &GPIO_InitDef);
-   // PAD_AFConfig(PAD_PC,(sda_pin), PAD_AF1); // PAD Config - LED used 2nd 
-//}
-/*void Config_io()
-{
-	//uint32_t data;
-//GPIO setting for I2C
 
-	conf.scl_port = PORT_PA;
-	conf.scl_pin = GPIO_Pin_9;
-    conf.sda_port = PORT_PA;
-	conf.sda_pin = GPIO_Pin_10;
-//
-    //data=
-	I2C_Init(&conf);
-}
-*/
