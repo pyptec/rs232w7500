@@ -69,3 +69,6 @@ I (..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x5
 I (..\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h)(0x5C3DBD93)
 F (.\eeprom.h)(0x613A6572)()
 F (.\main.h)(0x6138D89C)()
+F (.\lintech.c)(0x613BD14D)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I ..\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I ..\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I ..\workspace\Libraries\CMSIS\Include-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.5.1\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\lintech.o --omf_browse .\objects\lintech.crf --depend .\objects\lintech.d)
+I (lintech.h)(0x613BCE62)
+F (.\lintech.h)(0x613BCE62)()

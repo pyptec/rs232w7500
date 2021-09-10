@@ -451,6 +451,16 @@
               <FileType>5</FileType>
               <FilePath>.\main.h</FilePath>
             </File>
+            <File>
+              <FileName>lintech.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lintech.c</FilePath>
+            </File>
+            <File>
+              <FileName>lintech.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lintech.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
