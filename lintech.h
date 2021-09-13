@@ -1,4 +1,4 @@
-
+#include "W7500x.h"
 typedef enum
 {
 	TO_FRONT	     ='0',
@@ -36,3 +36,15 @@ typedef enum
 
 
 void Inicializa(TIPO_movimiento SetValue);
+void Check_Status(SENSOR_detalle Detalle);
+void Card_Insercion(INSERCION_card Insercion);
+void Mov_Card(MOVER_card Mover);
+void Aut_Card_check_Status(void);
+void Clave_Seguridad_S2(void);
+void Dwload_EEprom (void);
+void Dwload_EEprom_prog(unsigned char *password);
+void LoadVerify_EEprom(void);
+void RD_MF(unsigned char Sector, unsigned char Bloque);
+void WR_MF(unsigned char Sector, unsigned char Bloque,unsigned char *buffer);
+void Unique_Identifier_UID(void);
+void Power_off(void);

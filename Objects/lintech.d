@@ -1,2 +1,9 @@
 .\objects\lintech.o: lintech.c
 .\objects\lintech.o: lintech.h
+.\objects\lintech.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\lintech.o: .\workspace\Libraries\CMSIS\Include\core_cm0.h
+.\objects\lintech.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\lintech.o: .\workspace\Libraries\CMSIS\Include\core_cmInstr.h
+.\objects\lintech.o: .\workspace\Libraries\CMSIS\Include\core_cmFunc.h
+.\objects\lintech.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
+.\objects\lintech.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
