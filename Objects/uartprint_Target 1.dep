@@ -78,3 +78,15 @@ I (.\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x613F5A41)
 I (.\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x613F5A41)
 I (.\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x613F5A41)
 F (.\lintech.h)(0x613F6C29)()
+F (.\clock.c)(0x613FB765)(--c99 --gnu -c --cpu Cortex-M0 --li -g -O0 --apcs=interwork --split_sections -I .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include -I .\workspace\Libraries\W7500x_stdPeriph_Driver\inc -I .\workspace\Libraries\CMSIS\Include -I ..\rs232w7500-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.5.1\Device\ARM\ARMCM0\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DARMCM0 -DCORTEX_M0 -DUSE_STDPERIPH_DRIVER-o .\objects\clock.o --omf_browse .\objects\clock.crf --depend .\objects\clock.d)
+I (clock.h)(0x613FB596)
+I (.\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h)(0x613F5A41)
+I (.\workspace\Libraries\CMSIS\Include\core_cm0.h)(0x613F5A41)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54C2FC88)
+I (.\workspace\Libraries\CMSIS\Include\core_cmInstr.h)(0x613F5A41)
+I (.\workspace\Libraries\CMSIS\Include\core_cmFunc.h)(0x613F5A41)
+I (.\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h)(0x613F5A41)
+I (eeprom.h)(0x613F5A41)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x54C2FC88)
+I (.\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h)(0x613F5A41)
+F (.\clock.h)(0x613FB596)()
