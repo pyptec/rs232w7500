@@ -31,7 +31,7 @@
 //#include "i2c.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define SLAVE_ADDRESS	0xA0
+//#define SLAVE_ADDRESS	0xA0
 /* Private macro struct -------------------------------------------------------------*/
 
 UART_InitTypeDef UART_InitStructure;
@@ -63,8 +63,8 @@ void led_on(void);
 
 int main()
 {
-	uint8_t data[1] = {0xAA};
-  uint8_t r_data[1] ={0,};
+	uint8_t data[1] = {0x31};
+  uint8_t r_data[1] ={0};
 	
     /*System clock configuration*/
 	SystemInit();    
@@ -120,9 +120,12 @@ int main()
     /* Retarget functions for GNU Tools for ARM Embedded Processors*/
 		GPIO_SetBits(GPIOC, GPIO_Pin_8); // LED(R) Off
     GPIO_SetBits(GPIOC, GPIO_Pin_9); // LED(G) Off
+	
 		I2C_Init(&conf);
-		I2C_Write(SLAVE_ADDRESS,data,1);
-		I2C_Read(SLAVE_ADDRESS,r_data ,1);
+		I2C_Write(01,data,1);
+		delay_ms(4);
+		I2C_Read(01,r_data ,1);
+		UartPuts(UART0,r_data);
 		//S_UartPuts("hola Colombia\r\n");
 		while(1)
 		{

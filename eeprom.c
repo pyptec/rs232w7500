@@ -3,7 +3,14 @@
 
 #include "eeprom.h"
 
+
+/*definiciones de la rutina*/
+#define SLAVE_ADDRESS	0xA0					//para leer
+
+/*definicion de funciones*/
+extern void        UartPuts                (UART_TypeDef* UARTx, uint8_t *str);
 extern GPIO_InitTypeDef GPIO_InitDef;
+extern void delay_ms(__IO uint32_t nCount);
 
 /* Private variables ---------------------------------------------------------*/
 uint32_t scl_port_num;
@@ -60,6 +67,7 @@ void I2C_WriteBitSDA(uint8_t data)
 }
 uint8_t I2C_ReadBitSDA(void)
 {
+	
 	if(GPIOA->DATA & sda_pin_index)
      return 1;
    else
@@ -78,7 +86,7 @@ void I2C_Start(void)
 		I2C_SDA_MODE(GPIO_Mode_OUT);
 	  I2C_WriteBitSCL(1);
     I2C_WriteBitSDA(1);
-
+		__NOP();
     I2C_WriteBitSDA(0);
     I2C_WriteBitSCL(0);
 }
@@ -89,7 +97,7 @@ void I2C_Stop(void)
 
 		I2C_WriteBitSCL(0);
     I2C_WriteBitSDA(0);
-
+		__NOP();
     I2C_WriteBitSCL(1);
     I2C_WriteBitSDA(1);
 	I2C_SDA_MODE(GPIO_Mode_IN);
@@ -168,40 +176,94 @@ uint8_t I2C_ReadByte(ACK_TypeDef SetValue)
     return ret;
 }
 
-int I2C_Write(uint8_t addr, uint8_t* data, uint32_t len)
+int I2C_Write(uint16_t addr, uint8_t* data, uint32_t len)
 {
-    int i;
+   int i;
+	uint8_t Dir_high,Dir_low;
+	Dir_low=addr;
+	Dir_high =addr >>8;
 
-
+/*inicio i2c*/
     I2C_Start();
 
-    //Write addr
-    if(I2C_WriteByte(addr) != 0)
+    //Write palabra de control 0xa0
+    if(I2C_WriteByte(SLAVE_ADDRESS) != 0)
     {
-        printf("Received NACK at address phase!!\r\n");
+			UartPuts(UART0,(unsigned char *)"writee  palabra de control NACK !!\r\n");
+      //  printf("Received NACK at address phase!!\r\n");
         return -1;
     }
+		
+		//write addres high
+		 if(I2C_WriteByte(Dir_high) != 0)
+    {
+			UartPuts(UART0,(unsigned char *)"writee  NACK at address phase!!\r\n");
+      //  printf("Received NACK at address phase!!\r\n");
+        return -1;
+    }
+			//write addres low
+		 if(I2C_WriteByte(Dir_low) != 0)
+    {
+			UartPuts(UART0,(unsigned char *)"writee  NACK at address phase!!\r\n");
+      //  printf("Received NACK at address phase!!\r\n");
+        return -1;
+    }
+		
     //Write data
     for(i=0; i<len; i++)
     {
         if(I2C_WriteByte(data[i]))  return -1;
     }
     I2C_Stop();
+		delay_ms(1);
     return 0;//success
 }
 
-int I2C_Read(uint8_t addr, uint8_t* data, uint32_t len)
+int I2C_Read(uint16_t addr, uint8_t* data, uint32_t len)
 {
-    int i;
-
+ int i;
+uint8_t Dir_high,Dir_low;
+	 Dir_low=addr;
+	 Dir_high =addr >>8;
+	
+	 // I2C_SDA_MODE(GPIO_Mode_OUT);
+	//	I2C_WriteBitSDA(0);
+   // I2C_WriteBitSCL(0);
+	
     I2C_Start();
 
-
-    //Write addr | read command
-    if(I2C_WriteByte((addr)) != 0)
+ //Write palabra de control 0xa0
+    if(I2C_WriteByte(SLAVE_ADDRESS) != 0)
     {
-        printf("Received NACK at address phase!!\r\n");
-        return -1;
+			
+			UartPuts(UART0,(unsigned char *)"Received NACK at palabra a0 control!!\r\n");
+			//return -1;
+			
+        
+    }
+    //Write addr high
+    if(I2C_WriteByte(Dir_high) != 0)
+    {
+      UartPuts(UART0,(unsigned char *)"Received NACK at address high phase!!\r\n");               
+			//printf("Received NACK at address phase!!\r\n");
+      //  return -1;
+    }
+		//Write addrlow
+		   if(I2C_WriteByte(Dir_low) != 0)
+    {
+      UartPuts(UART0,(unsigned char *)"Received NACK at address low phase!!\r\n");               
+			//printf("Received NACK at address phase!!\r\n");
+      //  return -1;
+    }
+		/*inicia*/
+		I2C_Start();
+		
+		//Write palabra de control 0xa1
+    if(I2C_WriteByte(SLAVE_ADDRESS | 1) != 0)
+    {
+			UartPuts(UART0,(unsigned char *)"Received NACK at palabra a1 control!!\r\n");
+      
+      //  return -1;
     }
     //Read data
     for(i=0; i<len; i++)
@@ -226,7 +288,8 @@ int I2C_WriteRepeated(uint8_t addr, uint8_t* data, uint32_t len)
     //Write addr
     if(I2C_WriteByte(addr) != 0)
     {
-        printf("Received NACK at address phase!!\r\n");
+			UartPuts(UART0,"Received NACK at address phase!!\r\n");
+       // printf("Received NACK at address phase!!\r\n");
         return -1;
     }
 
@@ -242,9 +305,10 @@ int I2C_ReadRepeated(uint8_t addr, uint8_t* data, uint32_t len)
     int i;
     I2C_Start();
     //Write addr | read command
-    if(I2C_WriteByte((addr)) != 0)
+    if(I2C_WriteByte((addr | 1)) != 0)
     {
-        printf("Received NACK at address phase!!\r\n");
+			UartPuts(UART0,"Received NACK at address phase!!\r\n");
+      //  printf("Received NACK at address phase!!\r\n");
         return -1;
     }
     //Read data
