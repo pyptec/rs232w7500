@@ -12,11 +12,26 @@ void Inicializa(TIPO_movimiento SetValue)
 	bcc=0;
 	if ((SetValue==SIN_MOVIMIENTO)||(SetValue==TO_FRONT)||(SetValue==CAPTURE_BOX))
 	{
-		
-//		Debug_txt_Tibbo((unsigned char *) "Inicializa Dispensador SIN_MOVIMIENTO \r\n");
-		
-	//	Debug_txt_Tibbo((unsigned char *) "Inicializa Dispensador TO_FRONT \r\n");
-	//	Debug_txt_Tibbo((unsigned char *) "Inicializa Dispensador CAPTURE_BOX \r\n");
+		if(SetValue==SIN_MOVIMIENTO)
+		{
+		printf("Inicializa Dispensador SIN_MOVIMIENTO \r\n");
+		}
+	
+		else if (SetValue == TO_FRONT)
+		{
+			printf( "Inicializa Dispensador TO_FRONT \r\n");
+		}
+		else 
+		{
+		printf("Inicializa Dispensador CAPTURE_BOX \r\n");
+		}
+	}
+	else
+	{
+		printf("TIPO_movimiento no existe \r\n");
+	}
+	
+	//	
 		
 		
 		g_scArrTxComSoft[0]=STX_LINTECH;
@@ -37,7 +52,7 @@ void Inicializa(TIPO_movimiento SetValue)
 	//	DebugBufferMF(g_scArrTxComSoft,9,0);								/*muestra la trama enviada al pto serie a debug por tibbo*/
 	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
-	}
+	
 }
 void Check_Status(SENSOR_detalle Detalle)
 {

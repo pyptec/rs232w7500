@@ -191,7 +191,7 @@ void UART1_Handler(void)
   */
 uint32_t uart2_tx_cnt=0;
 uint32_t uart2_rx_cnt=0;
-extern uint8_t RxBuffer2[30];
+extern uint8_t RxBuffer2[];
 extern uint8_t buffer_ready2;
 
 void UART2_Handler(void)
@@ -212,7 +212,11 @@ void UART2_Handler(void)
 					//S_UartPuts(RxBuffer2);
 				}
         uart2_rx_cnt++;
-	
+	//if(S_UART_GetITStatus(UART_IT_FLAG_TXI))
+	//{
+	//	S_UART_ClearITPendingBit(S_UART_STATE_TXF);
+		
+	//}
 
 			
 			 

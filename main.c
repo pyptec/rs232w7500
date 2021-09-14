@@ -63,7 +63,7 @@ void led_on(void);
 
 int main()
 {
-	uint8_t data[1] = {0x31};
+	uint8_t data[8] = {"se vive\0"};
   uint8_t r_data[1] ={0};
 	
     /*System clock configuration*/
@@ -107,26 +107,31 @@ int main()
     NVIC_ClearPendingIRQ(UART1_IRQn);
     NVIC_EnableIRQ(UART1_IRQn);
 /*------------------------------------------------------------------------------------------*/  
-		//	S_UART_Init(9600); 	//configurar serial 2
-			
-			 /* Configure Uart2 Interrupt Enable*/
-			
+		/*uart2*/
+		   S_UART_Init(115200);
+    /* Configure Uart2 Interrupt Enable*/
+    S_UART_ITConfig((S_UART_CTRL_RXI),ENABLE);
 		//	S_UART_ITConfig((S_UART_CTRL_TXI|S_UART_CTRL_RXI),ENABLE);
-		 /* NVIC configuration */
-   		
-		//	NVIC_EnableIRQ(UART2_IRQn);
-		//	NVIC_ClearPendingIRQ(UART2_IRQn);			
+    /* NVIC configuration */
+    NVIC_EnableIRQ(UART2_IRQn);
+    NVIC_ClearPendingIRQ(UART2_IRQn);
+   
+			
+		
+				
 /*------------------------------------------------------------------------------------------*/  
     /* Retarget functions for GNU Tools for ARM Embedded Processors*/
 		GPIO_SetBits(GPIOC, GPIO_Pin_8); // LED(R) Off
     GPIO_SetBits(GPIOC, GPIO_Pin_9); // LED(G) Off
 	
 		I2C_Init(&conf);
-		I2C_Write(01,data,1);
+		I2C_Write(01,data,8);
 		delay_ms(4);
-		I2C_Read(01,r_data ,1);
+		I2C_Read(01,r_data ,8);
 		UartPuts(UART0,r_data);
 		//S_UartPuts("hola Colombia\r\n");
+		//S_UartPuts((unsigned char *)"hola colombia");
+		printf("hola Colombia\r\n");
 		while(1)
 		{
 			//led_on(); 
