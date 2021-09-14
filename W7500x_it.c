@@ -122,24 +122,19 @@ extern uint8_t buffer_ready;
 void UART0_Handler(void)
 
 {
-//	 uint8_t ch;
-    
+		/*recibe los datos de pto serie UART0*/
     if(UART_GetITStatus(UART0,UART_IT_FLAG_RXI))
     {
         UART_ClearITPendingBit(UART0,UART_IT_FLAG_RXI);
-        //ch = UART_ReceiveData(UART0);
-			 RxBuffer[uart0_rx_cnt] = (UART_ReceiveData(UART0) & 0xFF);
+        RxBuffer[uart0_rx_cnt] = (UART_ReceiveData(UART0) & 0xFF);
 				if(RxBuffer[uart0_rx_cnt] == 0x0a )
 				{
 					buffer_ready=1;
 					RxBuffer[uart0_rx_cnt++] =0;
-					//UartPuts(UART0,RxBuffer);
-					//uart0_rx_cnt=0;
-					//RxBuffer[0]=0;
 				}
         uart0_rx_cnt++;
 			
-			 
+	
     }
     else if(UART_GetITStatus(UART0,UART_IT_FLAG_TXI))
     {

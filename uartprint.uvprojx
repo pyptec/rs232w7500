@@ -10,13 +10,13 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
+      <pCCUsed>5050169::V5.05 update 2 (build 169)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>ARMCM0</Device>
           <Vendor>ARM</Vendor>
-          <PackID>ARM.CMSIS.5.7.0</PackID>
+          <PackID>ARM.CMSIS.5.5.1</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IROM(0x00000000,0x00040000) CPUTYPE("Cortex-M0") CLOCK(12000000) ESEL ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -432,24 +432,9 @@
               <FilePath>.\W7500x_it.c</FilePath>
             </File>
             <File>
-              <FileName>W7500x_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\W7500x_it.h</FilePath>
-            </File>
-            <File>
               <FileName>eeprom.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\eeprom.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\eeprom.h</FilePath>
-            </File>
-            <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\main.h</FilePath>
             </File>
             <File>
               <FileName>lintech.c</FileName>
@@ -457,19 +442,24 @@
               <FilePath>.\lintech.c</FilePath>
             </File>
             <File>
-              <FileName>lintech.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lintech.h</FilePath>
-            </File>
-            <File>
               <FileName>clock.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\clock.c</FilePath>
             </File>
             <File>
-              <FileName>clock.h</FileName>
+              <FileName>debuger.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\debuger.c</FilePath>
+            </File>
+            <File>
+              <FileName>UART_CERO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UART_CERO.c</FilePath>
+            </File>
+            <File>
+              <FileName>UART_CERO.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\clock.h</FilePath>
+              <FilePath>.\UART_CERO.h</FilePath>
             </File>
           </Files>
         </Group>

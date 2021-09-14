@@ -1,0 +1,9 @@
+.\objects\uart_cero.o: UART_CERO.c
+.\objects\uart_cero.o: UART_CERO.h
+.\objects\uart_cero.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\uart_cero.o: .\workspace\Libraries\CMSIS\Include\core_cm0.h
+.\objects\uart_cero.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\uart_cero.o: .\workspace\Libraries\CMSIS\Include\core_cmInstr.h
+.\objects\uart_cero.o: .\workspace\Libraries\CMSIS\Include\core_cmFunc.h
+.\objects\uart_cero.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
+.\objects\uart_cero.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h

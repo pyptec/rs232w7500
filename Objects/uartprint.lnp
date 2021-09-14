@@ -9,6 +9,8 @@
 ".\objects\eeprom.o"
 ".\objects\lintech.o"
 ".\objects\clock.o"
+".\objects\debuger.o"
+".\objects\uart_cero.o"
 --strict --scatter ".\Objects\uartprint.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -38,14 +38,14 @@ void inicializa_reloj()
 		I2C_Start();
 	  if(I2C_WriteByte(SLAVE_ADDRESS) != 0)
     {
-			UartPuts(UART0,(unsigned char *)"writee  palabra de control clk NACK !!\r\n");
+			printf("writee  palabra de control clk NACK !!\r\n");
      
        // return -1;
     }
 		/*direccion del reloj*/
 		if(I2C_WriteByte(YEAR) != 0)
     {
-			UartPuts(UART0,(unsigned char *)"writee  palabra de control clk NACK !!\r\n");
+			printf("writee  palabra de control clk NACK !!\r\n");
      
       //  return -1;
     }
@@ -56,7 +56,7 @@ void inicializa_reloj()
 		/*palabra de control de read*/
 		if(I2C_WriteByte(SLAVE_ADDRESS | 1) != 0)
     {
-			UartPuts(UART0,(unsigned char *)"writee  palabra de control clk NACK !!\r\n");
+			printf("writee  palabra de control clk NACK !!\r\n");
      
         //return -1;
     }

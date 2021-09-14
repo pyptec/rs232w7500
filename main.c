@@ -20,23 +20,10 @@
   *
   *
   ******************************************************************************
-  */ 
-
+	*/
+	
 /* Includes ------------------------------------------------------------------*/
-#include <stdio.h>
-#include <string.h>
-#include "W7500x_uart.h"
-#include "W7500x_gpio.h"
-#include "eeprom.h"
-//#include "i2c.h"
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-//#define SLAVE_ADDRESS	0xA0
-/* Private macro struct -------------------------------------------------------------*/
-
-UART_InitTypeDef UART_InitStructure;
-GPIO_InitTypeDef GPIO_InitDef;
-I2C_ConfigStruct conf;
+#include <main.h>
 
 /* Private variables ---------------------------------------------------------*/
 uint8_t RxBuffer[30];
@@ -48,11 +35,6 @@ uint8_t buffer_ready2=0;
 extern uint32_t uart0_rx_cnt;
 extern uint32_t uart1_rx_cnt;
 extern uint32_t uart2_rx_cnt;
-/* Private function prototypes -----------------------------------------------*/
-void delay_ms(__IO uint32_t nCount);
-void led_on(void);
-
-/* Private functions ---------------------------------------------------------*/
 
 /**
   * @brief   Main program

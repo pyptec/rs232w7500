@@ -1,5 +1,6 @@
 #include "W7500x.h"
 #include <stdio.h>
+#include "debuger.h"
 typedef enum
 {
 	TO_FRONT	     ='0',
