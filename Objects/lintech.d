@@ -9,3 +9,4 @@
 .\objects\lintech.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
 .\objects\lintech.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\lintech.o: debuger.h
+.\objects\lintech.o: UART_CERO.h

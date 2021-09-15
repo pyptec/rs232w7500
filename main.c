@@ -23,13 +23,13 @@
 	*/
 	
 /* Includes ------------------------------------------------------------------*/
-#include <main.h>
+#include "main.h"
 
 /* Private variables ---------------------------------------------------------*/
 uint8_t RxBuffer[30];
 uint8_t RxBuffer1[30];
 uint8_t RxBuffer2[30];
-uint8_t buffer_ready=0;
+extern uint8_t buffer_ready;
 uint8_t buffer_ready1=0;
 uint8_t buffer_ready2=0;
 extern uint32_t uart0_rx_cnt;

@@ -1,5 +1,5 @@
 .\objects\main.o: main.c
-.\objects\main.o: ..\rs232w7500\main.h
+.\objects\main.o: main.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_uart.h
@@ -11,4 +11,4 @@
 .\objects\main.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
 .\objects\main.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
 .\objects\main.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
-.\objects\main.o: ..\rs232w7500\eeprom.h
+.\objects\main.o: eeprom.h

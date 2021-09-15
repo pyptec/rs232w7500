@@ -42,6 +42,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+extern void com_isr (uint8_t cDatoRx );
 
 /******************************************************************************/
 /*            Cortex-M0 Processor Exceptions Handlers                         */
@@ -122,17 +123,19 @@ extern uint8_t buffer_ready;
 void UART0_Handler(void)
 
 {
+	uint8_t ch;
 		/*recibe los datos de pto serie UART0*/
     if(UART_GetITStatus(UART0,UART_IT_FLAG_RXI))
     {
         UART_ClearITPendingBit(UART0,UART_IT_FLAG_RXI);
-        RxBuffer[uart0_rx_cnt] = (UART_ReceiveData(UART0) & 0xFF);
-				if(RxBuffer[uart0_rx_cnt] == 0x0a )
-				{
-					buffer_ready=1;
-					RxBuffer[uart0_rx_cnt++] =0;
-				}
-        uart0_rx_cnt++;
+        ch = (UART_ReceiveData(UART0) & 0xFF);
+				com_isr (ch );
+			//	if(RxBuffer[uart0_rx_cnt] == 0x0a )
+			//	{
+			//		buffer_ready=1;
+			//		RxBuffer[uart0_rx_cnt++] =0;
+			//	}
+        //uart0_rx_cnt++;
 			
 	
     }
@@ -191,11 +194,7 @@ extern uint8_t buffer_ready2;
 
 void UART2_Handler(void)
 {
-	//uint8_t ch;
-    
-  //  ch = S_UartGetc();
-    
-  //  S_UartPutc(ch);
+
 	
 	S_UART_ClearITPendingBit(S_UART_STATE_RXF);
 				
@@ -204,18 +203,9 @@ void UART2_Handler(void)
 				{
 					buffer_ready2=1;
 					RxBuffer2[uart2_rx_cnt++] =0;
-					//S_UartPuts(RxBuffer2);
 				}
         uart2_rx_cnt++;
-	//if(S_UART_GetITStatus(UART_IT_FLAG_TXI))
-	//{
-	//	S_UART_ClearITPendingBit(S_UART_STATE_TXF);
-		
-	//}
 
-			
-			 
-   
 }
 
 

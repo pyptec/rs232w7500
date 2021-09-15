@@ -1,6 +1,7 @@
 #include "W7500x.h"
 #include <stdio.h>
 #include "debuger.h"
+#include "UART_CERO.h"
 typedef enum
 {
 	TO_FRONT	     ='0',
@@ -32,9 +33,11 @@ typedef enum
 typedef enum
 {
 	ETX								=0x03,
- 	STX_LINTECH				=0xf2
+ 	STX_LINTECH				=0xf2,
+	ASK								=06
 }TRAMA_lintech;
 
+/* Private variables externas ---------------------------------------------------------*/
 
 
 void Inicializa(TIPO_movimiento SetValue);

@@ -45,7 +45,7 @@ void Inicializa(TIPO_movimiento SetValue)
 		}
 		g_scArrTxComSoft[8]=bcc;
 	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,9,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
 	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
