@@ -1,10 +1,11 @@
 
 #include "lintech.h"
 
+/*extern variable*/
 
-extern uint32_t uart0_rx_cnt;
-extern uint8_t g_cEstadoComSoft;
 uint8_t Buffer_Rta_Lintech[TBUF_SIZE_LINTECH];
+
+
 void com_isr (uint8_t cDatoRx ) 
 {
 //static  unsigned char cDatoRx;
@@ -119,3 +120,16 @@ Received data interrupt.
 		}
  	
 }
+
+
+
+void EscribirCadenaSoft_buffer(uint8_t *buffer,uint8_t tamano_cadena)
+{
+	uint8_t i;
+		for(i=0;i<tamano_cadena;i++)
+   	{
+      UartPutc(UART0,*buffer);
+			buffer++;
+    }
+}
+

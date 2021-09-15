@@ -5,6 +5,7 @@
 #include "W7500x_uart.h"
 #include "W7500x_gpio.h"
 #include "eeprom.h"
+#include "lintech.h"
 /* Private macro struct -------------------------------------------------------------*/
 
 UART_InitTypeDef UART_InitStructure;

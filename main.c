@@ -114,6 +114,9 @@ int main()
 		//S_UartPuts("hola Colombia\r\n");
 		//S_UartPuts((unsigned char *)"hola colombia");
 		printf("hola Colombia\r\n");
+	/*------------------------------------------------------------------------------------------*/  	
+		Inicializa(SIN_MOVIMIENTO);
+		
 		while(1)
 		{
 			//led_on(); 
