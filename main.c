@@ -45,7 +45,7 @@ extern uint32_t uart2_rx_cnt;
 
 int main()
 {
-	uint8_t data[8] = {"se vive\0"};
+	uint8_t data[9] = {"se vive"};
   uint8_t r_data[1] ={0};
 	
     /*System clock configuration*/
@@ -107,15 +107,15 @@ int main()
     GPIO_SetBits(GPIOC, GPIO_Pin_9); // LED(G) Off
 	
 		I2C_Init(&conf);
-		I2C_Write(01,data,8);
-		delay_ms(4);
-		I2C_Read(01,r_data ,8);
-		UartPuts(UART0,r_data);
+		I2C_Write(01,data,7);
+		delay_ms(1);
+		I2C_Read(01,r_data ,7);
+		//UartPuts(UART0,r_data);
 		//S_UartPuts("hola Colombia\r\n");
 		//S_UartPuts((unsigned char *)"hola colombia");
-		printf("hola Colombia\r\n");
+		//printf("hola Colombia\r\n");
 	/*------------------------------------------------------------------------------------------*/  	
-		Inicializa(SIN_MOVIMIENTO);
+		Mov_Card(MovPos_Front);
 		
 		while(1)
 		{

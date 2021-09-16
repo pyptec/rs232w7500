@@ -167,10 +167,10 @@ void Mov_Card(MOVER_card Mover)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[8]=bcc;
-	//	buffer_ready=0;
-//		g_cEstadoComSoft=ESPERA_RX;
+		buffer_ready=0;
+		g_cEstadoComSoft=ESPERA_ASK;
 		DebugBufferMF(g_scArrTxComSoft,9,DATA_ENVIADO);
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,);
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);
 	//	ValTimeOutCom=TIME_CARD;
 	}
 
