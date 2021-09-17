@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "debuger.h"
 #include "UART_CERO.h"
+
 typedef enum
 {
 	TO_FRONT	     ='0',
@@ -36,6 +37,37 @@ typedef enum
  	STX_LINTECH				=0xf2,
 	ASK								=06
 }TRAMA_lintech;
+typedef enum
+{
+ 	RSPT_TRP_OK,						
+	NO_RSPD_TRP_PTO_COM,		
+ 	ESPR_RSPT_TRP_TRAMA,		
+ 	ERROR_TRP_TRAMA				
+}ERROR_transporte;	
+/*------------------------------------------------------------------------------
+Definicion de la trama Lintech de las respuestas de los cmd
+------------------------------------------------------------------------------*/
+typedef enum
+{
+	Pos_Length					=3,
+	Pos_TipoResp				=4,
+	ERROR_COLLECT_CARD	=6,
+	Pos_St0							=7,
+	Pos_St1							=8,
+	Pos_St2							=9,
+	Pos_IniDatMF				=0x0a,
+	Card_type_H					=0x0a,
+	Card_type_L					=0x0b,
+	Rtype				        =0x0A,
+	answerOk						=0x50,
+	answerFalse					=0x4e
+}Regreso_cmd_lintech;
+
+typedef enum
+{
+	 REENVIA_TRAMA,			
+   ESPERA_MAS_TIEMPO	
+}ERROR_uart0;
 
 /* Private variables externas ---------------------------------------------------------*/
 
@@ -53,3 +85,9 @@ void RD_MF(unsigned char Sector, unsigned char Bloque);
 void WR_MF(unsigned char Sector, unsigned char Bloque,unsigned char *buffer);
 void Unique_Identifier_UID(void);
 void Power_off(void);
+uint8_t   rta_cmd_transporte(unsigned char *secuencia_Expedidor, Estados_Expedidor estado );
+uint8_t error_rx_pto(void);
+uint8_t Trama_Validacion_P_N(void);
+
+
+

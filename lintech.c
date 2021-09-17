@@ -5,6 +5,10 @@ funcion de inicializacion del transporte
 
 ------------------------------------------------------------------------------*/
 
+extern uint8_t Buffer_Rta_Lintech[];
+extern uint8_t g_cEstadoComSoft;	
+uint8_t cnt__ask_off=0;
+
 void Inicializa(TIPO_movimiento SetValue)
 {
 	unsigned char j, bcc;
@@ -240,10 +244,10 @@ void Clave_Seguridad_S2(void)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[19]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,20,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 	
 
@@ -284,10 +288,10 @@ void Dwload_EEprom (void)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[19]=bcc;
-		//buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-		//g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,20,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
 		//ValTimeOutCom=TIME_CARD;
 }
 
@@ -323,10 +327,10 @@ void Dwload_EEprom_prog(unsigned char *password)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[19]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-		//g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,20,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 }
 
@@ -363,10 +367,10 @@ void LoadVerify_EEprom(void)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[12]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,13,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,13);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,13);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 		
 }
@@ -411,10 +415,10 @@ void RD_MF(unsigned char Sector, unsigned char Bloque)
 	g_scArrTxComSoft[13]=bcc;
 
 
-//		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,14,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,14);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,14);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 
 }
@@ -466,10 +470,10 @@ void WR_MF(unsigned char Sector, unsigned char Bloque,unsigned char *buffer)
 	g_scArrTxComSoft[29]=bcc;
 
 	
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,30,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-		//EscribirCadenaSoft_buffer(g_scArrTxComSoft,30);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,30);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 	
 }
@@ -500,10 +504,10 @@ unsigned char	g_scArrTxComSoft[11];
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[10]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,11,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	///	EscribirCadenaSoft_buffer(g_scArrTxComSoft,11);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,11);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 	}	
 void Power_off(void)
@@ -527,12 +531,206 @@ unsigned char	g_scArrTxComSoft[10];
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[8]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,9,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-//		EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);		/* envio la trama por el pto serie*/
 //		ValTimeOutCom=TIME_CARD;
 
 
 }
+/*------------------------------------------------------------------------------
+funcion que valida la trama del verificador o transporte lintech
+RSPT_TRP_OK						(0) significa que la trama es valida y sigue en el proceso
+NO_RSPD_TRP_PTO_COM		(1)	falla en la respuesta por pto serie o trama invalida	
+ESPR_RSPT_TRP_TRAMA		(2)	no ha recibido la trama del verificador o transporte	
+ERROR_TRP_TRAMA				(3) ERROR DE TRAMA CMD (N)
+
+
+------------------------------------------------------------------------------*/
+
+uint8_t Trama_Validacion_P_N(void)
+{
+	uint8_t Trama_Validacion_P_N=ESPR_RSPT_TRP_TRAMA;																/*espera respuesta del transporte*/
+			
+			//if 																									//((ValTimeOutCom==1)||(buffer_ready==1)|| (ValTimeOutCom > TIME_CARD) )
+			//{
+				if (buffer_ready==1)
+				{
+					buffer_ready=0;
+						
+				
+					if (Buffer_Rta_Lintech[Pos_TipoResp]==answerOk)
+					{
+										
+						Trama_Validacion_P_N=RSPT_TRP_OK;																				/*trama ok*/
+							
+					}
+					else if (Buffer_Rta_Lintech[Pos_TipoResp]==answerFalse)
+					{
+ 						
+						Trama_Validacion_P_N=ERROR_TRP_TRAMA	;																	/*error de trama*/
+						
+					}
+					else
+					{
+					 	printf( "Respuesta  DESCONOCIDA \r\n");				/*la respuesta es desconocida*/
+						Trama_Validacion_P_N=ERROR_TRP_TRAMA	;		
+						
+					}
+				}
+				//else
+				//{
+			 							
+					//Trama_Validacion_P_N=NO_RSPD_TRP_PTO_COM;																	/*pto serie no responde */
+																						
+ 			//	}
+
+		//	}
+			
+	return Trama_Validacion_P_N;
+}
+
+/*funcion de error de respuesta pto serie
+
+variable en uart. cnt__ask_off=cuenta los numeros de error pto serie y reset de transporte 
+se limpia cuando llega la respuesta del transporte. 
+Rele_Atasco = es un I/O del Mc que activa / inhabilita el rele
+ON		(1) esta activo 
+OFF		(0) inhactivo 
+REENVIA_TRAMA		1
+ESPERA_MAS_TIEMPO	0
+cnt_espera_ask_on= cuenta el tiempo de ASK que esta activo,sin que le llegue
+									 la trama completa, al  5 tiempos borra el ask y retrasmite el cmd
+
+error_rx_pto= (0)= ESPERA_MAS_TIEMPO nos da mas tiempo para esperar la trama,
+						= (1)= REENVIA_TRAMA reenvia la trama al transporte
+
+cnt__ask_off= varible global esta definida en pto serie y es un contador , que 
+se limpia cada vez que la trama a llegado completa y validada
+
+aSk= significa que llego al pto serie el 06 = ask donde el transporte dice que a recibido el cmd
+esta ejecutando y nos enviara la respuesta,necesita tiempo esta bit esta definino en el modulo uart es global
+
+------------------------------------------------------------------------------*/
+uint8_t error_rx_pto(void)
+{
+
+static uint8_t cnt_espera_ask_on=0;
+uint8_t error_rx_pto=ESPERA_MAS_TIEMPO;
+
+		
+					
+			printf( "Dispensador No Responde PTO SERIE ...");
+			Debug_chr_UART2	(cnt__ask_off);	
+			Debug_chr_UART2	(cnt_espera_ask_on);
+			Debug_chr_UART2	(error_rx_pto);
+			printf("\r\n");
+//			if (aSk==OFF)
+			
+	//		{	
+			//		cnt__ask_off++;																																		/*cuento el error*/																																
+			//	if(cnt__ask_off>=10)
+		//		{	
+		//			printf( "ATASCADO RESET\r\n");																																			/*no contesta debe reset el transporte*/
+	//				Atascado_GP0_PIN_3 = ON;																																		/*off el rele de reset del verificador*/		
+//					Delay_10ms(110);
+		//			cnt__ask_off=0;																																		/*limpio ls errores*/
+		//			cnt_espera_ask_on=0;
+			//		error_rx_pto=ESPERA_MAS_TIEMPO;																										/**/
+				//	Atascado_GP0_PIN_3 = OFF;	
+			//		Delay_10ms(110);																																	/*On el rele de reset del verificador*/		
+				//	ValTimeOutCom=TIME_CARD;
+		//		}
+	//			else
+	//			{
+	//				error_rx_pto=REENVIA_TRAMA;																												/*1 reenvia trama*/
+//					ValTimeOutCom=TIME_CARD;
+//				}
+			//}																																											/*aSk esta activo */
+		//	else
+			//{
+		//			cnt_espera_ask_on++;																															/*cuento n tiempos de ask para recibir el total de la trama*/
+			//	if(cnt_espera_ask_on>=1)
+		//		{
+		//			cnt__ask_off=0;																																		/*paso tiempo de espera y no se completo la trama 
+//																																														limpio los reg y reenvio la trama y ask=off*/
+		//			cnt_espera_ask_on=0;
+			//		error_rx_pto=REENVIA_TRAMA;
+				//	aSk=OFF;
+			//		ValTimeOutCom=TIME_CARD;
+			//	}
+			//	else
+			//	{
+			//		cnt__ask_off=0;																																		/*damos tiempo de espera de la trama del transporte*/
+			//		error_rx_pto=ESPERA_MAS_TIEMPO;;
+				//	ValTimeOutCom=TIME_CARD;
+//				}
+//			}
+				//return (error_rx_pto);
+				return 0;
+}
+/*------------------------------------------------------------------------------
+Funcion de respuesta a los cmd del transporte
+Retorna rta_cmd_transporte el estado en que queda
+Recibe tres datos unos es el 
+Estado_futuro= significa que la respuesta fue ok
+Estado_Error= en caso de que aya un error a que estado envia el codigo
+Estado_Actua= No ha llegado la respuesta y sigue en el mismo estado
+RSPT_TRP_OK						(0) significa que la trama es valida y sigue en el proceso
+NO_RSPD_TRP_PTO_COM		(1)	falla en la respuesta por pto serie o trama invalida	
+ESPR_RSPT_TRP_TRAMA		(2)	no ha recibido la trama del verificador o transporte	
+ERROR_TRP_TRAMA				(3) ERROR DE TRAMA CMD (N)
+
+(0)= ESPERA_MAS_TIEMPO nos da mas tiempo para esperar la trama,
+(1)= REENVIA_TRAMA reenvia la trama al transporte
+------------------------------------------------------------------------------*/
+uint8_t   rta_cmd_transporte(unsigned char *secuencia_Expedidor,enum Estados_Expedidor estado )
+{
+	uint8_t temp;
+	uint8_t EstadoComSeqMF;
+	
+	estado=EstadoPasado;
+			
+if((temp=Trama_Validacion_P_N())!=RSPT_TRP_OK	)
+		{
+			if(temp==ESPR_RSPT_TRP_TRAMA)																													/*no he recibido respuesta espero*/
+			{
+			EstadoComSeqMF= *(secuencia_Expedidor + EstadoActual);									       			/*SEQ_RTA_CARD_POSno ha respondido*/
+			}	
+			else if (temp==ERROR_TRP_TRAMA)
+			{
+			printf( "RTA_CMD_ERROR\r\n");															/* trama no valida respuesta incorrecta falla en la escritura */
+			DebugBufferMF(Buffer_Rta_Lintech,uart0_rx_cnt,DATA_RECIBIDO);														/*imprimo la trama recibida*/	
+			if(Buffer_Rta_Lintech[ERROR_COLLECT_CARD]==0x33)
+				{
+					printf( "RTA_CMD_ERROR COLECTOR LLENO\r\n");	
+				}
+
+			EstadoComSeqMF=*(secuencia_Expedidor + EstadoPasado);	
+			//EstadoComSeqMF=SEQ_INICIO	;																														/// (3) Trama invalida cmd (N)reenvio cmd*/	
+			}			
+			else
+			{
+			/*Dispensador No Responde PTO SERIE ...*/
+		
+				if(temp=error_rx_pto()==ESPERA_MAS_TIEMPO)
+				{
+					EstadoComSeqMF=*(secuencia_Expedidor + EstadoActual);	
+				}																										 																	/*SEQ_RTA_CARD_POS;*/
+				else 																																									//(temp=error_rx_pto()==REENVIA_TRAMA)
+				{
+					EstadoComSeqMF=*(secuencia_Expedidor + EstadoPasado);																											/*SEQ_INICIO*/
+				}																									
+			}				
+		}
+		else
+	  {
+			
+			DebugBufferMF(Buffer_Rta_Lintech,uart0_rx_cnt,DATA_RECIBIDO);
+			EstadoComSeqMF=*(secuencia_Expedidor + EstadoFuturo);	
+		}
+	return EstadoComSeqMF;
+}
+
 

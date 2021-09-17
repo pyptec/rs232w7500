@@ -1,0 +1,13 @@
+.\objects\expedidor.o: expedidor.c
+.\objects\expedidor.o: ..\rs232w7500\expedidor.h
+.\objects\expedidor.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\expedidor.o: .\workspace\Libraries\CMSIS\Include\core_cm0.h
+.\objects\expedidor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\expedidor.o: .\workspace\Libraries\CMSIS\Include\core_cmInstr.h
+.\objects\expedidor.o: .\workspace\Libraries\CMSIS\Include\core_cmFunc.h
+.\objects\expedidor.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
+.\objects\expedidor.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\expedidor.o: ..\rs232w7500\lintech.h
+.\objects\expedidor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\expedidor.o: ..\rs232w7500\debuger.h
+.\objects\expedidor.o: ..\rs232w7500\UART_CERO.h
