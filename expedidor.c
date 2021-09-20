@@ -187,7 +187,7 @@ if((temp=Trama_Validacion_P_N())!=RSPT_TRP_OK	)
 			DebugBufferMF(Buffer_Rta_Lintech,uart0_rx_cnt,DATA_RECIBIDO);
 			EstadoComSeqMF=Sq->Secuencia_Expedidor[EstadoFuturo];	
 		}
-	//	Debug_chr_UART2(EstadoComSeqMF);
+	
 	return EstadoComSeqMF;
 }
 
@@ -474,7 +474,16 @@ uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 			Power_off();
 			EstadoActivo = Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_LOAD_PASSWORD);
 			break;
-		
+	/*casos de inicio*/
+		case SEQ_INICIA_LINTECH:
+			Inicializa(SIN_MOVIMIENTO);	 
+			EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_GRABA_EEPROM);		
+		break;
+			
+		case SEQ_GRABA_EEPROM:
+			Dwload_EEprom();
+			EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_INICIO);
+			break;
 		case SEQ_RESPUESTA_TRANSPORTE:
 			if (sq.Secuencia_Expedidor[TareadelCmd] == TAREA_SENSORES_TRANSPORTE)
 			{

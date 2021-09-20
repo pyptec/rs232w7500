@@ -14,8 +14,9 @@ typedef enum
 		SEQ_LOAD_PASSWORD=6,
 		SEQ_CAPTURE_CARD=7,
 		SEQ_READ_SECTOR_BLOQUE=8,
-		SEQ_POWER_ON=9
-    
+		SEQ_POWER_ON=9,
+    SEQ_INICIA_LINTECH=10,
+		SEQ_GRABA_EEPROM=11
 }SEQ_Expedidor;
 typedef enum
 {

@@ -48,9 +48,15 @@ int main()
 {
 	uint8_t data[9] = {"se vive"};
   uint8_t r_data[1] ={0};
-	static uint8_t Estado_Comunicacion_Secuencia_MF=SEQ_INICIO;
+	static uint8_t Estado_Comunicacion_Secuencia_MF=SEQ_INICIA_LINTECH;
 	
     /*System clock configuration*/
+	/ *   Reloj * /
+    // * (volátil uint32_t *) (0x41001014) = 0x000C0200; // 48 MHz
+    // * (volátil uint32_t *) (0x41001014) = 0x00050200; // 20MHz, predeterminado
+    // * (volátil uint32_t *) (0x41001014) = 0x00040200; // 16 MHz
+
+	
 	SystemInit();    
 //    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
 	/*configuramos los led*/
@@ -115,7 +121,7 @@ int main()
 		
 	/*------------------------------------------------------------------------------------------*/  	
 		//Mov_Card(MovPos_Front);
-		
+		Estado_Comunicacion_Secuencia_MF=SecuenciaExpedidorMF(Estado_Comunicacion_Secuencia_MF);
 		while(1)
 		{
 			//led_on(); 
