@@ -1,5 +1,8 @@
 
 #include "lintech.h"
+#include <stdio.h>
+#include "debuger.h"
+#include "UART_CERO.h"
 /*----------------------------------------------------------------------------
 funcion de inicializacion del transporte
 
@@ -14,21 +17,21 @@ void Inicializa(TIPO_movimiento SetValue)
 	{
 		if(SetValue==SIN_MOVIMIENTO)
 		{
-		printf("Inicializa Dispensador SIN_MOVIMIENTO \r\n");
+		printf("Inicializa Dispensador SIN_MOVIMIENTO \n");
 		}
 	
 		else if (SetValue == TO_FRONT)
 		{
-			printf( "Inicializa Dispensador TO_FRONT \r\n");
+			printf( "Inicializa Dispensador TO_FRONT \n");
 		}
 		else 
 		{
-		printf("Inicializa Dispensador CAPTURE_BOX \r\n");
+		printf("Inicializa Dispensador CAPTURE_BOX \n");
 		}
 	}
 	else
 	{
-		printf("TIPO_movimiento no existe \r\n");
+		printf("TIPO_movimiento no existe \n");
 	}
 	
 		g_scArrTxComSoft[0]=STX_LINTECH;
@@ -58,11 +61,11 @@ void Check_Status(SENSOR_detalle Detalle)
 
 	if (Detalle == SENSOR_NORMAL)
 		{
-			printf("Check_Status SENSOR_NORMAL\r\n");
+			printf("Check_Status SENSOR_NORMAL\n");
 		}
 		else
 		{
-			printf( "Check_Status SENSOR_DETAIL\r\n");
+			printf( "Check_Status SENSOR_DETAIL\n");
 		}
 	bcc=0;
 
@@ -91,13 +94,13 @@ void Card_Insercion(INSERCION_card Insercion)
 	unsigned char	g_scArrTxComSoft[10];
 	if (Insercion==Habilita)
 	{
-		printf("Habilita Insersion\r\n");
+		printf("Habilita Insersion\n");
 		g_scArrTxComSoft[6]=Habilita;
 	}
 	else
 	{
 		
-	  printf( "Inhabilita Insersion\r\n");
+	  printf( "Inhabilita Insersion\n");
 		g_scArrTxComSoft[6]=Inhabilita;
 	
 	}
@@ -119,10 +122,10 @@ void Card_Insercion(INSERCION_card Insercion)
 
 	g_scArrTxComSoft[8]=bcc;
 
-	//buffer_ready=0;
-//	g_cEstadoComSoft=ESPERA_RX;
+		buffer_ready=0;
+		g_cEstadoComSoft=ESPERA_ASK;
   	DebugBufferMF(g_scArrTxComSoft,9,DATA_ENVIADO);
-  //	EscribirCadenaSoft_buffer(g_scArrTxComSoft,DATA_ENVIADO);
+  	EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);
 //	ValTimeOutCom=TIME_CARD;
 }
 void Mov_Card(MOVER_card Mover)
@@ -135,23 +138,23 @@ void Mov_Card(MOVER_card Mover)
 	{
 	 	if (Mover==MovPos_RF)
 		{
-			printf("Moviendo Tarjeta a RF\r\n");
+			printf("Moviendo Tarjeta a RF\n");
 		}
 		else if (Mover==MovPos_IC)
 		{
-			printf("Moviendo Tarjeta a IC\\r\n");
+			printf("Moviendo Tarjeta a IC\n");
    		}
 		else if (Mover==MovPos_Front)
 		{
-			printf("Moviendo Tarjeta a Bezel\r\n");
+			printf("Moviendo Tarjeta a Bezel\n");
  		}
 		else if (Mover==MovPos_EjectFront)
 		{
-			printf("Expulsando Tarjeta\r\n");
+			printf("Expulsando Tarjeta\n");
 		}
 		else if (Mover==MovPos_Capture)
 		{
-			printf("Capturando Tarjeta\r\n");
+			printf("Capturando Tarjeta\n");
  		}
 
 		g_scArrTxComSoft[0]=STX_LINTECH;
@@ -182,7 +185,7 @@ unsigned char j, bcc;
 unsigned char	g_scArrTxComSoft[10];
 		  bcc=0;
 	
-		printf("Aut_Card_check_Status\r\n");
+		printf("Aut_Card_check_Status\n");
  	
 		g_scArrTxComSoft[0]=STX_LINTECH;
 		g_scArrTxComSoft[1]=0X00;
@@ -208,7 +211,7 @@ void Clave_Seguridad_S2(void)
 	unsigned char j, bcc;
 	unsigned char	g_scArrTxComSoft[21];
 		  bcc=0;
-	printf("Clave Seguridad S2\r\n");
+	printf("Clave Seguridad S2\n");
 
 
 	g_scArrTxComSoft[0]=STX_LINTECH;
@@ -240,10 +243,10 @@ void Clave_Seguridad_S2(void)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[19]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,20,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 	
 
@@ -257,7 +260,7 @@ void Dwload_EEprom (void)
  	unsigned char j, bcc;
 	unsigned char	g_scArrTxComSoft[21];
 	bcc=0;
-	printf("Download MF EEprom\r\n");
+	printf("Download MF EEprom\n");
 	
 	g_scArrTxComSoft[0]=0xF2;
 	g_scArrTxComSoft[1]=0X00;
@@ -284,10 +287,10 @@ void Dwload_EEprom (void)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[19]=bcc;
-		//buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-		//g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,20,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
 		//ValTimeOutCom=TIME_CARD;
 }
 
@@ -296,7 +299,7 @@ void Dwload_EEprom_prog(unsigned char *password)
 		unsigned char j, bcc;
 	unsigned char	g_scArrTxComSoft[21];
 	bcc=0;
-	printf("Download MF EEprom\r\n");
+	printf("Download MF EEprom\n");
 	
 	g_scArrTxComSoft[0]=0xF2;
 	g_scArrTxComSoft[1]=0X00;
@@ -323,10 +326,10 @@ void Dwload_EEprom_prog(unsigned char *password)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[19]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-		//g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,20,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,20);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 }
 
@@ -339,7 +342,7 @@ void LoadVerify_EEprom(void)
 	unsigned char j, bcc;
 	unsigned char	g_scArrTxComSoft[15];
 	bcc=0;
-	printf("Carga y Verifica de EEprom\r\n");
+	printf("Carga y Verifica de EEprom\n");
 
 
 	g_scArrTxComSoft[0]=0xF2;
@@ -363,10 +366,10 @@ void LoadVerify_EEprom(void)
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[12]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,13,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,13);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,13);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 		
 }
@@ -382,12 +385,12 @@ void RD_MF(unsigned char Sector, unsigned char Bloque)
 	unsigned char	g_scArrTxComSoft[15];
 	bcc=0;
 
-		printf("Leyendo MF > Sector: ");
+		printf("Leyendo MF > SECTOR: ");
 		Debug_chr_UART2(Sector);
 	
-		printf( " Bloque: ");
+		printf( " BLOQUE: ");
 		Debug_chr_UART2(Bloque);
-		printf("\r\n");
+		printf("\n");
 
 
 	g_scArrTxComSoft[0]=0xF2;
@@ -411,10 +414,10 @@ void RD_MF(unsigned char Sector, unsigned char Bloque)
 	g_scArrTxComSoft[13]=bcc;
 
 
-//		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,14,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	//	EscribirCadenaSoft_buffer(g_scArrTxComSoft,14);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,14);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 
 }
@@ -431,12 +434,12 @@ void WR_MF(unsigned char Sector, unsigned char Bloque,unsigned char *buffer)
 	unsigned char	g_scArrTxComSoft[31];
 	bcc=0;
 
-		printf("Escribe MF > Sector: ");
+		printf("Escribe MF > SECTOR: ");
 		Debug_chr_UART2(Sector);
 	
-		printf( " Bloque: ");
+		printf( " BLOQUE: ");
 		Debug_chr_UART2(Bloque);
-		printf("\r\n");
+		printf("\n");
 																	  
 	g_scArrTxComSoft[0]=0xF2;
 	g_scArrTxComSoft[1]=0X00;									  
@@ -466,10 +469,10 @@ void WR_MF(unsigned char Sector, unsigned char Bloque,unsigned char *buffer)
 	g_scArrTxComSoft[29]=bcc;
 
 	
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,30,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-		//EscribirCadenaSoft_buffer(g_scArrTxComSoft,30);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,30);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 	
 }
@@ -483,7 +486,7 @@ unsigned char j, bcc;
 unsigned char	g_scArrTxComSoft[11];
 		  bcc=0;
 	
-		printf( "UID\r\n");
+		printf( "UID\n");
  	
 	  g_scArrTxComSoft[0]=STX_LINTECH;
 		g_scArrTxComSoft[1]=0X00;
@@ -500,10 +503,10 @@ unsigned char	g_scArrTxComSoft[11];
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[10]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,11,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-	///	EscribirCadenaSoft_buffer(g_scArrTxComSoft,11);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,11);		/* envio la trama por el pto serie*/
 	//	ValTimeOutCom=TIME_CARD;
 	}	
 void Power_off(void)
@@ -512,7 +515,7 @@ uint8_t  j, bcc;
 unsigned char	g_scArrTxComSoft[10];
 		  bcc=0;
 	
-	printf( "POWER OFF UID\r\n");
+	printf( "POWER OFF UID\n");
  	
 	g_scArrTxComSoft[0]=STX_LINTECH;
 		g_scArrTxComSoft[1]=0X00;
@@ -527,10 +530,10 @@ unsigned char	g_scArrTxComSoft[10];
 			bcc=g_scArrTxComSoft[j]^bcc;
 		}
 		g_scArrTxComSoft[8]=bcc;
-	//	buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
-	//	g_cEstadoComSoft=ESPERA_RX;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
+		buffer_ready=0;																		/* buffer del pto serie (0) inicia a esperar la trama*/
+		g_cEstadoComSoft=ESPERA_ASK;												/* Espera el ASK en el pt o serie para empesar a almacenas*/
 		DebugBufferMF(g_scArrTxComSoft,9,DATA_ENVIADO);								/*muestra la trama enviada al pto serie a debug por tibbo*/
-//		EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);		/* envio la trama por el pto serie*/
+		EscribirCadenaSoft_buffer(g_scArrTxComSoft,9);		/* envio la trama por el pto serie*/
 //		ValTimeOutCom=TIME_CARD;
 
 

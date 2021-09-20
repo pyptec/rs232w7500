@@ -1,4 +1,5 @@
 .\objects\clock.o: clock.c
+.\objects\clock.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\clock.o: clock.h
 .\objects\clock.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
 .\objects\clock.o: .\workspace\Libraries\CMSIS\Include\core_cm0.h
@@ -8,5 +9,4 @@
 .\objects\clock.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
 .\objects\clock.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
 .\objects\clock.o: eeprom.h
-.\objects\clock.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\clock.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h

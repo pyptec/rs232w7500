@@ -26,7 +26,7 @@
 #include "main.h"
 
 /* Private variables ---------------------------------------------------------*/
-uint8_t RxBuffer[30];
+//uint8_t RxBuffer[30];
 uint8_t RxBuffer1[30];
 uint8_t RxBuffer2[30];
 extern uint8_t buffer_ready;
@@ -35,6 +35,7 @@ uint8_t buffer_ready2=0;
 extern uint32_t uart0_rx_cnt;
 extern uint32_t uart1_rx_cnt;
 extern uint32_t uart2_rx_cnt;
+extern uint8_t Buffer_Rta_Lintech[];
 
 /**
   * @brief   Main program
@@ -47,6 +48,7 @@ int main()
 {
 	uint8_t data[9] = {"se vive"};
   uint8_t r_data[1] ={0};
+	static uint8_t Estado_Comunicacion_Secuencia_MF=SEQ_INICIO;
 	
     /*System clock configuration*/
 	SystemInit();    
@@ -106,28 +108,25 @@ int main()
 		GPIO_SetBits(GPIOC, GPIO_Pin_8); // LED(R) Off
     GPIO_SetBits(GPIOC, GPIO_Pin_9); // LED(G) Off
 	
-		I2C_Init(&conf);
-		I2C_Write(01,data,7);
-		delay_ms(1);
-		I2C_Read(01,r_data ,7);
-		//UartPuts(UART0,r_data);
-		//S_UartPuts("hola Colombia\r\n");
-		//S_UartPuts((unsigned char *)"hola colombia");
-		//printf("hola Colombia\r\n");
+	//	I2C_Init(&conf);
+	//	I2C_Write(01,data,7);
+	//	delay_ms(1);
+	//	I2C_Read(01,r_data ,7);
+		
 	/*------------------------------------------------------------------------------------------*/  	
-		Mov_Card(MovPos_Front);
+		//Mov_Card(MovPos_Front);
 		
 		while(1)
 		{
 			//led_on(); 
 		//	UartPuts(UART1,"UART 1 Test(#1)\r\n");
-			if(buffer_ready== 1)
-			{
-				UartPuts(UART0,RxBuffer);
-				uart0_rx_cnt=0;
-				RxBuffer[0]=0;
-				buffer_ready=0;
-			}
+		//	if(buffer_ready== 1)
+		//	{
+			//	DebugBufferMF(Buffer_Rta_Lintech,uart0_rx_cnt,DATA_RECIBIDO);
+			//	uart0_rx_cnt=0;
+			//	Buffer_Rta_Lintech[0]=0;
+			//	buffer_ready=0;
+			//}
 			if (buffer_ready1== 1)
 			
 			{
@@ -144,6 +143,7 @@ int main()
 				RxBuffer2[0]=0;
 				buffer_ready2=0;
 			}
+			Estado_Comunicacion_Secuencia_MF=SecuenciaExpedidorMF(Estado_Comunicacion_Secuencia_MF);
 		}
 }
 void delay_ms(__IO uint32_t nCount)

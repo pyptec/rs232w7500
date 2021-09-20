@@ -1,6 +1,6 @@
 .\objects\eeprom.o: eeprom.c
-.\objects\eeprom.o: eeprom.h
 .\objects\eeprom.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\eeprom.o: eeprom.h
 .\objects\eeprom.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
 .\objects\eeprom.o: .\workspace\Libraries\CMSIS\Include\core_cm0.h
 .\objects\eeprom.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

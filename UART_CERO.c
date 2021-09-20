@@ -1,6 +1,7 @@
 
+#include "UART_CERO.h"
+//#include "debuger.h"
 #include "lintech.h"
-
 /*extern variable*/
 
 uint8_t Buffer_Rta_Lintech[TBUF_SIZE_LINTECH];

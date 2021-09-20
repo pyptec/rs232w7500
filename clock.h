@@ -1,6 +1,6 @@
 
 #include "W7500x.h"
-#include "eeprom.h"
+
 
 
 extern void        UartPuts                (UART_TypeDef* UARTx, uint8_t *str);

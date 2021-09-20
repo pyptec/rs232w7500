@@ -1,4 +1,4 @@
-#include <stdio.h>
+
 #include "W7500x.h"
 
 

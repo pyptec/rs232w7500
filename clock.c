@@ -1,5 +1,7 @@
 
+#include <stdio.h>
 #include "clock.h"
+#include "eeprom.h"
 #define SLAVE_ADDRESS	0xD0
 
 

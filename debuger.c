@@ -1,5 +1,5 @@
 #include "debuger.h"
-
+#include <stdio.h>
 extern uint8_t S_UartPutc(uint8_t ch);
 
 
@@ -56,7 +56,7 @@ uint8_t j;
 		Debug_chr_UART2(*str);
 		str++;
 		}
-		S_UartPutc('\r');
+		//S_UartPutc('\r');
 		S_UartPutc('\n');
 }
 

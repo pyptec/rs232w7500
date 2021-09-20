@@ -13,5 +13,5 @@
 .\objects\main.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
 .\objects\main.o: eeprom.h
 .\objects\main.o: lintech.h
+.\objects\main.o: expedidor.h
 .\objects\main.o: debuger.h
-.\objects\main.o: UART_CERO.h
