@@ -16,3 +16,4 @@
 .\objects\main.o: lintech.h
 .\objects\main.o: expedidor.h
 .\objects\main.o: debuger.h
+.\objects\main.o: clock.h

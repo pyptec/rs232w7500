@@ -8,7 +8,7 @@
 *********************************************************************************************************************************************************/
 /**
   ******************************************************************************
-  * @file    Uart/Printf/main.c 
+  * @file    Sistema de parque inteligente 
   * @author  Jaime Pedraza
   * @version V1.0.0
   * @date    01-Junio-2021
@@ -46,66 +46,50 @@ extern uint8_t Buffer_Rta_Lintech[];
 
 int main()
 {
-	//uint8_t data[9] = {"se vive"};
- // uint8_t r_data[1] ={0};
+uint8_t data[10]={0};
 	static uint8_t Estado_Comunicacion_Secuencia_MF=SEQ_INICIA_LINTECH;
 	
-    /*System clock configuration*/
-	/*   Reloj */
-    // * (volátil uint32_t *) (0x41001014) = 0x000C0200; // 48 MHz
-    // * (volátil uint32_t *) (0x41001014) = 0x00050200; // 20MHz, predeterminado
-    // * (volátil uint32_t *) (0x41001014) = 0x00040200; // 16 MHz
-
-	
 	SystemInit();    
-//    *(volatile uint32_t *)(0x41001014) = 0x0060100; //clock setting 48MHz
-	
-	/*configuramos los IO como entradas y salidas*/
-	
-	IO_int_out();
-/*------------------------------------------------------------------------------------------*/  
-/*configuro I2C pines */
-/*------------------------------------------------------------------------------------------*/  
-		conf.scl_pin = GPIO_Pin_9;
-   	conf.sda_pin = GPIO_Pin_10;
-    
- 
-/*------------------------------------------------------------------------------------------*/  
-  /* UART0  configuration*/
-/*------------------------------------------------------------------------------------------*/  
-    UART_StructInit(&UART_InitStructure);
-    /* Configure UART0 */
-    UART_Init(UART0,&UART_InitStructure);
-	 /* Configure Uart0 Interrupt Enable*/
-    UART_ITConfig(UART0, (UART_IT_FLAG_TXI|UART_IT_FLAG_RXI),ENABLE);
-	 /* NVIC configuration */
-    NVIC_ClearPendingIRQ(UART0_IRQn);
-    NVIC_EnableIRQ(UART0_IRQn);
 
-/*------------------------------------------------------------------------------------------*/  
-  /* UART1  configuration*/
-/*------------------------------------------------------------------------------------------*/  
-   
-    /* Configure UART1 */
-    UART_Init(UART1,&UART_InitStructure);
-	 /* Configure Uart0 Interrupt Enable*/
-    UART_ITConfig(UART1, (UART_IT_FLAG_TXI|UART_IT_FLAG_RXI),ENABLE);
-	 /* NVIC configuration */
-    NVIC_ClearPendingIRQ(UART1_IRQn);
-    NVIC_EnableIRQ(UART1_IRQn);
-/*------------------------------------------------------------------------------------------*/  
-		/*uart2*/
-		   S_UART_Init(115200);
-    /* Configure Uart2 Interrupt Enable*/
-    S_UART_ITConfig((S_UART_CTRL_RXI),ENABLE);
-		//	S_UART_ITConfig((S_UART_CTRL_TXI|S_UART_CTRL_RXI),ENABLE);
-    /* NVIC configuration */
-    NVIC_EnableIRQ(UART2_IRQn);
-    NVIC_ClearPendingIRQ(UART2_IRQn);
-   
-			
-		
-				
+	/*configuramos los I/O como entradas y salidas*/
+		IO_int_out();
+	
+	/*configuracion UART 0, 1, 2*/
+		Config_Uart_X();
+	/*Configuracion I2C*/
+		Config_I2C();
+ 
+ /*programo hora*/
+	
+	clk.second=00;
+	clk.minut=5;
+	clk.hour=19;
+	clk.dayOfWeek=Miercoles;
+	clk.dayOfMonth=22;
+	clk.month=9;
+	clk.year=21;
+	Set_Data_Write_date_time(&clk);
+	delay_ms(500);
+	delay_ms(500);
+	Get_Date_Time(data);
+	/*sec*/
+	data[0]=bin(data[0]) & 0x7f;
+	/*min*/
+	data[1]=bin(data[1]) & 0x7f;
+	/*hr*/
+	data[2]=bin(data[2]) & 0x3f;
+	
+	/*dow*/
+	data[3]=bin(data[3]) & 0x7f;
+	/*day*/
+	data[4]=bin(data[4]) & 0x3f;
+	/*mth*/
+	data[5]=bin(data[5]) & 0x1f;
+	/*year*/
+	data[6]=bin(data[6]);
+	data[7]=0;
+	
+		printf("sec,min,hr,dow,day,mth,year %s",data)	;	
 /*------------------------------------------------------------------------------------------*/  
     /* Retarget functions for GNU Tools for ARM Embedded Processors*/
 		GPIO_SetBits(GPIOA, Led_out_GpioA_8); // LED(R) Off
@@ -113,14 +97,12 @@ int main()
   //	GPIO_ResetBits(GPIOA, Lock_GpioA_7);
    // GPIO_SetBits(GPIOC, GPIO_Pin_9); // LED(G) Off
 	
-	//	I2C_Init(&conf);
-	//	I2C_Write(01,data,7);
-	//	delay_ms(1);
-	//	I2C_Read(01,r_data ,7);
+	
 		
 	/*------------------------------------------------------------------------------------------*/  	
-		//Mov_Card(MovPos_Front);
+	
 		ValTimeOutCom=TIME_CARD;
+		/*inicio del transporte con password*/
 		Estado_Comunicacion_Secuencia_MF=SecuenciaExpedidorMF(Estado_Comunicacion_Secuencia_MF);
 		
 		while(1)
@@ -175,8 +157,8 @@ void led_on()
 }
 void Config_timer0(void)
 {
-	/* NVIC configuration */
-    NVIC_Configuration();
+	/* NVIC configuration interrupcion */
+    NVIC_EnableIRQ(DUALTIMER0_IRQn);
 	 /* Dualtimer 0_0 clock enable */
     DUALTIMER_ClockEnable(DUALTIMER0_0);
 
@@ -216,10 +198,7 @@ void  timer0_int(void)
 			//Timer_tivo++;
 		
 }
-void NVIC_Configuration(void)
-{
-    NVIC_EnableIRQ(DUALTIMER0_IRQn);
-}
+
 void IO_int_out(void)
 {
 	 /* reles pa6 atasco in,pa7 lock in,pa8 led_ount*/
@@ -237,5 +216,51 @@ void IO_int_out(void)
     GPIO_Init(GPIOA, &GPIO_InitDef);
     PAD_AFConfig(PAD_PA,(Auto_GpioA_0 |Sensor1_GpioA_1 | Sensor2_GpioA_2|Pulsa_GpioA_5), PAD_AF1); 
 }
+void Config_Uart_X(void)
+{
+	/*------------------------------------------------------------------------------------------*/  
+  /* UART0  configuration*/
+/*------------------------------------------------------------------------------------------*/  
+    UART_StructInit(&UART_InitStructure);
+    /* Configure UART0 */
+    UART_Init(UART0,&UART_InitStructure);
+	 /* Configure Uart0 Interrupt Enable*/
+    UART_ITConfig(UART0, (UART_IT_FLAG_TXI|UART_IT_FLAG_RXI),ENABLE);
+	 /* NVIC configuration */
+    NVIC_ClearPendingIRQ(UART0_IRQn);
+    NVIC_EnableIRQ(UART0_IRQn);
 
+/*------------------------------------------------------------------------------------------*/  
+  /* UART1  configuration*/
+/*------------------------------------------------------------------------------------------*/  
+   
+    /* Configure UART1 */
+    UART_Init(UART1,&UART_InitStructure);
+	 /* Configure Uart0 Interrupt Enable*/
+    UART_ITConfig(UART1, (UART_IT_FLAG_TXI|UART_IT_FLAG_RXI),ENABLE);
+	 /* NVIC configuration */
+    NVIC_ClearPendingIRQ(UART1_IRQn);
+    NVIC_EnableIRQ(UART1_IRQn);
+/*------------------------------------------------------------------------------------------*/  
+		/*uart2*/
+		   S_UART_Init(115200);
+    /* Configure Uart2 Interrupt Enable*/
+    S_UART_ITConfig((S_UART_CTRL_RXI),ENABLE);
+    /* NVIC configuration */
+    NVIC_EnableIRQ(UART2_IRQn);
+    NVIC_ClearPendingIRQ(UART2_IRQn);
+}
+void Config_I2C(void)
+{
+	/*------------------------------------------------------------------------------------------*/  
+/*configuro I2C pines */
+/*------------------------------------------------------------------------------------------*/  
+		conf.scl_pin = GPIO_Pin_9;
+   	conf.sda_pin = GPIO_Pin_10;
+    	I2C_Init(&conf);
+	//	I2C_Write(01,data,7);
+	//	delay_ms(1);
+	//	I2C_Read(01,r_data ,7);
+	
+}
 

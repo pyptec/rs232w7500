@@ -17,11 +17,18 @@ typedef enum
 		YEAR=6
     
 }Registers_Address;
-
-//typedef enum
-//{
+typedef enum
+{
+	Domingo=1,
+	Lunes=2,
+	Martes=3,
+	Miercoles=4,
+	Jueves=5,
+	Viernes=6,
+	Sabado=7
 	
-//}Alarmas;
+}Dia_Semana;
+
 typedef struct
 {
 
@@ -32,8 +39,16 @@ typedef struct
 		uint8_t dayOfMonth;
 		uint8_t month;
 		uint8_t year;
-}GetDateDs1307;
+}Atributos_Ds1307;
 
-void inicializa_reloj(void);
-uint8_t  bcd_hex (uint8_t l_data);
+
+
+
+uint8_t bcd(uint8_t carc);
+uint8_t bin(uint8_t bcd_value);
+void Set_Data_Write_date_time(Atributos_Ds1307 *clk);
+void Get_Date_Time(uint8_t* data);
+
+
+
 

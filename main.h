@@ -9,12 +9,14 @@
 #include "lintech.h"
 #include "expedidor.h"
 #include "debuger.h"
+#include "clock.h"
 /* Private macro struct -------------------------------------------------------------*/
 
 UART_InitTypeDef UART_InitStructure;
 GPIO_InitTypeDef GPIO_InitDef;
 I2C_ConfigStruct conf;
 DUALTIMER_InitTypDef Dualtimer_InitStructure;
+Atributos_Ds1307 clk;
 
 /*salidas*/
 #define Atasco_GpioA_6	GPIO_Pin_6
@@ -37,8 +39,10 @@ uint8_t ValTimeOutCom=0;
 void delay_ms(__IO uint32_t nCount);
 void led_on(void);
 void Config_timer0(void);
-void NVIC_Configuration(void);
 void IO_int_out(void);
+void Config_Uart_X(void);
+void Config_I2C(void);
+
 
 
 

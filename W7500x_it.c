@@ -44,7 +44,7 @@
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 extern void com_isr (uint8_t cDatoRx );
-extern void  timer0_int() ;
+extern void  timer0_int(void) ;
 /******************************************************************************/
 /*            Cortex-M0 Processor Exceptions Handlers                         */
 /******************************************************************************/
