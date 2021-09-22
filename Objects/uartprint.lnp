@@ -3,6 +3,7 @@
 ".\objects\system_w7500x.o"
 ".\objects\w7500x_gpio.o"
 ".\objects\w7500x_uart.o"
+".\objects\w7500x_dualtimer.o"
 ".\objects\main.o"
 ".\objects\retarget.o"
 ".\objects\w7500x_it.o"

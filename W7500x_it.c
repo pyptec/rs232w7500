@@ -35,6 +35,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "W7500x_it.h"
 #include "W7500x_uart.h"
+#include "W7500x_dualtimer.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -43,7 +44,7 @@
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 extern void com_isr (uint8_t cDatoRx );
-
+extern void  timer0_int() ;
 /******************************************************************************/
 /*            Cortex-M0 Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -260,7 +261,24 @@ void DMA_Handler(void)
   * @retval None
   */
 void DUALTIMER0_Handler(void)
-{}
+{
+   if(DUALTIMER_GetIntStatus(DUALTIMER0_0))
+    {
+        DUALTIMER_IntClear(DUALTIMER0_0);
+			  timer0_int(); 
+        // LED red is toggled 
+   //     if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_8) != (uint32_t)Bit_RESET)
+    //        GPIO_ResetBits(GPIOC, GPIO_Pin_8);
+     //   else
+      //      GPIO_SetBits(GPIOC, GPIO_Pin_8);
+    }
+    
+        if(DUALTIMER_GetIntStatus(DUALTIMER0_1))
+    {
+        DUALTIMER_IntClear(DUALTIMER0_1);
+    }
+
+}
 
 
 /**

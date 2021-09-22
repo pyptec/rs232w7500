@@ -117,6 +117,13 @@ typedef enum
 	MF_EXPIRA_DIA		=	0X0A
 
 }DATA_MF50;
+typedef enum 
+{
+	TIME_CARD	=				100,		//50
+ 	TIME_WAIT	=				18,
+ 	TIME_PULSADOR		=	5
+
+}TIMER_wait;
 uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo);
 unsigned char Load_Secuencia_Expedidor(ATRIBUTOS_expedidor* Sq,unsigned const  estadoactivo,unsigned const estadoactual,unsigned const estadofuturo);
 unsigned char   rta_cmd_transporte(ATRIBUTOS_expedidor* Sq );

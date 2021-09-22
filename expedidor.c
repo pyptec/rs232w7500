@@ -7,6 +7,7 @@
 extern uint8_t Buffer_Rta_Lintech[];
 extern int32_t uart0_rx_cnt;
 extern uint8_t buffer_ready;
+extern uint8_t ValTimeOutCom;
 
 
 unsigned char error_rx_pto(void)
@@ -89,9 +90,8 @@ unsigned char Trama_Validacion_P_N(void)
 {
 	uint8_t Trama_Validacion_P_N=ESPR_RSPT_TRP_TRAMA;																/*espera respuesta del transporte*/
 			
-		//	if ((ValTimeOutCom==1)||(buffer_ready==1)|| (ValTimeOutCom > TIME_CARD) )
-			//	if(buffer_ready==1)
-			//{
+			if ((ValTimeOutCom==1)||(buffer_ready==1)|| (ValTimeOutCom > TIME_CARD) )
+			{
 				if (buffer_ready==1)
 				{
 					buffer_ready=0;
@@ -123,7 +123,7 @@ unsigned char Trama_Validacion_P_N(void)
 																						
  				}
 
-			//}
+			}
 			
 	return Trama_Validacion_P_N;
 }
