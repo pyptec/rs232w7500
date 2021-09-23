@@ -9,3 +9,6 @@
 .\objects\w7500x_it.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
 .\objects\w7500x_it.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_uart.h
 .\objects\w7500x_it.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_dualtimer.h
+.\objects\w7500x_it.o: clock.h
+.\objects\w7500x_it.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
+.\objects\w7500x_it.o: wiegand.h

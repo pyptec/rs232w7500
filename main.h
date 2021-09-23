@@ -5,11 +5,13 @@
 #include "W7500x_uart.h"
 #include "W7500x_gpio.h"
 #include "W7500x_dualtimer.h"
+#include "W7500x_exti.h"
 #include "eeprom.h"
 #include "lintech.h"
 #include "expedidor.h"
 #include "debuger.h"
 #include "clock.h"
+#include "wiegand.h"
 /* Private macro struct -------------------------------------------------------------*/
 
 UART_InitTypeDef UART_InitStructure;
@@ -17,6 +19,8 @@ GPIO_InitTypeDef GPIO_InitDef;
 I2C_ConfigStruct conf;
 DUALTIMER_InitTypDef Dualtimer_InitStructure;
 Atributos_Ds1307 clk;
+EXTI_InitTypeDef EXTI_InitDef;
+ATRIBUTOS_Wiegand wg;
 
 /*salidas*/
 #define Atasco_GpioA_6	GPIO_Pin_6
@@ -42,6 +46,8 @@ void Config_timer0(void);
 void IO_int_out(void);
 void Config_Uart_X(void);
 void Config_I2C(void);
+void Config_Wiegand(void);
+void mostrar_wiegand(void);
 
 
 

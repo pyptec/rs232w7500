@@ -47,6 +47,7 @@ extern uint8_t Buffer_Rta_Lintech[];
 int main()
 {
 uint8_t data[10]={0};
+
 	static uint8_t Estado_Comunicacion_Secuencia_MF=SEQ_INICIA_LINTECH;
 	
 	SystemInit();    
@@ -121,6 +122,12 @@ uint8_t data[10]={0};
 			if (GPIO_ReadInputDataBit(GPIOA,  Auto_GpioA_0)== 0)
 			{
 				printf("Auto on ");
+			}
+			if(wg.completo==1)
+			{
+				mostrar_wiegand();
+				   
+				
 			}
 			if (buffer_ready1== 1)
 			
@@ -273,15 +280,47 @@ void Config_Uart_X(void)
 }
 void Config_I2C(void)
 {
-	/*------------------------------------------------------------------------------------------*/  
-/*configuro I2C pines */
-/*------------------------------------------------------------------------------------------*/  
+	uint8_t data[11]={"Bienvenido"};
+	uint8_t r_data[11]={0};
 		conf.scl_pin = GPIO_Pin_9;
    	conf.sda_pin = GPIO_Pin_10;
-    	I2C_Init(&conf);
-	//	I2C_Write(01,data,7);
-	//	delay_ms(1);
-	//	I2C_Read(01,r_data ,7);
-	
+    I2C_Init(&conf);
+		I2C_Write(01,data,10);
+		delay_ms(1);
+		I2C_Read(01,r_data ,10);
+	printf("datos leidos %s",r_data);
 }
+void Config_Wiegand(void)
+{
+		/*wiegand*/
+		GPIO_InitDef.GPIO_Pin = ( D0_GpioA_11 |D1_GpioA_12) ; 
+    GPIO_InitDef.GPIO_Mode = GPIO_Mode_IN; 
+    GPIO_Init(GPIOA, &GPIO_InitDef);
+   	
+	
+	/* Set to GPIO_Pin_0 to External Interrupt Port */
+    EXTI_InitDef.EXTI_Line = D0_GpioA_11 |D1_GpioA_12; // Connecting GPIO_Pin_0(EXTI Input)
+    EXTI_InitDef.EXTI_Trigger = EXTI_Trigger_Rising; // Set to Trigger to Rising
+    EXTI_Init(PAD_PA, &EXTI_InitDef); // Set to PAD_PA
+    EXTI_Polarity_Set(PAD_PA,D0_GpioA_11 |D1_GpioA_12,EXTI_Trigger_Rising); // Set to Polarity
+
+	/* GPIO Interrupt Configuration */
+  	
+	  NVIC_ClearPendingIRQ(EXTI_IRQn); // Pending bit Clear
+    NVIC_EnableIRQ(EXTI_IRQn);       // EXTI Interrupt Enable
+}
+void mostrar_wiegand(void)
+{
+uint8_t	buffer_wiegand[4]={0};
+uint16_t temp;
+	ID_Car_Proximidad(buffer_wiegand);
+	temp=buffer_wiegand[0];
+	printf("Facility_code: %u -",temp);
+	temp=(buffer_wiegand[1] <<8)| buffer_wiegand[2] ;
+	printf("Code_Card: %u ",temp);
+}
+
+
+	
+
 

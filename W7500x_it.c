@@ -36,6 +36,9 @@
 #include "W7500x_it.h"
 #include "W7500x_uart.h"
 #include "W7500x_dualtimer.h"
+#include "clock.h"
+#include "W7500x_gpio.h"
+#include "wiegand.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -45,6 +48,7 @@
 /* Private functions ---------------------------------------------------------*/
 extern void com_isr (uint8_t cDatoRx );
 extern void  timer0_int(void) ;
+extern uint16_t EXTI_Px_GetEXTEN(PAD_Type Px);
 /******************************************************************************/
 /*            Cortex-M0 Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -376,7 +380,20 @@ void WZTOE_Handler(void)
   * @retval None
   */
 void EXTI_Handler(void)
-{}
+{
+	if(EXTI_Px_GetEXTEN(PAD_PA)==D0_GpioA_11 )
+	{
+		DoL_data0();
+		NVIC_ClearPendingIRQ(EXTI_IRQn);
+	}
+	else if(EXTI_Px_GetEXTEN(PAD_PA)==D1_GpioA_12 )
+	{
+		D1L_data1();
+		NVIC_ClearPendingIRQ(EXTI_IRQn);
+		
+	}
+	
+}
 
 
 
