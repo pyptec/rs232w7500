@@ -118,7 +118,7 @@ uint8_t data[10]={0};
 			//	Buffer_Rta_Lintech[0]=0;
 			//	buffer_ready=0;
 			//}
-			if (GPIO_ReadInputDataBit(GPIOA,  Auto_GpioA_0)== 1)
+			if (GPIO_ReadInputDataBit(GPIOA,  Auto_GpioA_0)== 0)
 			{
 				printf("Auto on ");
 			}
@@ -138,7 +138,7 @@ uint8_t data[10]={0};
 				RxBuffer2[0]=0;
 				buffer_ready2=0;
 			}
-			Estado_Comunicacion_Secuencia_MF=SecuenciaExpedidorMF(Estado_Comunicacion_Secuencia_MF);
+		//	Estado_Comunicacion_Secuencia_MF=SecuenciaExpedidorMF(Estado_Comunicacion_Secuencia_MF);
 		}
 }
 void delay_ms(__IO uint32_t nCount)
