@@ -89,8 +89,10 @@ uint8_t data[10]={0};
 	data[6]=bin(data[6]);
 	data[7]=0;
 	
-		printf("sec,min,hr,dow,day,mth,year %s",data)	;	
+		printf("sec,min,hr,dow,day,mth,year %2d %2d %2d %2d %2d %2d %2d ",data[0],data[1],data[2],data[3],data[4],data[5],data[6])	;	
 /*------------------------------------------------------------------------------------------*/  
+	/*configuro el timer*/
+	Config_timer0();
     /* Retarget functions for GNU Tools for ARM Embedded Processors*/
 		GPIO_SetBits(GPIOA, Led_out_GpioA_8); // LED(R) Off
 	//	delay_ms(500);
@@ -188,8 +190,27 @@ temporizado=timer* ValTimeOutCom = 32*100=320ms
 ------------------------------------------------------------------------------*/
 void  timer0_int(void) 
 {
-			
+	uint8_t data[10]={0};		
 			ValTimeOutCom--;
+			Get_Date_Time(data);
+	/*sec*/
+	data[0]=bin(data[0]) & 0x7f;
+	/*min*/
+	data[1]=bin(data[1]) & 0x7f;
+	/*hr*/
+	data[2]=bin(data[2]) & 0x3f;
+	
+	/*dow*/
+	data[3]=bin(data[3]) & 0x7f;
+	/*day*/
+	data[4]=bin(data[4]) & 0x3f;
+	/*mth*/
+	data[5]=bin(data[5]) & 0x1f;
+	/*year*/
+	data[6]=bin(data[6]);
+	data[7]=0;
+	
+		printf("sec,min,hr,dow,day,mth,year %2d %2d %2d %2d %2d %2d %2d ",data[0],data[1],data[2],data[3],data[4],data[5],data[6])	;	
 			if (ValTimeOutCom == 1)
 			{
 				//Timer_wait++;
