@@ -3,7 +3,7 @@
 #include "debuger.h"
 #include <stdio.h>
 #include "W7500x_gpio.h"
-
+#include "IO_sensores.h"
 
 /*funciones externas*/
 extern void delay_ms(__IO uint32_t nCount);
@@ -206,6 +206,44 @@ if((temp=Trama_Validacion_P_N())!=RSPT_TRP_OK	)
 	return EstadoComSeqMF;
 }
 
+unsigned char Analiza_Presencia(void)
+{
+	unsigned char Estado_expedidor;
+	if((ValidaSensoresPaso())!= 0)	 																							// valido los sensor de piso
+		{
+			
+			Estado_expedidor =SEQ_LPR; 
+		}
+	else
+		{	
+					/*no hay vehiculo en los sensores se hace el loop otra vez */
+				//send_portERR(PRMR_ERROR_LOOP);
+			//	PantallaLCD(ERROR_LOOP);
+		ValTimeOutCom=TIME_PULSADOR	;
+		Estado_expedidor = SEQ_PRESENCIA_VEHICULAR;	
+						
+		}
+	return Estado_expedidor;
+}
+unsigned char Pregunta_Lpr(ATRIBUTOS_expedidor* Sq )
+{
+	unsigned char Estado_expedidor;
+	
+	
+	printf( "PREGUNTA LPR\n");
+	// hora_entrada_vehiculo(Sq);
+	//	if(rd_eeprom(0xa8,EE_USE_LPR)== True)
+			 {
+				 /*trama de disparo de placa */
+				// Debug_txt_Tibbo(Armar_Trama_Monitor(Atributos_Expedidor));
+				
+			 }
+	
+
+		Estado_expedidor=SEQ_INGRESO_PRECARGA; //SEQ_CLASE_TARJETAS;       //SEQ_LOAD_PASSWORD;					//SEQ_TIPO_TARJETAS;
+
+	return Estado_expedidor;
+}
 /*------------------------------------------------------------------------------
 Se pregunta por el estado del expedidor si hay tarjetas para precargarla
 
@@ -337,7 +375,7 @@ unsigned char Responde_Tipo_Tarjeta(void)
 		return Estado_expedidor;																																																	
 	}	
 
-unsigned char  Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq)
+unsigned char Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq)
 {
 	unsigned char temp;
 	unsigned char Estado_expedidor;
@@ -435,6 +473,60 @@ unsigned char  Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq
 			
 	return Estado_expedidor;
 }	
+unsigned char Responde_Lectura_Tarjeta_Sector1_Bloque2 (ATRIBUTOS_expedidor* Sq)
+{
+	unsigned char temp;
+	unsigned char Estado_expedidor;
+	unsigned char buffer_S1_B2[17];	
+
+			
+			printf("TAREA_LECTURA_TARJETA_SECTOR1_BLOQUE2\n");		
+			
+												
+			
+			if (Buffer_Rta_Lintech[Pos_Length] >=0x18)
+			{
+				
+					for (temp=0; temp<16; ++temp)
+					{
+						buffer_S1_B2 [temp] =Buffer_Rta_Lintech[Pos_IniDatMF+temp];														/*almaceno la informacion de MF en un arreglo*/
+					}
+					printf( "Buffer_s1_b2\n");
+					DebugBufferMF(buffer_S1_B2,16,DATA_RECIBIDO);
+					
+								
+					
+					printf("HORARIO: ");
+					Debug_chr_UART2((buffer_S1_B2 [MF_TIPO_VEHICULO] & 0XF0) >> 4);
+					Sq->Atributos_Expedidor [Horario]= ((buffer_S1_B2 [MF_TIPO_VEHICULO] & 0XF0) >> 4);
+					printf("\n");
+					
+					printf("PICO Y PLACA:");
+					Sq->Atributos_Expedidor [Pico_Placa]= ((buffer_S1_B2 [MF_IN_PAGO] & 0XF0) >> 4);
+					Debug_chr_UART2(Sq->Atributos_Expedidor [Pico_Placa]);
+					printf("\n");
+					
+			
+					printf( "ANTIPASSBACK:");
+					Debug_chr_UART2(buffer_S1_B2 [MF_APB] );
+					printf( "\n");
+				
+					/*antipassback 00 inicializado, 01 IN, 02 OUT, 03 NO USA*/
+					
+					Sq->Atributos_Expedidor [Apb] =		buffer_S1_B2 [MF_APB] ;
+					
+					
+					Sq->Atributos_Expedidor [Type_Vehiculo] = buffer_S1_B2 [MF_TIPO_VEHICULO]& 0x0f;
+					Estado_expedidor =SEQ_PRESENCIA_VEHICULAR;    ///SEQ_CLASE_TARJETAS;		// Valida_Tipo_Tarjeta(Atributos_Expedidor,Buffer_Write_MF);
+			
+	
+			}
+			else
+			{
+				Estado_expedidor = SEQ_CAPTURE_CARD;	//Captura_Expulsa(); //momentario
+			}
+		return Estado_expedidor;	
+}
 unsigned char Load_Secuencia_Expedidor(ATRIBUTOS_expedidor* Sq,unsigned const  estadoactivo,unsigned const estadoactual,unsigned const estadofuturo)
 {
 	Sq->Secuencia_Expedidor[EstadoPasado ] =estadoactivo ;
@@ -492,7 +584,6 @@ uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 			break;
 	/*casos de inicio*/
 		case SEQ_INICIA_LINTECH:
-			//printf("SEQ_INICIA_LINTECH \n");
 			Inicializa(SIN_MOVIMIENTO);	 
 			EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_GRABA_EEPROM);		
 		break;
@@ -501,6 +592,13 @@ uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 			Dwload_EEprom();
 			EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_INICIO);
 			break;
+		case SEQ_PRESENCIA_VEHICULAR:
+			if ((buffer_ready == 1)|| (ValTimeOutCom > TIME_PULSADOR	))
+				{
+					EstadoActivo=Analiza_Presencia();
+				}
+		break;
+				
 		case SEQ_RESPUESTA_TRANSPORTE:
 			if (sq.Secuencia_Expedidor[TareadelCmd] == TAREA_SENSORES_TRANSPORTE)
 			{
@@ -517,6 +615,10 @@ uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 						{
 							EstadoActivo=Responde_Lectura_Tarjeta_Sector1_Bloque1 (&sq);
 						}
+				else if ((sq.Atributos_Expedidor [ Sector ]== Sector_1)&& (sq.Atributos_Expedidor [ Bloque ]==Bloque_2))
+				{
+					EstadoActivo=Responde_Lectura_Tarjeta_Sector1_Bloque2(&sq);
+				}
 			}
 			break;
 		default:

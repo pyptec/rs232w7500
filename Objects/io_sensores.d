@@ -1,0 +1,13 @@
+.\objects\io_sensores.o: IO_sensores.c
+.\objects\io_sensores.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\io_sensores.o: IO_sensores.h
+.\objects\io_sensores.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\io_sensores.o: .\workspace\Libraries\CMSIS\Include\core_cm0.h
+.\objects\io_sensores.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\io_sensores.o: .\workspace\Libraries\CMSIS\Include\core_cmInstr.h
+.\objects\io_sensores.o: .\workspace\Libraries\CMSIS\Include\core_cmFunc.h
+.\objects\io_sensores.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
+.\objects\io_sensores.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\io_sensores.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
+.\objects\io_sensores.o: expedidor.h
+.\objects\io_sensores.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

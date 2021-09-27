@@ -21,7 +21,10 @@ typedef enum
 		SEQ_READ_SECTOR_BLOQUE=8,
 		SEQ_POWER_ON=9,
     SEQ_INICIA_LINTECH=10,
-		SEQ_GRABA_EEPROM=11
+		SEQ_GRABA_EEPROM=11,
+		SEQ_PRESENCIA_VEHICULAR=12,
+		SEQ_LPR=13,
+		SEQ_INGRESO_PRECARGA=14
 }SEQ_Expedidor;
 typedef enum
 {
@@ -124,21 +127,30 @@ typedef enum
 }DATA_MF50;
 typedef enum 
 {
-	TIME_CARD	=				100,		//100
- 	TIME_WAIT	=				100,
- 	TIME_PULSADOR		=	5
+	TIME_CARD	=				6,		//100
+ 	TIME_WAIT	=				6,
+ 	TIME_PULSADOR		=	2
 
 }TIMER_wait;
-
+typedef enum 
+{
+		AUTOMOVIL,					
+		MOTO,
+		BICICLETA
+}TIPOS_Vehiculos;
 
 uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo);
 unsigned char Load_Secuencia_Expedidor(ATRIBUTOS_expedidor* Sq,unsigned const  estadoactivo,unsigned const estadoactual,unsigned const estadofuturo);
-unsigned char   rta_cmd_transporte(ATRIBUTOS_expedidor* Sq );
+unsigned char rta_cmd_transporte(ATRIBUTOS_expedidor* Sq );
 unsigned char Trama_Validacion_P_N(void);
 unsigned char error_rx_pto(void);
 unsigned char	Responde_Estado_Sensores_Transporte(void);
 unsigned char Responde_Tipo_Tarjeta(void);
-unsigned char  Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq);
+unsigned char Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq);
+unsigned char Responde_Lectura_Tarjeta_Sector1_Bloque2 (ATRIBUTOS_expedidor* Sq);
+unsigned char Analiza_Presencia(void);
+
+
 
 
 

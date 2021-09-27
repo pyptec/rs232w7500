@@ -12,6 +12,7 @@
 #include "debuger.h"
 #include "clock.h"
 #include "wiegand.h"
+#include "IO_sensores.h"
 /* Private macro struct -------------------------------------------------------------*/
 
 UART_InitTypeDef UART_InitStructure;
@@ -27,9 +28,9 @@ ATRIBUTOS_expedidor sq;
 //#define Lock_GpioA_7		GPIO_Pin_7
 #define Led_out_GpioA_8	GPIO_Pin_8
 /*entradas*/
-#define Auto_GpioA_0		GPIO_Pin_0
-#define Sensor1_GpioA_1	GPIO_Pin_1
-#define Sensor2_GpioA_2	GPIO_Pin_2
+//#define Auto_GpioA_0		GPIO_Pin_0
+//#define Sensor1_GpioA_1	GPIO_Pin_1
+//#define Sensor2_GpioA_2	GPIO_Pin_2
 #define Pulsa_GpioA_5		GPIO_Pin_5
 
 

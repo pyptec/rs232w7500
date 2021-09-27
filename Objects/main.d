@@ -20,3 +20,4 @@
 .\objects\main.o: debuger.h
 .\objects\main.o: clock.h
 .\objects\main.o: wiegand.h
+.\objects\main.o: IO_sensores.h
