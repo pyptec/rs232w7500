@@ -24,9 +24,9 @@
 	
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+void NVIC_Configuration(void);
 /* Private variables ---------------------------------------------------------*/
-//uint8_t RxBuffer[30];
+
 uint8_t RxBuffer1[30];
 uint8_t RxBuffer2[30];
 extern uint8_t buffer_ready;
@@ -46,7 +46,7 @@ extern uint8_t Buffer_Rta_Lintech[];
 
 int main()
 {
-uint8_t data[10]={0};
+
 
 	static uint8_t Estado_Comunicacion_Secuencia_MF=SEQ_INICIA_LINTECH;
 	
@@ -70,30 +70,16 @@ uint8_t data[10]={0};
 	clk.month=9;
 	clk.year=21;
 	Set_Data_Write_date_time(&clk);
-	delay_ms(500);
-	delay_ms(500);
-	Get_Date_Time(data);
-	/*sec*/
-	data[0]=bin(data[0]) & 0x7f;
-	/*min*/
-	data[1]=bin(data[1]) & 0x7f;
-	/*hr*/
-	data[2]=bin(data[2]) & 0x3f;
 	
-	/*dow*/
-	data[3]=bin(data[3]) & 0x7f;
-	/*day*/
-	data[4]=bin(data[4]) & 0x3f;
-	/*mth*/
-	data[5]=bin(data[5]) & 0x1f;
-	/*year*/
-	data[6]=bin(data[6]);
-	data[7]=0;
-	
-		printf("sec,min,hr,dow,day,mth,year %2d %2d %2d %2d %2d %2d %2d ",data[0],data[1],data[2],data[3],data[4],data[5],data[6])	;	
 /*------------------------------------------------------------------------------------------*/  
 	/*configuro el timer*/
-	Config_timer0();
+	//Config_timer0();
+	
+	/*configura wiegand*/
+		Config_Wiegand();
+		 /* NVIC Configuration */
+    NVIC_Configuration();
+		
     /* Retarget functions for GNU Tools for ARM Embedded Processors*/
 		GPIO_SetBits(GPIOA, Led_out_GpioA_8); // LED(R) Off
 	//	delay_ms(500);
@@ -104,25 +90,47 @@ uint8_t data[10]={0};
 		
 	/*------------------------------------------------------------------------------------------*/  	
 	
-		ValTimeOutCom=TIME_CARD;
-		/*inicio del transporte con password*/
+		ValTimeOutCom=TIME_WAIT;
+		/*inicio del transporte para la configuracion del password*/
+		Estado_Comunicacion_Secuencia_MF=SEQ_INICIA_LINTECH;
+		
+		while(Estado_Comunicacion_Secuencia_MF != 0)
+		{
 		Estado_Comunicacion_Secuencia_MF=SecuenciaExpedidorMF(Estado_Comunicacion_Secuencia_MF);
+			
+		}
+
+		
+		ValTimeOutCom=TIME_WAIT;
 		
 		while(1)
 		{
-			//led_on(); 
-		//	UartPuts(UART1,"UART 1 Test(#1)\r\n");
-		//	if(buffer_ready== 1)
-		//	{
-			//	DebugBufferMF(Buffer_Rta_Lintech,uart0_rx_cnt,DATA_RECIBIDO);
-			//	uart0_rx_cnt=0;
-			//	Buffer_Rta_Lintech[0]=0;
-			//	buffer_ready=0;
-			//}
+		
 			if (GPIO_ReadInputDataBit(GPIOA,  Auto_GpioA_0)== 0)
 			{
 				printf("Auto on ");
 			}
+			if (GPIO_ReadInputDataBit(GPIOA,  Sensor1_GpioA_1)== 0)
+			{
+				printf("Sensor_1 on ");
+			}
+				if (GPIO_ReadInputDataBit(GPIOA,  Sensor2_GpioA_2)== 0)
+			{
+				printf("Sensor_2 on ");
+			}
+				if (GPIO_ReadInputDataBit(GPIOA,  Pulsa_GpioA_5)== 0)
+			{
+				printf("Pulsa on ");
+				GPIO_SetBits(GPIOA, Lock_GpioA_7);	
+				delay_ms(500);	
+				GPIO_ResetBits(GPIOA, Lock_GpioA_7);
+				delay_ms(500);	
+				GPIO_SetBits(GPIOA, Atasco_GpioA_6);	
+				delay_ms(500);	
+				GPIO_ResetBits(GPIOA, Atasco_GpioA_6);
+				delay_ms(500);								
+			}
+			 
 			if(wg.completo==1)
 			{
 				mostrar_wiegand();
@@ -145,7 +153,9 @@ uint8_t data[10]={0};
 				RxBuffer2[0]=0;
 				buffer_ready2=0;
 			}
+			
 		//	Estado_Comunicacion_Secuencia_MF=SecuenciaExpedidorMF(Estado_Comunicacion_Secuencia_MF);
+			
 		}
 }
 void delay_ms(__IO uint32_t nCount)
@@ -197,27 +207,27 @@ temporizado=timer* ValTimeOutCom = 32*100=320ms
 ------------------------------------------------------------------------------*/
 void  timer0_int(void) 
 {
-	uint8_t data[10]={0};		
+	//uint8_t data[10]={0};		
 			ValTimeOutCom--;
-			Get_Date_Time(data);
+		//	Get_Date_Time(data);
 	/*sec*/
-	data[0]=bin(data[0]) & 0x7f;
+	//data[0]=bin(data[0]) & 0x7f;
 	/*min*/
-	data[1]=bin(data[1]) & 0x7f;
+//	data[1]=bin(data[1]) & 0x7f;
 	/*hr*/
-	data[2]=bin(data[2]) & 0x3f;
+	//data[2]=bin(data[2]) & 0x3f;
 	
 	/*dow*/
-	data[3]=bin(data[3]) & 0x7f;
+	//data[3]=bin(data[3]) & 0x7f;
 	/*day*/
-	data[4]=bin(data[4]) & 0x3f;
+	//data[4]=bin(data[4]) & 0x3f;
 	/*mth*/
-	data[5]=bin(data[5]) & 0x1f;
+	//data[5]=bin(data[5]) & 0x1f;
 	/*year*/
-	data[6]=bin(data[6]);
-	data[7]=0;
+	//data[6]=bin(data[6]);
+	//data[7]=0;
 	
-		printf("sec,min,hr,dow,day,mth,year %2d %2d %2d %2d %2d %2d %2d ",data[0],data[1],data[2],data[3],data[4],data[5],data[6])	;	
+		//printf("sec,min,hr,dow,day,mth,year %2d %2d %2d %2d %2d %2d %2d ",data[0],data[1],data[2],data[3],data[4],data[5],data[6])	;	
 			if (ValTimeOutCom == 1)
 			{
 				//Timer_wait++;
@@ -232,17 +242,23 @@ void IO_int_out(void)
 	 /* reles pa6 atasco in,pa7 lock in,pa8 led_ount*/
 
     GPIO_InitDef.GPIO_Pin = ( Atasco_GpioA_6 | Lock_GpioA_7 | Led_out_GpioA_8) ; 
-		GPIO_InitDef.GPIO_Pad=GPIO_PuPd_UP;
+		//GPIO_InitDef.GPIO_Pad=GPIO_PuPd_UP;
     GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT; 
     GPIO_Init(GPIOA, &GPIO_InitDef);
     PAD_AFConfig(PAD_PA,(Atasco_GpioA_6 | Lock_GpioA_7 | Led_out_GpioA_8), PAD_AF1); 
 	
-	/*entradas auto pa0,sensor1 pa1,sensor2,pa2, pulsa pa5*/
+	/*entradas auto pa0,sensor2,pa2, pulsa pa5*/
 	
-		GPIO_InitDef.GPIO_Pin = ( Auto_GpioA_0 |Sensor1_GpioA_1 | Sensor2_GpioA_2|Pulsa_GpioA_5) ; 
+		GPIO_InitDef.GPIO_Pin = ( Auto_GpioA_0  | Sensor2_GpioA_2|Pulsa_GpioA_5) ; 
     GPIO_InitDef.GPIO_Mode = GPIO_Mode_IN; 
     GPIO_Init(GPIOA, &GPIO_InitDef);
-    PAD_AFConfig(PAD_PA,(Auto_GpioA_0 |Sensor1_GpioA_1 | Sensor2_GpioA_2|Pulsa_GpioA_5), PAD_AF1); 
+    PAD_AFConfig(PAD_PA,(Auto_GpioA_0 | Sensor2_GpioA_2|Pulsa_GpioA_5), PAD_AF1); 
+	
+	/*entrada sensor 1*/
+		GPIO_InitDef.GPIO_Pin = ( Sensor1_GpioA_1) ; 
+    GPIO_InitDef.GPIO_Mode = GPIO_Mode_IN; 
+    GPIO_Init(GPIOA, &GPIO_InitDef);
+    PAD_AFConfig(PAD_PA,(Sensor1_GpioA_1 ), PAD_AF0); 
 }
 void Config_Uart_X(void)
 {
@@ -288,27 +304,40 @@ void Config_I2C(void)
 		I2C_Write(01,data,10);
 		delay_ms(1);
 		I2C_Read(01,r_data ,10);
-	printf("datos leidos %s",r_data);
+	printf("datos leidos %s \n",r_data);
 }
 void Config_Wiegand(void)
 {
 		/*wiegand*/
-		GPIO_InitDef.GPIO_Pin = ( D0_GpioA_11 |D1_GpioA_12) ; 
+	//	PAD_AFConfig(PAD_PA,GPIO_Pin_12, PAD_AF1); // PAD Config - CLKOUT used 3nd Function
+		GPIO_InitDef.GPIO_Pin = (GPIO_Pin_11 | GPIO_Pin_12) ; 
     GPIO_InitDef.GPIO_Mode = GPIO_Mode_IN; 
     GPIO_Init(GPIOA, &GPIO_InitDef);
-   	
+		PAD_AFConfig(PAD_PA,(GPIO_Pin_11 | GPIO_Pin_12), PAD_AF1); 
+   	printf("Configuardo int DO DI\n");
 	
 	/* Set to GPIO_Pin_0 to External Interrupt Port */
-    EXTI_InitDef.EXTI_Line = D0_GpioA_11 |D1_GpioA_12; // Connecting GPIO_Pin_0(EXTI Input)
-    EXTI_InitDef.EXTI_Trigger = EXTI_Trigger_Rising; // Set to Trigger to Rising
+    EXTI_InitDef.EXTI_Line = (GPIO_Pin_11 | GPIO_Pin_12); // Connecting GPIO_Pin_0(EXTI Input)
+    EXTI_InitDef.EXTI_Trigger = EXTI_Trigger_Falling;//EXTI_Trigger_Falling; // Set to Trigger to Rising
     EXTI_Init(PAD_PA, &EXTI_InitDef); // Set to PAD_PA
-    EXTI_Polarity_Set(PAD_PA,D0_GpioA_11 |D1_GpioA_12,EXTI_Trigger_Rising); // Set to Polarity
-
+    EXTI_Polarity_Set(PAD_PA,(GPIO_Pin_11 | GPIO_Pin_12),EXTI_Trigger_Falling); // Set to Polarity
+		printf("Configuardo EXTI_Init\n");
 	/* GPIO Interrupt Configuration */
   	
-	  NVIC_ClearPendingIRQ(EXTI_IRQn); // Pending bit Clear
-    NVIC_EnableIRQ(EXTI_IRQn);       // EXTI Interrupt Enable
+	  
+		
+   // NVIC_EnableIRQ(EXTI_IRQn);       // EXTI Interrupt Enable
+	//	NVIC_ClearPendingIRQ(EXTI_IRQn); // Pending bit Clear
+//		printf("Configuardo NVIC\n");
+		limpia_data();
 }
+void NVIC_Configuration(void)
+{
+    NVIC_ClearPendingIRQ(EXTI_IRQn); // Pending bit Clear
+    NVIC_EnableIRQ(EXTI_IRQn);       // EXTI Interrupt Enable
+		printf("Configuardo NVIC\n");
+}
+
 void mostrar_wiegand(void)
 {
 uint8_t	buffer_wiegand[4]={0};

@@ -1,5 +1,10 @@
 #include "W7500x.h"
+#include <stdlib.h>
 
+
+/*salidas*/
+#define Atasco_GpioA_6	GPIO_Pin_6
+#define Lock_GpioA_7		GPIO_Pin_7
 /*funciones externas*/
 
 typedef enum
@@ -119,11 +124,13 @@ typedef enum
 }DATA_MF50;
 typedef enum 
 {
-	TIME_CARD	=				100,		//50
- 	TIME_WAIT	=				18,
+	TIME_CARD	=				100,		//100
+ 	TIME_WAIT	=				100,
  	TIME_PULSADOR		=	5
 
 }TIMER_wait;
+
+
 uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo);
 unsigned char Load_Secuencia_Expedidor(ATRIBUTOS_expedidor* Sq,unsigned const  estadoactivo,unsigned const estadoactual,unsigned const estadofuturo);
 unsigned char   rta_cmd_transporte(ATRIBUTOS_expedidor* Sq );

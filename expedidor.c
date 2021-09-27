@@ -2,14 +2,20 @@
 #include "lintech.h"
 #include "debuger.h"
 #include <stdio.h>
+#include "W7500x_gpio.h"
 
+
+/*funciones externas*/
+extern void delay_ms(__IO uint32_t nCount);
 /*variables externas*/
 extern uint8_t Buffer_Rta_Lintech[];
 extern int32_t uart0_rx_cnt;
 extern uint8_t buffer_ready;
 extern uint8_t ValTimeOutCom;
+extern uint8_t aSk;
 
-
+uint8_t cnt__ask_off=0;
+extern ATRIBUTOS_expedidor sq;
 unsigned char error_rx_pto(void)
 {
 
@@ -19,12 +25,13 @@ unsigned char error_rx_pto=ESPERA_MAS_TIEMPO;
 		
 					
 			printf( "Dispensador No Responde PTO SERIE ...");
-		//	Debug_chr_UART2	(cnt__ask_off);	
+			Debug_chr_UART2	(cnt__ask_off);	
 			Debug_chr_UART2(cnt_espera_ask_on);
 			Debug_chr_UART2	(error_rx_pto);
 			printf( "\n");
 		cnt_espera_ask_on++;
-		if(cnt_espera_ask_on>=70)
+/*
+	if(cnt_espera_ask_on>=70)
 		{
 			cnt_espera_ask_on=0;
 			error_rx_pto=REENVIA_TRAMA;		
@@ -33,47 +40,52 @@ unsigned char error_rx_pto=ESPERA_MAS_TIEMPO;
 		{
 			error_rx_pto=ESPERA_MAS_TIEMPO;
 		}
-		//	if (aSk==OFF)
+		*/
+			if (aSk==0)
 			
-		//	{	
-			//		cnt__ask_off++;																																		/*cuento el error*/																																
-			//	if(cnt__ask_off>=10)
-				//{	
-					//printf( "ATASCADO RESET\r\n");																																			/*no contesta debe reset el transporte*/
-					//Atascado_GP0_PIN_3 = ON;																																		/*off el rele de reset del verificador*/		
+			{	
+					cnt__ask_off++;																																		/*cuento el error*/																																
+				if(cnt__ask_off>=10)
+				{	
+					printf( "ATASCADO RESET\n");																																			/*no contesta debe reset el transporte*/
+					GPIO_SetBits(GPIOA, Atasco_GpioA_6);
+					delay_ms(200);
+					//Atasco_GpioA_6 = 1;																																		/*off el rele de reset del verificador*/		
 					//Delay_10ms(110);
-					//cnt__ask_off=0;																																		/*limpio ls errores*/
-					//cnt_espera_ask_on=0;
-					//error_rx_pto=ESPERA_MAS_TIEMPO;																										/**/
+					cnt__ask_off=0;																																		/*limpio ls errores*/
+					cnt_espera_ask_on=0;
+					error_rx_pto=ESPERA_MAS_TIEMPO;																										/**/
+					GPIO_ResetBits(GPIOA,  Atasco_GpioA_6);	
 					//Atascado_GP0_PIN_3 = OFF;	
-					//Delay_10ms(110);																																	/*On el rele de reset del verificador*/		
-					//ValTimeOutCom=TIME_CARD;
-				//}
-				//else;
-			//	{
-				//	error_rx_pto=REENVIA_TRAMA;																												/*1 reenvia trama*/
-				//	ValTimeOutCom=TIME_CARD;
-				//}
-			//}																																											/*aSk esta activo */
-			//else
-			//{
-				//	cnt_espera_ask_on++;																															/*cuento n tiempos de ask para recibir el total de la trama*/
-				//if(cnt_espera_ask_on>=1)
-				//{
-					//cnt__ask_off=0;																																		/*paso tiempo de espera y no se completo la trama 
+					//Delay_10ms(110);	
+					delay_ms(200);																											/*On el rele de reset del verificador*/		
+					ValTimeOutCom=TIME_CARD;
+				}
+				else;
+				{
+					error_rx_pto=REENVIA_TRAMA;																												/*1 reenvia trama*/
+					ValTimeOutCom=TIME_CARD;
+				}
+			}																																											/*aSk esta activo */
+			else
+			{
+					cnt_espera_ask_on++;																															/*cuento n tiempos de ask para recibir el total de la trama*/
+				if(cnt_espera_ask_on>=1)
+				{
+					cnt__ask_off=0;																																		/*paso tiempo de espera y no se completo la trama 
 //																																														limpio los reg y reenvio la trama y ask=off*/
-					//cnt_espera_ask_on=0;
-					//error_rx_pto=REENVIA_TRAMA;
-					//aSk=OFF;
-					//ValTimeOutCom=TIME_CARD;
-				//}
-				//else
-			//	{
-				//	cnt__ask_off=0;																																		/*damos tiempo de espera de la trama del transporte*/
-					//error_rx_pto=ESPERA_MAS_TIEMPO;;
-					//ValTimeOutCom=TIME_CARD;
-				//}
-			//}
+					cnt_espera_ask_on=0;
+					error_rx_pto=REENVIA_TRAMA;
+					aSk=0;
+					ValTimeOutCom=TIME_CARD;
+				}
+				else
+				{
+					cnt__ask_off=0;																																		/*damos tiempo de espera de la trama del transporte*/
+					error_rx_pto=ESPERA_MAS_TIEMPO;;
+					ValTimeOutCom=TIME_CARD;
+				}
+			}
 				return error_rx_pto;
 }
 /*------------------------------------------------------------------------------
@@ -89,7 +101,7 @@ ERROR_TRP_TRAMA				(3) ERROR DE TRAMA CMD (N)
 unsigned char Trama_Validacion_P_N(void)
 {
 	uint8_t Trama_Validacion_P_N=ESPR_RSPT_TRP_TRAMA;																/*espera respuesta del transporte*/
-			
+			//printf("ValTimeOutCom %d",ValTimeOutCom);
 			if ((ValTimeOutCom==1)||(buffer_ready==1)|| (ValTimeOutCom > TIME_CARD) )
 			{
 				if (buffer_ready==1)
@@ -153,6 +165,7 @@ if((temp=Trama_Validacion_P_N())!=RSPT_TRP_OK	)
 		{
 			if(temp==ESPR_RSPT_TRP_TRAMA)																													/*no he recibido respuesta espero*/
 			{
+				//printf( "ESPR_RSPT_TRP_TRAMA\n");
 			EstadoComSeqMF = Sq->Secuencia_Expedidor[EstadoActual];									       			/*SEQ_RTA_CARD_POSno ha respondido*/
 			}	
 			else if (temp==ERROR_TRP_TRAMA)
@@ -173,10 +186,12 @@ if((temp=Trama_Validacion_P_N())!=RSPT_TRP_OK	)
 		
 				if(error_rx_pto()==ESPERA_MAS_TIEMPO)
 				{
+					//printf( "ESPERA_MAS_TIEMPO\n");
 					EstadoComSeqMF=Sq->Secuencia_Expedidor[EstadoActual];	
 				}																										 																	/*SEQ_RTA_CARD_POS;*/
 				else 																																									//(temp=error_rx_pto()==REENVIA_TRAMA)
 				{
+					//printf( "ESPERA_ESTADO_PASADO\n");
 					EstadoComSeqMF=Sq->Secuencia_Expedidor[EstadoPasado];																											/*SEQ_INICIO*/
 				}																									
 			}				
@@ -327,8 +342,8 @@ unsigned char  Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq
 	unsigned char temp;
 	unsigned char Estado_expedidor;
 	unsigned char buffer_S1_B1[17];
-	unsigned char ID_CLIENTE;
-	unsigned char COD_PARK;		
+	unsigned char ID_CLIENTE=0;
+	unsigned char COD_PARK=0;		
 	static unsigned char falla=0;
 			printf( "TAREA_LECTURA_TARJETA_SECTOR1_BLOQUE1\n");		
 																	
@@ -425,17 +440,19 @@ unsigned char Load_Secuencia_Expedidor(ATRIBUTOS_expedidor* Sq,unsigned const  e
 	Sq->Secuencia_Expedidor[EstadoPasado ] =estadoactivo ;
 	Sq->Secuencia_Expedidor[EstadoActual ] = estadoactual;
 	Sq->Secuencia_Expedidor[EstadoFuturo ] = estadofuturo;
+
 	return estadoactual;
 }
 uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 {
-	ATRIBUTOS_expedidor sq;
+	
+	
 	switch (EstadoActivo)
 	{
 		case SEQ_INICIO:
-		Check_Status(SENSOR_NORMAL);	
-		EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_RESPUESTA_TRANSPORTE);
-		sq.Secuencia_Expedidor[TareadelCmd]=TAREA_SENSORES_TRANSPORTE;
+			Check_Status(SENSOR_NORMAL);	
+			EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_RESPUESTA_TRANSPORTE);
+			sq.Secuencia_Expedidor[TareadelCmd]=TAREA_SENSORES_TRANSPORTE;
 		break;
 		case	SEQ_CMD_ACEPTADO:
 			EstadoActivo=rta_cmd_transporte(&sq);
@@ -461,7 +478,6 @@ uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 		case SEQ_LOAD_PASSWORD:
 			LoadVerify_EEprom();
 			EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_READ_SECTOR_BLOQUE);
-			printf("llegamos aSEQ_LOAD_PASSWORD\n");	
 			sq.Atributos_Expedidor[Sector]=Sector_1;
 			sq.Atributos_Expedidor[Bloque]=Bloque_1;
 				break;
@@ -476,6 +492,7 @@ uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 			break;
 	/*casos de inicio*/
 		case SEQ_INICIA_LINTECH:
+			//printf("SEQ_INICIA_LINTECH \n");
 			Inicializa(SIN_MOVIMIENTO);	 
 			EstadoActivo=Load_Secuencia_Expedidor(&sq,EstadoActivo,SEQ_CMD_ACEPTADO,SEQ_GRABA_EEPROM);		
 		break;
@@ -502,6 +519,10 @@ uint8_t SecuenciaExpedidorMF( uint8_t EstadoActivo)
 						}
 			}
 			break;
+		default:
+		EstadoActivo = SEQ_INICIO;	
+		break;	
 	}
+	//printf("estadoactivo %d",EstadoActivo);
 	return EstadoActivo;
 }

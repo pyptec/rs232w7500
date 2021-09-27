@@ -5,8 +5,8 @@
 /*extern variable*/
 
 uint8_t Buffer_Rta_Lintech[TBUF_SIZE_LINTECH];
-
-
+uint8_t aSk=0; 									/*indica que llego el 06 = ask de que recivio el msj*/
+extern uint8_t cnt__ask_off;
 void com_isr (uint8_t cDatoRx ) 
 {
 //static  unsigned char cDatoRx;
@@ -28,7 +28,7 @@ Received data interrupt.
 			
 			if(cDatoRx==ASK)  							// espera el ask
 			{
-//				aSk=1;															/*se recibe el caracter 06 y se activa*//
+				aSk=1;															/*se recibe el caracter 06 y se activa*/
 						uart0_rx_cnt=0;
 			g_cEstadoComSoft=ESPERA_INICIO_RTA;
 			
@@ -88,19 +88,21 @@ Received data interrupt.
 						}
 							if (bcc==Buffer_Rta_Lintech[uart0_rx_cnt-1])	
 							{
-	//							aSk=0;
-	//							cnt__ask_off=0;
+								aSk=0;
+								cnt__ask_off=0;
 								buffer_ready=1;
 								g_cEstadoComSoft=ESPERA_ASK;											/* bcc ok trama valida*/
 													
 							}
 							else
 							{
+								aSk=0;
 								g_cEstadoComSoft=ESPERA_ASK;											/* bcc no concuerda  trama no valida*/
 							}
 					}	
 					else 
 					{
+						aSk=0;
 						g_cEstadoComSoft=ESPERA_ASK;													/*  no concuerda  ETX en la trama no valida*/
 					}	
 								

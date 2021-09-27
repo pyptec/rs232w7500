@@ -39,6 +39,7 @@
 #include "clock.h"
 #include "W7500x_gpio.h"
 #include "wiegand.h"
+#include <stdio.h>
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -381,14 +382,21 @@ void WZTOE_Handler(void)
   */
 void EXTI_Handler(void)
 {
-	if(EXTI_Px_GetEXTEN(PAD_PA)==D0_GpioA_11 )
+
+	if(GPIO_ReadOutputDataBit(GPIOA,D0_GpioA_11) == 0) 
 	{
-		DoL_data0();
-		NVIC_ClearPendingIRQ(EXTI_IRQn);
+			NVIC_ClearPendingIRQ(EXTI_IRQn);
+		printf("data0");
 	}
-	else if(EXTI_Px_GetEXTEN(PAD_PA)==D1_GpioA_12 )
+	//if(EXTI_Px_GetEXTEN(PAD_PA)==D0_GpioA_11 )
+	//{
+	//	DoL_data0();
+	
+	//}
+	else if(GPIO_ReadOutputDataBit(GPIOA,D1_GpioA_12) == 0) 
 	{
-		D1L_data1();
+		//D1L_data1();
+		printf("data1");
 		NVIC_ClearPendingIRQ(EXTI_IRQn);
 		
 	}

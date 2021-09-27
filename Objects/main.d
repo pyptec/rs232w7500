@@ -16,6 +16,7 @@
 .\objects\main.o: eeprom.h
 .\objects\main.o: lintech.h
 .\objects\main.o: expedidor.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: debuger.h
 .\objects\main.o: clock.h
 .\objects\main.o: wiegand.h

@@ -12,3 +12,4 @@
 .\objects\w7500x_it.o: clock.h
 .\objects\w7500x_it.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
 .\objects\w7500x_it.o: wiegand.h
+.\objects\w7500x_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

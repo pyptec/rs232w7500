@@ -21,10 +21,10 @@ DUALTIMER_InitTypDef Dualtimer_InitStructure;
 Atributos_Ds1307 clk;
 EXTI_InitTypeDef EXTI_InitDef;
 ATRIBUTOS_Wiegand wg;
-
+ATRIBUTOS_expedidor sq;
 /*salidas*/
-#define Atasco_GpioA_6	GPIO_Pin_6
-#define Lock_GpioA_7		GPIO_Pin_7
+//#define Atasco_GpioA_6	GPIO_Pin_6
+//#define Lock_GpioA_7		GPIO_Pin_7
 #define Led_out_GpioA_8	GPIO_Pin_8
 /*entradas*/
 #define Auto_GpioA_0		GPIO_Pin_0

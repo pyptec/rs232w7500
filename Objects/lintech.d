@@ -10,3 +10,5 @@
 .\objects\lintech.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\lintech.o: debuger.h
 .\objects\lintech.o: UART_CERO.h
+.\objects\lintech.o: expedidor.h
+.\objects\lintech.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
