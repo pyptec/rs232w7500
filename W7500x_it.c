@@ -50,6 +50,7 @@
 extern void com_isr (uint8_t cDatoRx );
 extern void  timer0_int(void) ;
 extern uint16_t EXTI_Px_GetEXTEN(PAD_Type Px);
+extern uint16_t EXTI_Px_GetEXTINTPOL(PAD_Type Px);
 /******************************************************************************/
 /*            Cortex-M0 Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -382,18 +383,16 @@ void WZTOE_Handler(void)
   */
 void EXTI_Handler(void)
 {
-
-	if(GPIO_ReadOutputDataBit(GPIOA,D0_GpioA_11) == 0) 
+	
+	
+	if(GPIO_ReadInputDataBit(GPIOA,D0_GpioA_11) == 0) 
 	{
 			NVIC_ClearPendingIRQ(EXTI_IRQn);
-		printf("data0");
-	}
-	//if(EXTI_Px_GetEXTEN(PAD_PA)==D0_GpioA_11 )
-	//{
 	//	DoL_data0();
+	printf("data0");
+	}
 	
-	//}
-	else if(GPIO_ReadOutputDataBit(GPIOA,D1_GpioA_12) == 0) 
+	else if(GPIO_ReadInputDataBit(GPIOA,D1_GpioA_12) == 0) 
 	{
 		//D1L_data1();
 		printf("data1");

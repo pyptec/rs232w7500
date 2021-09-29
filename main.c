@@ -309,26 +309,23 @@ void Config_I2C(void)
 void Config_Wiegand(void)
 {
 		/*wiegand*/
-	//	PAD_AFConfig(PAD_PA,GPIO_Pin_12, PAD_AF1); // PAD Config - CLKOUT used 3nd Function
+	
 		GPIO_InitDef.GPIO_Pin = (GPIO_Pin_11 | GPIO_Pin_12) ; 
+		GPIO_InitDef.GPIO_Pad=GPIO_PuPd_UP;
     GPIO_InitDef.GPIO_Mode = GPIO_Mode_IN; 
     GPIO_Init(GPIOA, &GPIO_InitDef);
 		PAD_AFConfig(PAD_PA,(GPIO_Pin_11 | GPIO_Pin_12), PAD_AF1); 
    	printf("Configuardo int DO DI\n");
 	
+
 	/* Set to GPIO_Pin_0 to External Interrupt Port */
-    EXTI_InitDef.EXTI_Line = (GPIO_Pin_11 | GPIO_Pin_12); // Connecting GPIO_Pin_0(EXTI Input)
+    EXTI_InitDef.EXTI_Line = ( D0_GpioA_11 | D1_GpioA_12 ); // Connecting GPIO_Pin_0(EXTI Input)D0_GpioA_11 |
     EXTI_InitDef.EXTI_Trigger = EXTI_Trigger_Falling;//EXTI_Trigger_Falling; // Set to Trigger to Rising
     EXTI_Init(PAD_PA, &EXTI_InitDef); // Set to PAD_PA
-    EXTI_Polarity_Set(PAD_PA,(GPIO_Pin_11 | GPIO_Pin_12),EXTI_Trigger_Falling); // Set to Polarity
+    EXTI_Polarity_Set(PAD_PA,( D0_GpioA_11 | D1_GpioA_12),EXTI_Trigger_Falling); // Set to Polarity
 		printf("Configuardo EXTI_Init\n");
 	/* GPIO Interrupt Configuration */
-  	
-	  
-		
-   // NVIC_EnableIRQ(EXTI_IRQn);       // EXTI Interrupt Enable
-	//	NVIC_ClearPendingIRQ(EXTI_IRQn); // Pending bit Clear
-//		printf("Configuardo NVIC\n");
+  
 		limpia_data();
 }
 void NVIC_Configuration(void)
