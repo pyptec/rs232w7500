@@ -1,0 +1,15 @@
+.\objects\prog.o: prog.c
+.\objects\prog.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\prog.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\prog.o: prog.h
+.\objects\prog.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\prog.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_uart.h
+.\objects\prog.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\prog.o: .\workspace\Libraries\CMSIS\Include\core_cm0.h
+.\objects\prog.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\prog.o: .\workspace\Libraries\CMSIS\Include\core_cmInstr.h
+.\objects\prog.o: .\workspace\Libraries\CMSIS\Include\core_cmFunc.h
+.\objects\prog.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\system_W7500x.h
+.\objects\prog.o: .\workspace\Libraries\CMSIS\Device\WIZnet\W7500\Include\W7500x.h
+.\objects\prog.o: eeprom.h
+.\objects\prog.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h

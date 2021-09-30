@@ -315,3 +315,96 @@ int I2C_ReadRepeated(uint8_t addr, uint8_t* data, uint32_t len)
     return 0;//success
 }
 
+int rd_eeprom(uint16_t addr)
+{
+ int i;
+uint8_t Dir_high,Dir_low,len,data;
+	 Dir_low=addr;
+	 Dir_high =addr >>8;
+	
+	
+    I2C_Start();
+
+ //Write palabra de control 0xa0
+    if(I2C_WriteByte(SLAVE_ADDRESS) != 0)
+    {
+				printf("Received NACK at palabra a0 control!!\r\n");
+		    
+    }
+    //Write addr high
+    if(I2C_WriteByte(Dir_high) != 0)
+    {
+      printf("Received NACK at address high phase!!\r\n");               
+			
+      //  return -1;
+    }
+		//Write addrlow
+		   if(I2C_WriteByte(Dir_low) != 0)
+    {
+      printf("Received NACK at address low phase!!\r\n");               
+		//	 return -1;
+    }
+		/*inicia*/
+		I2C_Start();
+		
+		//Write palabra de control 0xa1
+    if(I2C_WriteByte(SLAVE_ADDRESS | 1) != 0)
+    {
+			printf("Received NACK at palabra a1 control!!\r\n");
+      
+      //  return -1;
+    }
+    /*Read data*/
+		len=1;
+    for(i=0; i<len; i++)
+    {
+        if( i == (len - 1))
+			data = I2C_ReadByte(NACK);
+        else
+			data = I2C_ReadByte(ACK);
+
+    }
+    I2C_Stop();
+
+    return data;//success
+}
+
+int wr_eeprom(uint16_t addr, uint8_t data)
+{
+   int i;
+	uint8_t Dir_high,Dir_low,len;
+	Dir_low=addr;
+	Dir_high =addr >>8;
+
+/*inicio i2c*/
+    I2C_Start();
+
+    //Write palabra de control 0xa0
+    if(I2C_WriteByte(SLAVE_ADDRESS) != 0)
+    {
+		    printf("Received NACK at address phase!!\r\n");
+        return -1;
+    }
+		
+		//write addres high
+		 if(I2C_WriteByte(Dir_high) != 0)
+    {
+		    printf("Received NACK at address phase!!\n");
+        return -1;
+    }
+			//write addres low
+		 if(I2C_WriteByte(Dir_low) != 0)
+    {
+		    printf("Received NACK at address phase!!\n");
+        return -1;
+    }
+		len=1;
+    //Write data
+    for(i=0; i<len; i++)
+    {
+        if(I2C_WriteByte(data))  return -1;
+    }
+    I2C_Stop();
+		delay_ms(1);
+    return 0;
+}

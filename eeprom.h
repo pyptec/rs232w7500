@@ -43,4 +43,8 @@ int I2C_Write(uint16_t addr, uint8_t* data, uint32_t len);
 int I2C_Read(uint16_t addr, uint8_t* data, uint32_t len);
 int I2C_WriteRepeated(uint8_t addr, uint8_t* data, uint32_t len);
 int I2C_ReadRepeated(uint8_t addr, uint8_t* data, uint32_t len);
+int rd_eeprom(uint16_t addr);
+int wr_eeprom(uint16_t addr, uint8_t data);
+
+
 	
