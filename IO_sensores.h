@@ -7,5 +7,7 @@
 unsigned char ValidaSensor(void);
 unsigned char  ValidaSensoresPaso(void);
 unsigned char Valida_Sensor1_Auto(void);
+unsigned char Dir_Board_Monitor(void);
+
 
 

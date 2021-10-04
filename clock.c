@@ -48,7 +48,9 @@ return(bcd);
  }
  
  
-
+/*------------------------------------------------------------------------------
+ configura la fecha y el tiempo
+ ------------------------------------------------------------------------------*/
 void Set_Data_Write_date_time(Atributos_Ds1307 *clk)
 {
 	//uint8_t temp_clk;
@@ -134,3 +136,33 @@ void Get_Date_Time(uint8_t* data)
 		}
 		 I2C_Stop();
 }
+uint8_t Get_Data_clk(uint8_t addres_clk)
+{
+	
+	uint8_t data;
+		I2C_Start();
+		if(I2C_WriteByte(SLAVE_ADDRESS) != 0)
+    {
+			printf("writee  palabra de control clk NACK !!\r\n");
+       
+    }
+		/*addres 0*/
+		if(I2C_WriteByte(addres_clk) != 0)
+    {
+			printf("writee  palabra de control clk NACK !!\r\n");
+    }
+		I2C_Start();
+			if(I2C_WriteByte(SLAVE_ADDRESS | 1) != 0)
+    {
+			printf("writee  palabra de control clk NACK !!\r\n");
+     
+    }
+		 /*Read data*/
+    
+        
+			data = I2C_ReadByte(NACK);
+      
+		 I2C_Stop();
+		return data;
+}
+

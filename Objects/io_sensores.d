@@ -11,3 +11,4 @@
 .\objects\io_sensores.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
 .\objects\io_sensores.o: expedidor.h
 .\objects\io_sensores.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\io_sensores.o: eeprom.h

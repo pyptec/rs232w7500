@@ -13,3 +13,5 @@
 .\objects\expedidor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\expedidor.o: .\workspace\Libraries\W7500x_stdPeriph_Driver\inc\W7500x_gpio.h
 .\objects\expedidor.o: IO_sensores.h
+.\objects\expedidor.o: eeprom.h
+.\objects\expedidor.o: clock.h

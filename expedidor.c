@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "W7500x_gpio.h"
 #include "IO_sensores.h"
+#include "eeprom.h"
+#include "clock.h"
 
 /*funciones externas*/
 extern void delay_ms(__IO uint32_t nCount);
@@ -230,9 +232,9 @@ unsigned char Pregunta_Lpr(ATRIBUTOS_expedidor* Sq )
 	unsigned char Estado_expedidor;
 	
 	
-	printf( "PREGUNTA LPR\n");
-	// hora_entrada_vehiculo(Sq);
-	//	if(rd_eeprom(0xa8,EE_USE_LPR)== True)
+			printf( "PREGUNTA LPR\n");
+			fecha_hora_entrada_vehiculo(Sq);
+		if(rd_eeprom(EE_USE_LPR)== 1)
 			 {
 				 /*trama de disparo de placa */
 				// Debug_txt_Tibbo(Armar_Trama_Monitor(Atributos_Expedidor));
@@ -240,9 +242,23 @@ unsigned char Pregunta_Lpr(ATRIBUTOS_expedidor* Sq )
 			 }
 	
 
-		Estado_expedidor=SEQ_INGRESO_PRECARGA; //SEQ_CLASE_TARJETAS;       //SEQ_LOAD_PASSWORD;					//SEQ_TIPO_TARJETAS;
+		Estado_expedidor=SEQ_INGRESO_PRECARGA; 					//
 
 	return Estado_expedidor;
+}
+unsigned char *Armar_Trama_Mensual(ATRIBUTOS_expedidor* Sq)
+{
+	//unsigned char trama_mesual [24];
+	return 0;
+}
+void fecha_hora_entrada_vehiculo(ATRIBUTOS_expedidor* Sq)
+{
+	Sq->Atributos_Expedidor[DateTime_year]=Get_Data_clk(YEAR);
+	Sq->Atributos_Expedidor[DateTime_month]=Get_Data_clk(MONTH);
+	Sq->Atributos_Expedidor[DateTime_day]=Get_Data_clk(DATE);
+	Sq->Atributos_Expedidor[DateTime_hour]=Get_Data_clk(HRS);
+	Sq->Atributos_Expedidor[DateTime_minutes]=Get_Data_clk(MIN);
+	
 }
 /*------------------------------------------------------------------------------
 Se pregunta por el estado del expedidor si hay tarjetas para precargarla
@@ -399,8 +415,9 @@ unsigned char Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq)
 					
 					printf( "Buffer_s1_b1\n");
 					DebugBufferMF(buffer_S1_B1,16,DATA_RECIBIDO);
-	//				ID_CLIENTE=rd_eeprom(0xa8,EE_ID_CLIENTE);	
-	//				COD_PARK=rd_eeprom(0xa8,EE_ID_PARK);
+					ID_CLIENTE=rd_eeprom(EE_ID_CLIENTE);	
+					COD_PARK=rd_eeprom(EE_ID_PARK);
+				
 					/*Compara  MF_ID_CLIENTE y MF_COD_PARK con el codigo del parqueadero ID_CLIENTE  COD_PARK*/
 					
 					if (((buffer_S1_B1 [ MF_ID_CLIENTE])==ID_CLIENTE) && ((buffer_S1_B1 [ MF_COD_PARK] ) == COD_PARK)||((ID_CLIENTE==0)&&(COD_PARK==0)))		

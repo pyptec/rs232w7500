@@ -48,6 +48,8 @@ uint8_t bcd(uint8_t carc);
 uint8_t bin(uint8_t bcd_value);
 void Set_Data_Write_date_time(Atributos_Ds1307 *clk);
 void Get_Date_Time(uint8_t* data);
+uint8_t Get_Data_clk(uint8_t addres_clk);
+
 
 
 

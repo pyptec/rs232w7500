@@ -24,6 +24,14 @@ typedef enum
 	ACK = 1
 }ACK_TypeDef;
 
+/*direcciones de memoria usadas*/
+
+#define EE_ID_CLIENTE						0x0000
+#define EE_ID_PARK		  				0x0002
+#define EE_USE_LPR							0x0004
+#define EE_ADDRESS_HIGH_BOARD		0X0006
+
+#define EE_TICKET_ID					0X0200
 
 /*exportar funciones*/
 uint32_t I2C_Init(I2C_ConfigStruct* conf);
@@ -45,6 +53,8 @@ int I2C_WriteRepeated(uint8_t addr, uint8_t* data, uint32_t len);
 int I2C_ReadRepeated(uint8_t addr, uint8_t* data, uint32_t len);
 int rd_eeprom(uint16_t addr);
 int wr_eeprom(uint16_t addr, uint8_t data);
+void graba_serie(char *buffer);
+void Write_EEprom_Ticket(char *buffer);
 
 
 	

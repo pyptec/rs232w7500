@@ -2,6 +2,7 @@
 #include "IO_sensores.h"
 #include "W7500x_gpio.h"
 #include "expedidor.h"
+#include "eeprom.h"
 
 extern ATRIBUTOS_expedidor sq;
 
@@ -91,4 +92,27 @@ unsigned char  ValidaSensoresPaso(void)
 				return 0x00;
 		}
 	return sensor;
+}
+/*------------------------------------------------------------------------------
+Direccion de la tarjeta 
+------------------------------------------------------------------------------*/
+unsigned char Dir_Board_Monitor(void)
+{
+		unsigned char Board_High ;
+		
+		Board_High=rd_eeprom(EE_ADDRESS_HIGH_BOARD);
+		if(Board_High != 0)
+		{
+			if(Board_High == 0xff)
+			{
+					/*si es una direccion no valida la configura como 1*/
+				Board_High=0x01;
+			}
+			else
+			{
+				/*esta programado en cero coloca la posicion 1*/
+				Board_High=0x01;
+			}
+		}
+		return  Board_High+0x30;
 }

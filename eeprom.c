@@ -1,7 +1,9 @@
 
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "eeprom.h"
+#include "debuger.h"
 
 
 /*definiciones de la rutina*/
@@ -408,3 +410,79 @@ int wr_eeprom(uint16_t addr, uint8_t data)
 		delay_ms(1);
     return 0;
 }
+/*----------------------------------------------------------------------------------
+Funcion q recibe el numero de ticket en un arreglo
+error=1 valida los 10 digitos del ticket y si no es numerico los escribe en cero
+j= proposito general
+Noticket= variable de 32 bits tiene el numero del ticket
+-----------------------------------------------------------------------------------*/
+void graba_serie(char *buffer)
+{
+	
+	unsigned char  j;
+	unsigned char error=0;
+	
+	
+/*valido q los datos recibidos sean numericos*/
+	
+	*(buffer+10)=0;
+	
+	for (j=0; j<=9; j++)
+	{
+		if	((*(buffer+j)<0x30)||(*(buffer+j)>0x39))
+		{
+			error=1;
+			
+			printf( "Error de ticket");
+			printf(buffer);
+			printf( "\n");
+		}
+	
+	}
+	
+	
+	/* son numericos*/
+		if (error==0)
+		{
+			Write_EEprom_Ticket(buffer);
+				
+		}
+		else
+		{
+			wr_eeprom(EE_TICKET_ID,00);
+			wr_eeprom(EE_TICKET_ID+1,00);
+			wr_eeprom(EE_TICKET_ID+2,00);
+			wr_eeprom(EE_TICKET_ID+3,00);	
+			
+		}
+}
+void Write_EEprom_Ticket(char *buffer)
+{
+	unsigned char  cod_3,cod_2,cod_1,cod_0;
+	unsigned long int Noticket,Bnoticket=0;
+	printf( "Numero de ticket: %s\n",buffer);
+	Noticket= atol(buffer);
+		
+	printf("No de ticket HEX:");
+	Bnoticket=Noticket>>24;
+	cod_3=Bnoticket;
+	Debug_chr_UART2(cod_3);
+		
+	Bnoticket=Noticket >>16;
+	cod_2=Bnoticket;
+	Debug_chr_UART2(cod_2);
+			
+	Bnoticket=Noticket >>8;
+	cod_1=Bnoticket;
+	Debug_chr_UART2(cod_1);
+			
+	cod_0=Noticket;
+	Debug_chr_UART2(cod_0);
+	printf( "\n");
+			
+	wr_eeprom(EE_TICKET_ID,cod_3);
+	wr_eeprom(EE_TICKET_ID+1,cod_2);
+	wr_eeprom(EE_TICKET_ID+2,cod_1);
+	wr_eeprom(EE_TICKET_ID+3,cod_0);	
+}
+

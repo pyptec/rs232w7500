@@ -149,6 +149,8 @@ unsigned char Responde_Tipo_Tarjeta(void);
 unsigned char Responde_Lectura_Tarjeta_Sector1_Bloque1 (ATRIBUTOS_expedidor* Sq);
 unsigned char Responde_Lectura_Tarjeta_Sector1_Bloque2 (ATRIBUTOS_expedidor* Sq);
 unsigned char Analiza_Presencia(void);
+void fecha_hora_entrada_vehiculo(ATRIBUTOS_expedidor* Sq);
+
 
 
 

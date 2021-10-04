@@ -2,8 +2,7 @@
 #define 	NUMCOMMAND 19
 #define 	LONGSIZE 3
 
-#define EE_ID_CLIENTE						0x0000
-#define EE_ID_PARK		  				0x0002
+
 extern char  *strtok  (char *str, const char *set);
 void menu(void);
 void Show(void);
